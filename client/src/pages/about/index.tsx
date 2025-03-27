@@ -9,56 +9,56 @@ const trainers: Trainer[] = [
     name: "FAWAD HARIS",
     title: "CEO and Head Coach",
     bio: "Holding a BS in Human Nutrition and Dietetics, Fawad is a polyathlete who leads our coaching team with expertise and passion. His comprehensive knowledge in nutrition and fitness helps our members achieve their health and wellness goals effectively.",
-    image: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+    image: "https://randomuser.me/api/portraits/men/76.jpg"
   },
   {
     id: "muhammad-hamza",
     name: "MUHAMMAD HAMZA",
     title: "Cross-fit Expert / Senior Coach",
     bio: "Muhammad specializes in cross-fit training and personal training. His dynamic approach to fitness challenges clients to push their boundaries and achieve exceptional results through intensive, diverse workout routines.",
-    image: "https://images.unsplash.com/photo-1518310383802-640c2de311b2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+    image: "https://randomuser.me/api/portraits/men/77.jpg"
   },
   {
     id: "khubaib",
     name: "KHUBAIB",
     title: "Floor Manager / Group Training Coach",
     bio: "As our dedicated Floor Manager, Khubaib ensures that every training session runs smoothly. His expertise in group training creates an energetic and motivating environment that pushes members to achieve their fitness potential.",
-    image: "https://images.unsplash.com/photo-1567013127542-490d757e51fc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+    image: "https://randomuser.me/api/portraits/men/78.jpg"
   },
   {
     id: "faisal",
     name: "FAISAL",
     title: "Morning Trainer / PT & GX Specialist",
     bio: "Faisal's expertise in personal training and group exercises makes him a versatile coach. His morning sessions are energetic and effective, providing members with the perfect start to their day through carefully designed workout routines.",
-    image: "https://images.unsplash.com/photo-1549476464-37392f717541?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+    image: "https://randomuser.me/api/portraits/men/79.jpg"
   },
   {
     id: "owais-khan",
     name: "OWAIS KHAN",
     title: "MMA Coach",
     bio: "Sir Owais brings expertise and discipline to our MMA training program. His extensive knowledge of mixed martial arts techniques and training methodologies helps members develop both physical strength and mental focus.",
-    image: "https://images.unsplash.com/photo-1594381898411-846e7d193883?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+    image: "https://randomuser.me/api/portraits/men/80.jpg"
   },
   {
     id: "samina-faisal",
     name: "SAMINA FAISAL",
     title: "Female Trainer / Group Instructor",
     bio: "Samina leads our women-only sessions with expertise and enthusiasm. As a dedicated group instructor, she creates a comfortable and empowering environment for women to achieve their fitness goals through effective and enjoyable workouts.",
-    image: "https://images.unsplash.com/photo-1609899464926-c34721ed9b0e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+    image: "https://randomuser.me/api/portraits/women/79.jpg"
   },
   {
     id: "ismail-soomro",
     name: "DR. ISMAIL SOOMRO",
     title: "Physiotherapist",
     bio: "Dr. Ismail provides expert physiotherapy services to our members. His medical expertise ensures proper rehabilitation and injury prevention, helping our members maintain optimal physical health while pursuing their fitness goals.",
-    image: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+    image: "https://randomuser.me/api/portraits/men/81.jpg"
   },
   {
     id: "muhammad-umar",
     name: "MUHAMMAD UMAR",
     title: "PT and Science-Based Coach",
     bio: "Muhammad Umar brings a scientific approach to personal training. His evidence-based coaching methods and attention to detail ensure that members receive effective, safe, and progressive training programs tailored to their individual needs.",
-    image: "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+    image: "https://randomuser.me/api/portraits/men/82.jpg"
   }
 ];
 

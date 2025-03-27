@@ -8,7 +8,7 @@ const testimonials: Testimonial[] = [
   {
     id: "imran",
     name: "Imran S.",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&h=100&q=80",
+    image: "https://randomuser.me/api/portraits/men/65.jpg",
     text: "I've been a member at Hanma for 6 months and the results speak for themselves. I've lost 15kg and gained significant muscle. The trainers are knowledgeable and push you just right. The MMA classes are my favorite—intense but incredibly satisfying!",
     goal: "Weight Loss & Strength",
     rating: 5
@@ -16,7 +16,7 @@ const testimonials: Testimonial[] = [
   {
     id: "sana",
     name: "Sana K.",
-    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&h=100&q=80",
+    image: "https://randomuser.me/api/portraits/women/62.jpg",
     text: "As a woman, I was hesitant to join a gym, but the female-only hours at Hanma made all the difference. Ayesha is an amazing trainer who understands exactly what I need. The Zumba classes are so fun I don't even realize I'm working out!",
     goal: "Fitness & Confidence",
     rating: 5
@@ -24,7 +24,7 @@ const testimonials: Testimonial[] = [
   {
     id: "faisal",
     name: "Faisal R.",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&h=100&q=80",
+    image: "https://randomuser.me/api/portraits/men/71.jpg",
     text: "The personal training at Hanma is worth every rupee. Omar designed a program specifically for my goals, and I've seen more progress in 3 months than I did in years at other gyms. The community aspect keeps me accountable—I never want to miss a session!",
     goal: "Muscle Building",
     rating: 5
@@ -32,7 +32,7 @@ const testimonials: Testimonial[] = [
   {
     id: "zara",
     name: "Zara M.",
-    image: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&h=100&q=80",
+    image: "https://randomuser.me/api/portraits/women/60.jpg",
     text: "I joined Hanma after having my second child and was worried about getting back in shape. The supportive environment and expert guidance from the trainers have been incredible. In just 4 months, I've lost 12kg and feel stronger than ever!",
     goal: "Post-Pregnancy Fitness",
     rating: 5
@@ -40,7 +40,7 @@ const testimonials: Testimonial[] = [
   {
     id: "ali",
     name: "Ali H.",
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&h=100&q=80",
+    image: "https://randomuser.me/api/portraits/men/74.jpg",
     text: "I've tried multiple gyms in Johar, but none compare to Hanma. The quality of coaching and the community feeling is unmatched. The MMA classes have improved not just my fitness but also my discipline and focus in everyday life.",
     goal: "Overall Fitness & MMA Skills",
     rating: 5
@@ -48,7 +48,7 @@ const testimonials: Testimonial[] = [
   {
     id: "hina",
     name: "Hina J.",
-    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&h=100&q=80",
+    image: "https://randomuser.me/api/portraits/women/65.jpg",
     text: "The female-only hours were what initially drew me to Hanma, but the quality of training is what keeps me coming back. I've not only lost weight but also gained confidence and strength. The women's community here is so supportive!",
     goal: "Weight Loss & Toning",
     rating: 5
@@ -60,29 +60,29 @@ const transformations: Transformation[] = [
     id: "adeel",
     name: "Adeel's 12-Week Transformation",
     description: "Lost 18kg and gained significant muscle definition through Personal Training and MMA classes.",
-    beforeImage: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
-    afterImage: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80"
+    beforeImage: "https://randomuser.me/api/portraits/men/32.jpg",
+    afterImage: "https://randomuser.me/api/portraits/men/33.jpg"
   },
   {
     id: "zara",
     name: "Zara's Fitness Journey",
     description: "Transformed her body and gained confidence through our women's classes and strength training.",
-    beforeImage: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
-    afterImage: "https://images.unsplash.com/photo-1518611012118-696072aa579a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80"
+    beforeImage: "https://randomuser.me/api/portraits/women/67.jpg",
+    afterImage: "https://randomuser.me/api/portraits/women/68.jpg"
   },
   {
     id: "hamza",
     name: "Hamza's Strength Journey",
     description: "Gained 10kg of muscle and improved overall strength in 6 months with our personalized training program.",
-    beforeImage: "https://images.unsplash.com/photo-1507398941214-572c25f4b1dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
-    afterImage: "https://images.unsplash.com/photo-1567013127542-490d757e51fc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80"
+    beforeImage: "https://randomuser.me/api/portraits/men/41.jpg",
+    afterImage: "https://randomuser.me/api/portraits/men/42.jpg"
   },
   {
     id: "sara",
     name: "Sara's Weight Loss Success",
     description: "Lost 22kg in 8 months through a combination of nutrition guidance and our fitness classes.",
-    beforeImage: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
-    afterImage: "https://images.unsplash.com/photo-1609899464926-c34721ed9b0e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80"
+    beforeImage: "https://randomuser.me/api/portraits/women/55.jpg",
+    afterImage: "https://randomuser.me/api/portraits/women/56.jpg"
   }
 ];
 
@@ -98,11 +98,7 @@ const TestimonialsPage = () => {
       <section className="pt-16 pb-12 bg-gray-900 text-white relative overflow-hidden">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-black opacity-60"></div>
-          <img 
-            src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80" 
-            alt="Group fitness class" 
-            className="object-cover w-full h-full"
-          />
+          <div className="bg-gray-800 w-full h-full"></div>
         </div>
         
         <div className="container mx-auto px-4 py-12 relative z-10">
