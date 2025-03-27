@@ -65,6 +65,7 @@ export type ContactInquiry = typeof contactInquiries.$inferSelect;
 export const welcomeMessages = pgTable("welcome_messages", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),
+  email: text("email"),  // Optional email for sending welcome message directly to user
   fitnessGoals: text("fitness_goals").notNull(),
   preferredWorkoutType: text("preferred_workout_type").notNull(),
   experienceLevel: text("experience_level").notNull(),
@@ -74,6 +75,7 @@ export const welcomeMessages = pgTable("welcome_messages", {
 
 export const insertWelcomeMessageSchema = createInsertSchema(welcomeMessages).pick({
   name: true,
+  email: true,
   fitnessGoals: true,
   preferredWorkoutType: true,
   experienceLevel: true,

@@ -18,6 +18,7 @@ export interface ContactFormData {
 // Welcome Message types
 export interface WelcomeMessageFormData {
   name: string;
+  email?: string;  // Optional email field
   fitnessGoals: string;
   preferredWorkoutType: string;
   experienceLevel: string;
@@ -27,6 +28,7 @@ export interface WelcomeMessageFormData {
 export interface WelcomeMessageResponse {
   id: number;
   name: string;
+  email?: string;  // Optional email field
   fitnessGoals: string;
   preferredWorkoutType: string;
   experienceLevel: string;

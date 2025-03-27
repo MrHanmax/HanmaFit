@@ -18,6 +18,7 @@ import { Loader2 } from "lucide-react";
 // Form validation schema
 const welcomeMessageSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters" }),
+  email: z.string().email({ message: "Please enter a valid email" }).optional(),
   fitnessGoals: z.string().min(1, { message: "Please select your fitness goals" }),
   preferredWorkoutType: z.string().min(1, { message: "Please select your preferred workout type" }),
   experienceLevel: z.string().min(1, { message: "Please select your experience level" }),
@@ -34,6 +35,7 @@ export default function WelcomeMessageGenerator() {
     resolver: zodResolver(welcomeMessageSchema),
     defaultValues: {
       name: "",
+      email: "",
       fitnessGoals: "",
       preferredWorkoutType: "",
       experienceLevel: "",
@@ -103,6 +105,27 @@ export default function WelcomeMessageGenerator() {
                           <FormControl>
                             <Input placeholder="Enter your name" {...field} />
                           </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="email"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Your Email <span className="text-sm text-gray-500">(optional)</span></FormLabel>
+                          <FormControl>
+                            <Input 
+                              type="email" 
+                              placeholder="Enter your email to receive welcome message" 
+                              {...field} 
+                            />
+                          </FormControl>
+                          <FormDescription>
+                            We'll send your personalized welcome message to this email address.
+                          </FormDescription>
                           <FormMessage />
                         </FormItem>
                       )}

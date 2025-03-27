@@ -4,7 +4,7 @@ import { storage } from "./storage";
 import { insertTrialLeadSchema, insertContactInquirySchema, insertWelcomeMessageSchema } from "@shared/schema";
 import { ZodError } from "zod";
 import { fromZodError } from 'zod-validation-error';
-import nodemailer from 'nodemailer';
+import { sendEmail } from './emailService';
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // API routes for trial lead submissions
@@ -13,43 +13,35 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const validatedData = insertTrialLeadSchema.parse(req.body);
       const createdLead = await storage.createTrialLead(validatedData);
 
-      // Only attempt to send email if SMTP credentials are configured
-      if (process.env.SMTP_USER && process.env.SMTP_PASS && process.env.NOTIFICATION_EMAIL) {
-        try {
-          console.log(`Attempting to send trial lead email using: ${process.env.SMTP_USER}`);
-          
-          const transporter = nodemailer.createTransport({
-            service: "gmail",
-            host: "smtp.gmail.com",
-            port: 587,
-            secure: false,
-            auth: {
-              user: process.env.SMTP_USER,
-              pass: process.env.SMTP_PASS,
-            },
-            tls: {
-              rejectUnauthorized: false
-            }
-          });
-
-          await transporter.sendMail({
-            from: process.env.SMTP_FROM || process.env.SMTP_USER,
-            to: process.env.NOTIFICATION_EMAIL,
-            subject: 'New Trial Class Request',
-            text: `
+      // Attempt to send email via Brevo API
+      try {
+        // Email content
+        const emailContent = `
 New trial class request:
 Name: ${validatedData.name}
 Email: ${validatedData.email}
 Phone: ${validatedData.phone}
 Class Interest: ${validatedData.classInterest}
 How they heard about us: ${validatedData.howHeard}
-            `,
+        `;
+
+        // Send notification email to admin
+        if (process.env.NOTIFICATION_EMAIL) {
+          const emailSent = await sendEmail({
+            to: process.env.NOTIFICATION_EMAIL,
+            subject: 'New Trial Class Request - Hanma Fitness',
+            text: emailContent
           });
-          console.log("Trial lead notification email sent successfully");
-        } catch (emailError) {
-          // Log email error but continue with the request
-          console.error("Failed to send email notification:", emailError);
+          
+          if (emailSent) {
+            console.log("Trial lead notification email sent successfully via Brevo API");
+          } else {
+            console.log("Failed to send trial lead notification email via Brevo API");
+          }
         }
+      } catch (emailError) {
+        // Log email error but continue with the request
+        console.error("Failed to send email notification:", emailError);
       }
 
       res.status(201).json({
@@ -115,43 +107,35 @@ How they heard about us: ${validatedData.howHeard}
       const validatedData = insertContactInquirySchema.parse(req.body);
       const createdInquiry = await storage.createContactInquiry(validatedData);
 
-      // Only attempt to send email if SMTP credentials are configured
-      if (process.env.SMTP_USER && process.env.SMTP_PASS && process.env.NOTIFICATION_EMAIL) {
-        try {
-          console.log(`Attempting to send contact inquiry email using: ${process.env.SMTP_USER}`);
-          
-          const transporter = nodemailer.createTransport({
-            service: "gmail",
-            host: "smtp.gmail.com",
-            port: 587,
-            secure: false,
-            auth: {
-              user: process.env.SMTP_USER,
-              pass: process.env.SMTP_PASS,
-            },
-            tls: {
-              rejectUnauthorized: false
-            }
-          });
-
-          await transporter.sendMail({
-            from: process.env.SMTP_FROM || process.env.SMTP_USER,
-            to: process.env.NOTIFICATION_EMAIL,
-            subject: 'New Contact Form Submission',
-            text: `
+      // Attempt to send email via Brevo API
+      try {
+        // Email content
+        const emailContent = `
 New contact form submission:
 Name: ${validatedData.name}
 Email: ${validatedData.email}
 Phone: ${validatedData.phone}
 Service Interest: ${validatedData.serviceInterest}
 Message: ${validatedData.message}
-            `,
+        `;
+
+        // Send notification email to admin
+        if (process.env.NOTIFICATION_EMAIL) {
+          const emailSent = await sendEmail({
+            to: process.env.NOTIFICATION_EMAIL,
+            subject: 'New Contact Form Submission - Hanma Fitness',
+            text: emailContent
           });
-          console.log("Contact inquiry notification email sent successfully");
-        } catch (emailError) {
-          // Log email error but continue with the request
-          console.error("Failed to send email notification:", emailError);
+          
+          if (emailSent) {
+            console.log("Contact inquiry notification email sent successfully via Brevo API");
+          } else {
+            console.log("Failed to send contact inquiry notification email via Brevo API");
+          }
         }
+      } catch (emailError) {
+        // Log email error but continue with the request
+        console.error("Failed to send email notification:", emailError);
       }
 
       res.status(201).json({
@@ -268,6 +252,52 @@ Message: ${validatedData.message}
       };
 
       const createdMessage = await storage.createWelcomeMessage(messageToSave);
+
+      // Attempt to send email notification via Brevo API
+      try {
+        // If user provided their email, send them the welcome message as well
+        if (validatedData.email) {
+          const emailSent = await sendEmail({
+            to: validatedData.email,
+            subject: 'Welcome to Hanma Fitness Studio!',
+            text: fullMessage
+          });
+          
+          if (emailSent) {
+            console.log("Welcome email sent successfully to user via Brevo API");
+          } else {
+            console.log("Failed to send welcome email to user via Brevo API");
+          }
+        }
+        
+        // Send notification to admin
+        if (process.env.NOTIFICATION_EMAIL) {
+          const adminEmailContent = `
+New welcome message generated:
+Name: ${validatedData.name}
+Fitness Goals: ${validatedData.fitnessGoals}
+Preferred Workout Type: ${validatedData.preferredWorkoutType}
+Experience Level: ${validatedData.experienceLevel}
+Generated Message: 
+${fullMessage}
+          `;
+          
+          const emailSent = await sendEmail({
+            to: process.env.NOTIFICATION_EMAIL,
+            subject: 'New Welcome Message Generated - Hanma Fitness',
+            text: adminEmailContent
+          });
+          
+          if (emailSent) {
+            console.log("Welcome message notification email sent successfully to admin via Brevo API");
+          } else {
+            console.log("Failed to send welcome message notification to admin via Brevo API");
+          }
+        }
+      } catch (emailError) {
+        // Log email error but continue with the request
+        console.error("Failed to send welcome message email:", emailError);
+      }
 
       res.status(201).json({
         message: "Welcome message created successfully",
