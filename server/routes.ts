@@ -13,33 +13,41 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const validatedData = insertTrialLeadSchema.parse(req.body);
       const createdLead = await storage.createTrialLead(validatedData);
 
-      // Send notification email
-      const transporter = nodemailer.createTransport({
-        host: "smtp.gmail.com",
-        port: 587,
-        secure: false,
-        auth: {
-          user: process.env.SMTP_USER,
-          pass: process.env.SMTP_PASS,
-        },
-        tls: {
-          rejectUnauthorized: false
-        }
-      });
+      // Only attempt to send email if SMTP credentials are configured
+      if (process.env.SMTP_USER && process.env.SMTP_PASS && process.env.NOTIFICATION_EMAIL) {
+        try {
+          const transporter = nodemailer.createTransport({
+            host: "smtp.gmail.com",
+            port: 587,
+            secure: false,
+            auth: {
+              user: process.env.SMTP_USER,
+              pass: process.env.SMTP_PASS,
+            },
+            tls: {
+              rejectUnauthorized: false
+            }
+          });
 
-      await transporter.sendMail({
-        from: process.env.SMTP_FROM,
-        to: process.env.NOTIFICATION_EMAIL,
-        subject: 'New Trial Class Request',
-        text: `
+          await transporter.sendMail({
+            from: process.env.SMTP_FROM || process.env.SMTP_USER,
+            to: process.env.NOTIFICATION_EMAIL,
+            subject: 'New Trial Class Request',
+            text: `
 New trial class request:
 Name: ${validatedData.name}
 Email: ${validatedData.email}
 Phone: ${validatedData.phone}
 Class Interest: ${validatedData.classInterest}
 How they heard about us: ${validatedData.howHeard}
-        `,
-      });
+            `,
+          });
+          console.log("Trial lead notification email sent successfully");
+        } catch (emailError) {
+          // Log email error but continue with the request
+          console.error("Failed to send email notification:", emailError);
+        }
+      }
 
       res.status(201).json({
         message: "Trial lead created successfully",
@@ -104,33 +112,41 @@ How they heard about us: ${validatedData.howHeard}
       const validatedData = insertContactInquirySchema.parse(req.body);
       const createdInquiry = await storage.createContactInquiry(validatedData);
 
-      // Send notification email
-      const transporter = nodemailer.createTransport({
-        host: "smtp.gmail.com",
-        port: 587,
-        secure: false,
-        auth: {
-          user: process.env.SMTP_USER,
-          pass: process.env.SMTP_PASS,
-        },
-        tls: {
-          rejectUnauthorized: false
-        }
-      });
+      // Only attempt to send email if SMTP credentials are configured
+      if (process.env.SMTP_USER && process.env.SMTP_PASS && process.env.NOTIFICATION_EMAIL) {
+        try {
+          const transporter = nodemailer.createTransport({
+            host: "smtp.gmail.com",
+            port: 587,
+            secure: false,
+            auth: {
+              user: process.env.SMTP_USER,
+              pass: process.env.SMTP_PASS,
+            },
+            tls: {
+              rejectUnauthorized: false
+            }
+          });
 
-      await transporter.sendMail({
-        from: process.env.SMTP_FROM,
-        to: process.env.NOTIFICATION_EMAIL,
-        subject: 'New Contact Form Submission',
-        text: `
+          await transporter.sendMail({
+            from: process.env.SMTP_FROM || process.env.SMTP_USER,
+            to: process.env.NOTIFICATION_EMAIL,
+            subject: 'New Contact Form Submission',
+            text: `
 New contact form submission:
 Name: ${validatedData.name}
 Email: ${validatedData.email}
 Phone: ${validatedData.phone}
 Service Interest: ${validatedData.serviceInterest}
 Message: ${validatedData.message}
-        `,
-      });
+            `,
+          });
+          console.log("Contact inquiry notification email sent successfully");
+        } catch (emailError) {
+          // Log email error but continue with the request
+          console.error("Failed to send email notification:", emailError);
+        }
+      }
 
       res.status(201).json({
         message: "Contact inquiry created successfully",
