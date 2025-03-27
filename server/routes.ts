@@ -16,7 +16,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Only attempt to send email if SMTP credentials are configured
       if (process.env.SMTP_USER && process.env.SMTP_PASS && process.env.NOTIFICATION_EMAIL) {
         try {
+          console.log(`Attempting to send trial lead email using: ${process.env.SMTP_USER}`);
+          
           const transporter = nodemailer.createTransport({
+            service: "gmail",
             host: "smtp.gmail.com",
             port: 587,
             secure: false,
@@ -115,7 +118,10 @@ How they heard about us: ${validatedData.howHeard}
       // Only attempt to send email if SMTP credentials are configured
       if (process.env.SMTP_USER && process.env.SMTP_PASS && process.env.NOTIFICATION_EMAIL) {
         try {
+          console.log(`Attempting to send contact inquiry email using: ${process.env.SMTP_USER}`);
+          
           const transporter = nodemailer.createTransport({
+            service: "gmail",
             host: "smtp.gmail.com",
             port: 587,
             secure: false,

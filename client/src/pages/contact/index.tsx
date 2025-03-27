@@ -52,7 +52,7 @@ const ContactPage = () => {
                 <div className="h-64 relative overflow-hidden">
                   {/* Google Map Embed */}
                   <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3618.0550639506284!2d67.1130028!3d24.9275698!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb338bf46f95525%3A0x91f23f2a26998279!2sGulistan-e-Johar%20Block%201%20Gulistan-e-Johar%2C%20Karachi%2C%20Karachi%20City%2C%20Sindh%2C%20Pakistan!5e0!3m2!1sen!2s!4v1680000000000!5m2!1sen!2s" 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3618.0550639503284!2d67.11054387451794!3d24.92756977673431!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb338bf46f95525%3A0x91f23f2a26998279!2sHanma%20Fitness%20Studio!5e0!3m2!1sen!2s!4v1680000000000!5m2!1sen!2s" 
                     width="100%" 
                     height="100%" 
                     style={{ border: 0 }} 
