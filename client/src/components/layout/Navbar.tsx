@@ -31,11 +31,6 @@ const Navbar = () => {
       <div className="container mx-auto px-4 py-3">
         <div className="flex justify-between items-center">
           <Link href="/" className="flex items-center">
-            <img 
-              src="/images/hanma-logo.png" 
-              alt="Hanma Fitness Logo" 
-              className="h-10 mr-2" 
-            />
             <span className="text-2xl font-['Bebas_Neue'] tracking-wider">HANMA FITNESS</span>
           </Link>
           

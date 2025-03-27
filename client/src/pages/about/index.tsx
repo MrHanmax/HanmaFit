@@ -74,11 +74,7 @@ const AboutPage = () => {
       <section className="pt-16 pb-12 bg-gray-900 text-white relative overflow-hidden">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-black opacity-60"></div>
-          <img 
-            src="/images/gym-interior-2.jpg" 
-            alt="Hanma Fitness Studio interior" 
-            className="object-cover w-full h-full"
-          />
+          <div className="bg-gray-800 w-full h-full"></div>
         </div>
         
         <div className="container mx-auto px-4 py-12 relative z-10">
@@ -112,26 +108,18 @@ const AboutPage = () => {
               </div>
               <div className="md:w-1/2">
                 <div className="grid grid-cols-2 gap-4">
-                  <img 
-                    src="/images/gym-interior-1.jpg" 
-                    alt="Hanma Fitness Training Area" 
-                    className="rounded-lg h-56 object-cover"
-                  />
-                  <img 
-                    src="/images/gym-interior-2.jpg" 
-                    alt="Hanma Fitness Equipment" 
-                    className="rounded-lg h-56 object-cover"
-                  />
-                  <img 
-                    src="/images/gym-interior-3.jpg" 
-                    alt="Hanma Fitness Power Rack" 
-                    className="rounded-lg h-56 object-cover"
-                  />
-                  <img 
-                    src="/images/gym-interior-1.jpg" 
-                    alt="Hanma Fitness Studio" 
-                    className="rounded-lg h-56 object-cover brightness-110"
-                  />
+                  <div className="bg-gray-200 rounded-lg h-56 flex items-center justify-center">
+                    <span className="text-gray-500">Training Area</span>
+                  </div>
+                  <div className="bg-gray-200 rounded-lg h-56 flex items-center justify-center">
+                    <span className="text-gray-500">Equipment</span>
+                  </div>
+                  <div className="bg-gray-200 rounded-lg h-56 flex items-center justify-center">
+                    <span className="text-gray-500">Power Rack</span>
+                  </div>
+                  <div className="bg-gray-200 rounded-lg h-56 flex items-center justify-center">
+                    <span className="text-gray-500">Studio</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -219,11 +207,9 @@ const AboutPage = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div>
-              <img 
-                src="/images/gym-interior-1.jpg" 
-                alt="Hanma Fitness Training Area" 
-                className="rounded-lg h-64 w-full object-cover mb-4"
-              />
+              <div className="bg-gray-200 rounded-lg h-64 w-full flex items-center justify-center mb-4">
+                <span className="text-gray-500">Training Area</span>
+              </div>
               <h3 className="font-bold text-xl mb-2 text-[#1d3557]">Premium Training Area</h3>
               <p>
                 Our modern training area features quality equipment and atmospheric lighting, designed to create the perfect environment for effective workouts.
@@ -231,11 +217,9 @@ const AboutPage = () => {
             </div>
             
             <div>
-              <img 
-                src="/images/gym-interior-2.jpg" 
-                alt="Hanma Fitness Equipment" 
-                className="rounded-lg h-64 w-full object-cover mb-4"
-              />
+              <div className="bg-gray-200 rounded-lg h-64 w-full flex items-center justify-center mb-4">
+                <span className="text-gray-500">MMA Zone</span>
+              </div>
               <h3 className="font-bold text-xl mb-2 text-[#1d3557]">Strength and MMA Zone</h3>
               <p>
                 Our dedicated strength and MMA zones feature specialized equipment for building power, endurance, and martial arts skills under expert supervision.
@@ -243,11 +227,9 @@ const AboutPage = () => {
             </div>
             
             <div>
-              <img 
-                src="/images/gym-interior-3.jpg" 
-                alt="Hanma Fitness Power Rack" 
-                className="rounded-lg h-64 w-full object-cover mb-4"
-              />
+              <div className="bg-gray-200 rounded-lg h-64 w-full flex items-center justify-center mb-4">
+                <span className="text-gray-500">Strength Zone</span>
+              </div>
               <h3 className="font-bold text-xl mb-2 text-[#1d3557]">Strength Training Zone</h3>
               <p>
                 Our strength zone includes power racks, free weights, and specialized equipment to help you build muscle, increase strength, and improve overall fitness.
