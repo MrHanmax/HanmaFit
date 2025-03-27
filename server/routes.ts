@@ -73,6 +73,32 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const validatedData = insertContactInquirySchema.parse(req.body);
       const createdInquiry = await storage.createContactInquiry(validatedData);
+      
+      // Send notification email
+      const transporter = nodemailer.createTransport({
+        host: process.env.SMTP_HOST,
+        port: parseInt(process.env.SMTP_PORT || "587"),
+        secure: false,
+        auth: {
+          user: process.env.SMTP_USER,
+          pass: process.env.SMTP_PASS,
+        },
+      });
+
+      await transporter.sendMail({
+        from: process.env.SMTP_FROM,
+        to: process.env.NOTIFICATION_EMAIL,
+        subject: 'New Contact Form Submission',
+        text: `
+New contact form submission:
+Name: ${validatedData.name}
+Email: ${validatedData.email}
+Phone: ${validatedData.phone}
+Service Interest: ${validatedData.serviceInterest}
+Message: ${validatedData.message}
+        `,
+      });
+
       res.status(201).json({
         message: "Contact inquiry created successfully",
         data: createdInquiry
