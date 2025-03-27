@@ -9,56 +9,56 @@ const trainers: Trainer[] = [
     name: "FAWAD HARIS",
     title: "CEO and Head Coach",
     bio: "Holding a BS in Human Nutrition and Dietetics, Fawad is a polyathlete who leads our coaching team with expertise and passion. His comprehensive knowledge in nutrition and fitness helps our members achieve their health and wellness goals effectively.",
-    image: "https://randomuser.me/api/portraits/men/76.jpg"
+    image: "data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23CCCCCC'/%3E%3Ccircle cx='100' cy='70' r='40' fill='%23666666'/%3E%3Cpath d='M160,200 C160,160 140,130 100,130 C60,130 40,160 40,200 Z' fill='%23666666'/%3E%3C/svg%3E"
   },
   {
     id: "muhammad-hamza",
     name: "MUHAMMAD HAMZA",
     title: "Cross-fit Expert / Senior Coach",
     bio: "Muhammad specializes in cross-fit training and personal training. His dynamic approach to fitness challenges clients to push their boundaries and achieve exceptional results through intensive, diverse workout routines.",
-    image: "https://randomuser.me/api/portraits/men/77.jpg"
+    image: "data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23CCCCCC'/%3E%3Ccircle cx='100' cy='70' r='40' fill='%23666666'/%3E%3Cpath d='M160,200 C160,160 140,130 100,130 C60,130 40,160 40,200 Z' fill='%23666666'/%3E%3C/svg%3E"
   },
   {
     id: "khubaib",
     name: "KHUBAIB",
     title: "Floor Manager / Group Training Coach",
     bio: "As our dedicated Floor Manager, Khubaib ensures that every training session runs smoothly. His expertise in group training creates an energetic and motivating environment that pushes members to achieve their fitness potential.",
-    image: "https://randomuser.me/api/portraits/men/78.jpg"
+    image: "data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23CCCCCC'/%3E%3Ccircle cx='100' cy='70' r='40' fill='%23666666'/%3E%3Cpath d='M160,200 C160,160 140,130 100,130 C60,130 40,160 40,200 Z' fill='%23666666'/%3E%3C/svg%3E"
   },
   {
     id: "faisal",
     name: "FAISAL",
     title: "Morning Trainer / PT & GX Specialist",
     bio: "Faisal's expertise in personal training and group exercises makes him a versatile coach. His morning sessions are energetic and effective, providing members with the perfect start to their day through carefully designed workout routines.",
-    image: "https://randomuser.me/api/portraits/men/79.jpg"
+    image: "data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23CCCCCC'/%3E%3Ccircle cx='100' cy='70' r='40' fill='%23666666'/%3E%3Cpath d='M160,200 C160,160 140,130 100,130 C60,130 40,160 40,200 Z' fill='%23666666'/%3E%3C/svg%3E"
   },
   {
     id: "owais-khan",
     name: "OWAIS KHAN",
     title: "MMA Coach",
     bio: "Sir Owais brings expertise and discipline to our MMA training program. His extensive knowledge of mixed martial arts techniques and training methodologies helps members develop both physical strength and mental focus.",
-    image: "https://randomuser.me/api/portraits/men/80.jpg"
+    image: "data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23CCCCCC'/%3E%3Ccircle cx='100' cy='70' r='40' fill='%23666666'/%3E%3Cpath d='M160,200 C160,160 140,130 100,130 C60,130 40,160 40,200 Z' fill='%23666666'/%3E%3C/svg%3E"
   },
   {
     id: "samina-faisal",
     name: "SAMINA FAISAL",
     title: "Female Trainer / Group Instructor",
     bio: "Samina leads our women-only sessions with expertise and enthusiasm. As a dedicated group instructor, she creates a comfortable and empowering environment for women to achieve their fitness goals through effective and enjoyable workouts.",
-    image: "https://randomuser.me/api/portraits/women/79.jpg"
+    image: "data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23CCCCCC'/%3E%3Ccircle cx='100' cy='70' r='40' fill='%23666666'/%3E%3Cpath d='M160,200 C160,160 140,130 100,130 C60,130 40,160 40,200 Z' fill='%23666666'/%3E%3C/svg%3E"
   },
   {
     id: "ismail-soomro",
     name: "DR. ISMAIL SOOMRO",
     title: "Physiotherapist",
     bio: "Dr. Ismail provides expert physiotherapy services to our members. His medical expertise ensures proper rehabilitation and injury prevention, helping our members maintain optimal physical health while pursuing their fitness goals.",
-    image: "https://randomuser.me/api/portraits/men/81.jpg"
+    image: "data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23CCCCCC'/%3E%3Ccircle cx='100' cy='70' r='40' fill='%23666666'/%3E%3Cpath d='M160,200 C160,160 140,130 100,130 C60,130 40,160 40,200 Z' fill='%23666666'/%3E%3C/svg%3E"
   },
   {
     id: "muhammad-umar",
     name: "MUHAMMAD UMAR",
     title: "PT and Science-Based Coach",
     bio: "Muhammad Umar brings a scientific approach to personal training. His evidence-based coaching methods and attention to detail ensure that members receive effective, safe, and progressive training programs tailored to their individual needs.",
-    image: "https://randomuser.me/api/portraits/men/82.jpg"
+    image: "data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23CCCCCC'/%3E%3Ccircle cx='100' cy='70' r='40' fill='%23666666'/%3E%3Cpath d='M160,200 C160,160 140,130 100,130 C60,130 40,160 40,200 Z' fill='%23666666'/%3E%3C/svg%3E"
   }
 ];
 

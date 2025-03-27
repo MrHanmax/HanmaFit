@@ -8,7 +8,7 @@ const testimonials: Testimonial[] = [
   {
     id: "imran",
     name: "Imran S.",
-    image: "https://randomuser.me/api/portraits/men/65.jpg",
+    image: "data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23E0E0E0'/%3E%3Ccircle cx='50' cy='35' r='20' fill='%23A0A0A0'/%3E%3Cpath d='M50,75 C35,75 25,65 25,55 L75,55 C75,65 65,75 50,75 Z' fill='%23A0A0A0'/%3E%3C/svg%3E",
     text: "I've been a member at Hanma for 6 months and the results speak for themselves. I've lost 15kg and gained significant muscle. The trainers are knowledgeable and push you just right. The MMA classes are my favorite—intense but incredibly satisfying!",
     goal: "Weight Loss & Strength",
     rating: 5
@@ -16,7 +16,7 @@ const testimonials: Testimonial[] = [
   {
     id: "sana",
     name: "Sana K.",
-    image: "https://randomuser.me/api/portraits/women/62.jpg",
+    image: "data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23E0E0E0'/%3E%3Ccircle cx='50' cy='35' r='20' fill='%23A0A0A0'/%3E%3Cpath d='M50,75 C35,75 25,65 25,55 L75,55 C75,65 65,75 50,75 Z' fill='%23A0A0A0'/%3E%3C/svg%3E",
     text: "As a woman, I was hesitant to join a gym, but the female-only hours at Hanma made all the difference. Ayesha is an amazing trainer who understands exactly what I need. The Zumba classes are so fun I don't even realize I'm working out!",
     goal: "Fitness & Confidence",
     rating: 5
@@ -24,7 +24,7 @@ const testimonials: Testimonial[] = [
   {
     id: "faisal",
     name: "Faisal R.",
-    image: "https://randomuser.me/api/portraits/men/71.jpg",
+    image: "data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23E0E0E0'/%3E%3Ccircle cx='50' cy='35' r='20' fill='%23A0A0A0'/%3E%3Cpath d='M50,75 C35,75 25,65 25,55 L75,55 C75,65 65,75 50,75 Z' fill='%23A0A0A0'/%3E%3C/svg%3E",
     text: "The personal training at Hanma is worth every rupee. Omar designed a program specifically for my goals, and I've seen more progress in 3 months than I did in years at other gyms. The community aspect keeps me accountable—I never want to miss a session!",
     goal: "Muscle Building",
     rating: 5
@@ -32,7 +32,7 @@ const testimonials: Testimonial[] = [
   {
     id: "zara",
     name: "Zara M.",
-    image: "https://randomuser.me/api/portraits/women/60.jpg",
+    image: "data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23E0E0E0'/%3E%3Ccircle cx='50' cy='35' r='20' fill='%23A0A0A0'/%3E%3Cpath d='M50,75 C35,75 25,65 25,55 L75,55 C75,65 65,75 50,75 Z' fill='%23A0A0A0'/%3E%3C/svg%3E",
     text: "I joined Hanma after having my second child and was worried about getting back in shape. The supportive environment and expert guidance from the trainers have been incredible. In just 4 months, I've lost 12kg and feel stronger than ever!",
     goal: "Post-Pregnancy Fitness",
     rating: 5
@@ -40,7 +40,7 @@ const testimonials: Testimonial[] = [
   {
     id: "ali",
     name: "Ali H.",
-    image: "https://randomuser.me/api/portraits/men/74.jpg",
+    image: "data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23E0E0E0'/%3E%3Ccircle cx='50' cy='35' r='20' fill='%23A0A0A0'/%3E%3Cpath d='M50,75 C35,75 25,65 25,55 L75,55 C75,65 65,75 50,75 Z' fill='%23A0A0A0'/%3E%3C/svg%3E",
     text: "I've tried multiple gyms in Johar, but none compare to Hanma. The quality of coaching and the community feeling is unmatched. The MMA classes have improved not just my fitness but also my discipline and focus in everyday life.",
     goal: "Overall Fitness & MMA Skills",
     rating: 5
@@ -48,7 +48,7 @@ const testimonials: Testimonial[] = [
   {
     id: "hina",
     name: "Hina J.",
-    image: "https://randomuser.me/api/portraits/women/65.jpg",
+    image: "data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23E0E0E0'/%3E%3Ccircle cx='50' cy='35' r='20' fill='%23A0A0A0'/%3E%3Cpath d='M50,75 C35,75 25,65 25,55 L75,55 C75,65 65,75 50,75 Z' fill='%23A0A0A0'/%3E%3C/svg%3E",
     text: "The female-only hours were what initially drew me to Hanma, but the quality of training is what keeps me coming back. I've not only lost weight but also gained confidence and strength. The women's community here is so supportive!",
     goal: "Weight Loss & Toning",
     rating: 5
@@ -60,29 +60,29 @@ const transformations: Transformation[] = [
     id: "adeel",
     name: "Adeel's 12-Week Transformation",
     description: "Lost 18kg and gained significant muscle definition through Personal Training and MMA classes.",
-    beforeImage: "https://randomuser.me/api/portraits/men/32.jpg",
-    afterImage: "https://randomuser.me/api/portraits/men/33.jpg"
+    beforeImage: "data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23E0E0E0'/%3E%3Ctext x='50%' y='50%' font-family='Arial' font-size='20' text-anchor='middle' dominant-baseline='middle' fill='%23666666'%3EBEFORE%3C/text%3E%3C/svg%3E",
+    afterImage: "data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23C0C0C0'/%3E%3Ctext x='50%' y='50%' font-family='Arial' font-size='20' text-anchor='middle' dominant-baseline='middle' fill='%23444444'%3EAFTER%3C/text%3E%3C/svg%3E"
   },
   {
     id: "zara",
     name: "Zara's Fitness Journey",
     description: "Transformed her body and gained confidence through our women's classes and strength training.",
-    beforeImage: "https://randomuser.me/api/portraits/women/67.jpg",
-    afterImage: "https://randomuser.me/api/portraits/women/68.jpg"
+    beforeImage: "data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23E0E0E0'/%3E%3Ctext x='50%' y='50%' font-family='Arial' font-size='20' text-anchor='middle' dominant-baseline='middle' fill='%23666666'%3EBEFORE%3C/text%3E%3C/svg%3E",
+    afterImage: "data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23C0C0C0'/%3E%3Ctext x='50%' y='50%' font-family='Arial' font-size='20' text-anchor='middle' dominant-baseline='middle' fill='%23444444'%3EAFTER%3C/text%3E%3C/svg%3E"
   },
   {
     id: "hamza",
     name: "Hamza's Strength Journey",
     description: "Gained 10kg of muscle and improved overall strength in 6 months with our personalized training program.",
-    beforeImage: "https://randomuser.me/api/portraits/men/41.jpg",
-    afterImage: "https://randomuser.me/api/portraits/men/42.jpg"
+    beforeImage: "data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23E0E0E0'/%3E%3Ctext x='50%' y='50%' font-family='Arial' font-size='20' text-anchor='middle' dominant-baseline='middle' fill='%23666666'%3EBEFORE%3C/text%3E%3C/svg%3E",
+    afterImage: "data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23C0C0C0'/%3E%3Ctext x='50%' y='50%' font-family='Arial' font-size='20' text-anchor='middle' dominant-baseline='middle' fill='%23444444'%3EAFTER%3C/text%3E%3C/svg%3E"
   },
   {
     id: "sara",
     name: "Sara's Weight Loss Success",
     description: "Lost 22kg in 8 months through a combination of nutrition guidance and our fitness classes.",
-    beforeImage: "https://randomuser.me/api/portraits/women/55.jpg",
-    afterImage: "https://randomuser.me/api/portraits/women/56.jpg"
+    beforeImage: "data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23E0E0E0'/%3E%3Ctext x='50%' y='50%' font-family='Arial' font-size='20' text-anchor='middle' dominant-baseline='middle' fill='%23666666'%3EBEFORE%3C/text%3E%3C/svg%3E",
+    afterImage: "data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23C0C0C0'/%3E%3Ctext x='50%' y='50%' font-family='Arial' font-size='20' text-anchor='middle' dominant-baseline='middle' fill='%23444444'%3EAFTER%3C/text%3E%3C/svg%3E"
   }
 ];
 
