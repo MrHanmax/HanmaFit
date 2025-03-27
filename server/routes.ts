@@ -4,6 +4,7 @@ import { storage } from "./storage";
 import { insertTrialLeadSchema, insertContactInquirySchema, insertWelcomeMessageSchema } from "@shared/schema";
 import { ZodError } from "zod";
 import { fromZodError } from 'zod-validation-error';
+import nodemailer from 'nodemailer';
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // API routes for trial lead submissions
@@ -11,6 +12,32 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const validatedData = insertTrialLeadSchema.parse(req.body);
       const createdLead = await storage.createTrialLead(validatedData);
+      
+      // Send notification email
+      const transporter = nodemailer.createTransport({
+        host: process.env.SMTP_HOST,
+        port: parseInt(process.env.SMTP_PORT || "587"),
+        secure: false,
+        auth: {
+          user: process.env.SMTP_USER,
+          pass: process.env.SMTP_PASS,
+        },
+      });
+
+      await transporter.sendMail({
+        from: process.env.SMTP_FROM,
+        to: process.env.NOTIFICATION_EMAIL,
+        subject: 'New Trial Class Request',
+        text: `
+New trial class request:
+Name: ${validatedData.name}
+Email: ${validatedData.email}
+Phone: ${validatedData.phone}
+Class Interest: ${validatedData.classInterest}
+How they heard about us: ${validatedData.howHeard}
+        `,
+      });
+      
       res.status(201).json({
         message: "Trial lead created successfully",
         data: createdLead
