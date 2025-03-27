@@ -12,12 +12,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const validatedData = insertTrialLeadSchema.parse(req.body);
       const createdLead = await storage.createTrialLead(validatedData);
-      
+
       // Send notification email
       const transporter = nodemailer.createTransport({
         host: process.env.SMTP_HOST,
-        port: parseInt(process.env.SMTP_PORT || "587"),
-        secure: false,
+        port: 465,
+        secure: true,
         auth: {
           user: process.env.SMTP_USER,
           pass: process.env.SMTP_PASS,
@@ -37,7 +37,7 @@ Class Interest: ${validatedData.classInterest}
 How they heard about us: ${validatedData.howHeard}
         `,
       });
-      
+
       res.status(201).json({
         message: "Trial lead created successfully",
         data: createdLead
@@ -78,14 +78,14 @@ How they heard about us: ${validatedData.howHeard}
           message: "Invalid ID format"
         });
       }
-      
+
       const lead = await storage.getTrialLead(id);
       if (!lead) {
         return res.status(404).json({
           message: "Trial lead not found"
         });
       }
-      
+
       res.status(200).json(lead);
     } catch (error) {
       console.error("Error fetching trial lead:", error);
@@ -100,12 +100,12 @@ How they heard about us: ${validatedData.howHeard}
     try {
       const validatedData = insertContactInquirySchema.parse(req.body);
       const createdInquiry = await storage.createContactInquiry(validatedData);
-      
+
       // Send notification email
       const transporter = nodemailer.createTransport({
         host: process.env.SMTP_HOST,
-        port: parseInt(process.env.SMTP_PORT || "587"),
-        secure: false,
+        port: 465,
+        secure: true,
         auth: {
           user: process.env.SMTP_USER,
           pass: process.env.SMTP_PASS,
@@ -166,14 +166,14 @@ Message: ${validatedData.message}
           message: "Invalid ID format"
         });
       }
-      
+
       const inquiry = await storage.getContactInquiry(id);
       if (!inquiry) {
         return res.status(404).json({
           message: "Contact inquiry not found"
         });
       }
-      
+
       res.status(200).json(inquiry);
     } catch (error) {
       console.error("Error fetching contact inquiry:", error);
@@ -182,15 +182,15 @@ Message: ${validatedData.message}
       });
     }
   });
-  
+
   // API routes for welcome messages
   app.post("/api/welcome-messages", async (req, res) => {
     try {
       const validatedData = insertWelcomeMessageSchema.parse(req.body);
-      
+
       // Generate personalized message based on user preferences
       let personalizedGreeting = "";
-      
+
       // Personalize based on experience level
       if (validatedData.experienceLevel === "beginner") {
         personalizedGreeting = `Welcome ${validatedData.name}! We're thrilled you're starting your fitness journey with us. Our expert coaches will help you build a solid foundation step by step.`;
@@ -201,7 +201,7 @@ Message: ${validatedData.message}
       } else {
         personalizedGreeting = `Welcome ${validatedData.name}! We're excited to have you join the Hanma Fitness family!`;
       }
-      
+
       // Add workout type recommendations
       let workoutRecommendation = "";
       if (validatedData.preferredWorkoutType === "strength") {
@@ -215,7 +215,7 @@ Message: ${validatedData.message}
       } else if (validatedData.preferredWorkoutType === "group") {
         workoutRecommendation = "Our group classes provide motivation and community while working toward your goals.";
       }
-      
+
       // Add goal-specific information
       let goalMessage = "";
       if (validatedData.fitnessGoals === "weight-loss") {
@@ -229,18 +229,18 @@ Message: ${validatedData.message}
       } else if (validatedData.fitnessGoals === "general-fitness") {
         goalMessage = "For overall fitness, we'll create a balanced program incorporating strength, cardio, and flexibility.";
       }
-      
+
       // Combine all parts into a personalized message
       const fullMessage = `${personalizedGreeting} ${workoutRecommendation} ${goalMessage} Our team at Hanma Fitness is committed to helping you achieve your fitness goals in a supportive and motivating environment.`;
-      
+
       // Save the message with the generated personal message
       const messageToSave = {
         ...validatedData,
         personalMessage: fullMessage
       };
-      
+
       const createdMessage = await storage.createWelcomeMessage(messageToSave);
-      
+
       res.status(201).json({
         message: "Welcome message created successfully",
         data: createdMessage
@@ -260,7 +260,7 @@ Message: ${validatedData.message}
       }
     }
   });
-  
+
   app.get("/api/welcome-messages", async (req, res) => {
     try {
       const messages = await storage.getWelcomeMessages();
@@ -272,7 +272,7 @@ Message: ${validatedData.message}
       });
     }
   });
-  
+
   app.get("/api/welcome-messages/:id", async (req, res) => {
     try {
       const id = parseInt(req.params.id);
@@ -281,14 +281,14 @@ Message: ${validatedData.message}
           message: "Invalid ID format"
         });
       }
-      
+
       const message = await storage.getWelcomeMessage(id);
       if (!message) {
         return res.status(404).json({
           message: "Welcome message not found"
         });
       }
-      
+
       res.status(200).json(message);
     } catch (error) {
       console.error("Error fetching welcome message:", error);
@@ -297,18 +297,18 @@ Message: ${validatedData.message}
       });
     }
   });
-  
+
   app.get("/api/welcome-messages/name/:name", async (req, res) => {
     try {
       const { name } = req.params;
-      
+
       const message = await storage.getWelcomeMessageByName(name);
       if (!message) {
         return res.status(404).json({
           message: "Welcome message not found"
         });
       }
-      
+
       res.status(200).json(message);
     } catch (error) {
       console.error("Error fetching welcome message by name:", error);
