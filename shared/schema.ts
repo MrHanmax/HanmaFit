@@ -1,4 +1,4 @@
-import { pgTable, text, serial, integer, boolean, timestamp } from "drizzle-orm/pg-core";
+import { pgTable, text, serial, integer, boolean, timestamp, json } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -60,3 +60,25 @@ export const insertContactInquirySchema = createInsertSchema(contactInquiries).p
 
 export type InsertContactInquiry = z.infer<typeof insertContactInquirySchema>;
 export type ContactInquiry = typeof contactInquiries.$inferSelect;
+
+// Welcome message generator schema
+export const welcomeMessages = pgTable("welcome_messages", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(),
+  fitnessGoals: text("fitness_goals").notNull(),
+  preferredWorkoutType: text("preferred_workout_type").notNull(),
+  experienceLevel: text("experience_level").notNull(),
+  personalMessage: text("personal_message").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export const insertWelcomeMessageSchema = createInsertSchema(welcomeMessages).pick({
+  name: true,
+  fitnessGoals: true,
+  preferredWorkoutType: true,
+  experienceLevel: true,
+  personalMessage: true,
+});
+
+export type InsertWelcomeMessage = z.infer<typeof insertWelcomeMessageSchema>;
+export type WelcomeMessage = typeof welcomeMessages.$inferSelect;

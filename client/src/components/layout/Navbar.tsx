@@ -14,6 +14,7 @@ const Navbar = () => {
     { href: "/pricing", label: "Pricing" },
     { href: "/about", label: "About" },
     { href: "/testimonials", label: "Testimonials" },
+    { href: "/welcome", label: "Welcome Message" },
     { href: "/contact", label: "Contact" },
   ];
 

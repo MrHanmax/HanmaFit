@@ -1,7 +1,8 @@
 import { 
   users, type User, type InsertUser,
   trialLeads, type TrialLead, type InsertTrialLead,
-  contactInquiries, type ContactInquiry, type InsertContactInquiry
+  contactInquiries, type ContactInquiry, type InsertContactInquiry,
+  welcomeMessages, type WelcomeMessage, type InsertWelcomeMessage
 } from "@shared/schema";
 
 // modify the interface with any CRUD methods
@@ -22,76 +23,106 @@ export interface IStorage {
   createContactInquiry(inquiry: InsertContactInquiry): Promise<ContactInquiry>;
   getContactInquiries(): Promise<ContactInquiry[]>;
   getContactInquiry(id: number): Promise<ContactInquiry | undefined>;
+  
+  // Welcome message methods
+  createWelcomeMessage(message: InsertWelcomeMessage): Promise<WelcomeMessage>;
+  getWelcomeMessages(): Promise<WelcomeMessage[]>;
+  getWelcomeMessage(id: number): Promise<WelcomeMessage | undefined>;
+  getWelcomeMessageByName(name: string): Promise<WelcomeMessage | undefined>;
 }
 
-export class MemStorage implements IStorage {
-  private users: Map<number, User>;
-  private trialLeads: Map<number, TrialLead>;
-  private contactInquiries: Map<number, ContactInquiry>;
-  currentId: number;
-  currentTrialLeadId: number;
-  currentContactInquiryId: number;
+import { db } from "./db";
+import { eq } from "drizzle-orm";
 
-  constructor() {
-    this.users = new Map();
-    this.trialLeads = new Map();
-    this.contactInquiries = new Map();
-    this.currentId = 1;
-    this.currentTrialLeadId = 1;
-    this.currentContactInquiryId = 1;
-  }
-
-  // User methods (original)
+export class DatabaseStorage implements IStorage {
+  // User methods
   async getUser(id: number): Promise<User | undefined> {
-    return this.users.get(id);
+    const [user] = await db.select().from(users).where(eq(users.id, id));
+    return user || undefined;
   }
 
   async getUserByUsername(username: string): Promise<User | undefined> {
-    return Array.from(this.users.values()).find(
-      (user) => user.username === username,
-    );
+    const [user] = await db.select().from(users).where(eq(users.username, username));
+    return user || undefined;
   }
 
   async createUser(insertUser: InsertUser): Promise<User> {
-    const id = this.currentId++;
-    const user: User = { ...insertUser, id };
-    this.users.set(id, user);
+    const [user] = await db
+      .insert(users)
+      .values(insertUser)
+      .returning();
     return user;
   }
   
   // Trial lead methods
   async createTrialLead(lead: InsertTrialLead): Promise<TrialLead> {
-    const id = this.currentTrialLeadId++;
-    const createdAt = new Date();
-    const trialLead: TrialLead = { ...lead, id, createdAt };
-    this.trialLeads.set(id, trialLead);
+    const [trialLead] = await db
+      .insert(trialLeads)
+      .values({
+        ...lead,
+        createdAt: new Date()
+      })
+      .returning();
     return trialLead;
   }
   
   async getTrialLeads(): Promise<TrialLead[]> {
-    return Array.from(this.trialLeads.values());
+    return await db.select().from(trialLeads);
   }
   
   async getTrialLead(id: number): Promise<TrialLead | undefined> {
-    return this.trialLeads.get(id);
+    const [trialLead] = await db.select().from(trialLeads).where(eq(trialLeads.id, id));
+    return trialLead || undefined;
   }
   
   // Contact inquiry methods
   async createContactInquiry(inquiry: InsertContactInquiry): Promise<ContactInquiry> {
-    const id = this.currentContactInquiryId++;
-    const createdAt = new Date();
-    const contactInquiry: ContactInquiry = { ...inquiry, id, createdAt };
-    this.contactInquiries.set(id, contactInquiry);
+    const [contactInquiry] = await db
+      .insert(contactInquiries)
+      .values({
+        ...inquiry,
+        createdAt: new Date()
+      })
+      .returning();
     return contactInquiry;
   }
   
   async getContactInquiries(): Promise<ContactInquiry[]> {
-    return Array.from(this.contactInquiries.values());
+    return await db.select().from(contactInquiries);
   }
   
   async getContactInquiry(id: number): Promise<ContactInquiry | undefined> {
-    return this.contactInquiries.get(id);
+    const [contactInquiry] = await db.select().from(contactInquiries).where(eq(contactInquiries.id, id));
+    return contactInquiry || undefined;
+  }
+  
+  // Welcome message methods
+  async createWelcomeMessage(message: InsertWelcomeMessage): Promise<WelcomeMessage> {
+    const [welcomeMessage] = await db
+      .insert(welcomeMessages)
+      .values({
+        ...message,
+        createdAt: new Date()
+      })
+      .returning();
+    return welcomeMessage;
+  }
+  
+  async getWelcomeMessages(): Promise<WelcomeMessage[]> {
+    return await db.select().from(welcomeMessages);
+  }
+  
+  async getWelcomeMessage(id: number): Promise<WelcomeMessage | undefined> {
+    const [welcomeMessage] = await db.select().from(welcomeMessages).where(eq(welcomeMessages.id, id));
+    return welcomeMessage || undefined;
+  }
+  
+  async getWelcomeMessageByName(name: string): Promise<WelcomeMessage | undefined> {
+    // Since we can't do case-insensitive comparisons easily in SQL without using ILIKE (which might not be available in all databases)
+    // we'll fetch all messages and then filter in JS (not optimal for large datasets)
+    const messages = await db.select().from(welcomeMessages);
+    return messages.find(message => message.name.toLowerCase() === name.toLowerCase()) || undefined;
   }
 }
 
-export const storage = new MemStorage();
+export const storage = new DatabaseStorage();

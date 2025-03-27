@@ -15,6 +15,25 @@ export interface ContactFormData {
   message: string;
 }
 
+// Welcome Message types
+export interface WelcomeMessageFormData {
+  name: string;
+  fitnessGoals: string;
+  preferredWorkoutType: string;
+  experienceLevel: string;
+  personalMessage: string;
+}
+
+export interface WelcomeMessageResponse {
+  id: number;
+  name: string;
+  fitnessGoals: string;
+  preferredWorkoutType: string;
+  experienceLevel: string;
+  personalMessage: string;
+  createdAt: string;
+}
+
 // Schedule types
 export interface ClassInfo {
   title: string;

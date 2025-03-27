@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertTrialLeadSchema, insertContactInquirySchema } from "@shared/schema";
+import { insertTrialLeadSchema, insertContactInquirySchema, insertWelcomeMessageSchema } from "@shared/schema";
 import { ZodError } from "zod";
 import { fromZodError } from 'zod-validation-error';
 
@@ -126,6 +126,141 @@ export async function registerRoutes(app: Express): Promise<Server> {
       console.error("Error fetching contact inquiry:", error);
       res.status(500).json({
         message: "An error occurred while fetching the contact inquiry"
+      });
+    }
+  });
+  
+  // API routes for welcome messages
+  app.post("/api/welcome-messages", async (req, res) => {
+    try {
+      const validatedData = insertWelcomeMessageSchema.parse(req.body);
+      
+      // Generate personalized message based on user preferences
+      let personalizedGreeting = "";
+      
+      // Personalize based on experience level
+      if (validatedData.experienceLevel === "beginner") {
+        personalizedGreeting = `Welcome ${validatedData.name}! We're thrilled you're starting your fitness journey with us. Our expert coaches will help you build a solid foundation step by step.`;
+      } else if (validatedData.experienceLevel === "intermediate") {
+        personalizedGreeting = `Welcome ${validatedData.name}! You've made great progress already. Our trainers are excited to help you reach the next level in your fitness journey.`;
+      } else if (validatedData.experienceLevel === "advanced") {
+        personalizedGreeting = `Welcome ${validatedData.name}! As an experienced fitness enthusiast, you'll love our challenging programs and advanced equipment.`;
+      } else {
+        personalizedGreeting = `Welcome ${validatedData.name}! We're excited to have you join the Hanma Fitness family!`;
+      }
+      
+      // Add workout type recommendations
+      let workoutRecommendation = "";
+      if (validatedData.preferredWorkoutType === "strength") {
+        workoutRecommendation = "Our strength training programs will help you build muscle and increase power.";
+      } else if (validatedData.preferredWorkoutType === "cardio") {
+        workoutRecommendation = "Our cardio classes will boost your endurance and help you burn calories efficiently.";
+      } else if (validatedData.preferredWorkoutType === "yoga") {
+        workoutRecommendation = "Our yoga sessions will improve your flexibility and provide mental clarity.";
+      } else if (validatedData.preferredWorkoutType === "mma") {
+        workoutRecommendation = "Our MMA training combines strength, agility, and technique for a complete workout.";
+      } else if (validatedData.preferredWorkoutType === "group") {
+        workoutRecommendation = "Our group classes provide motivation and community while working toward your goals.";
+      }
+      
+      // Add goal-specific information
+      let goalMessage = "";
+      if (validatedData.fitnessGoals === "weight-loss") {
+        goalMessage = "For your weight loss goals, we recommend a combination of cardio, strength training, and nutrition guidance.";
+      } else if (validatedData.fitnessGoals === "muscle-gain") {
+        goalMessage = "To build muscle effectively, our trainers will help you with progressive resistance training and proper nutrition.";
+      } else if (validatedData.fitnessGoals === "endurance") {
+        goalMessage = "To improve your endurance, we'll focus on gradually increasing workout intensity and duration.";
+      } else if (validatedData.fitnessGoals === "flexibility") {
+        goalMessage = "Our stretching routines and mobility work will significantly improve your flexibility over time.";
+      } else if (validatedData.fitnessGoals === "general-fitness") {
+        goalMessage = "For overall fitness, we'll create a balanced program incorporating strength, cardio, and flexibility.";
+      }
+      
+      // Combine all parts into a personalized message
+      const fullMessage = `${personalizedGreeting} ${workoutRecommendation} ${goalMessage} Our team at Hanma Fitness is committed to helping you achieve your fitness goals in a supportive and motivating environment.`;
+      
+      // Save the message with the generated personal message
+      const messageToSave = {
+        ...validatedData,
+        personalMessage: fullMessage
+      };
+      
+      const createdMessage = await storage.createWelcomeMessage(messageToSave);
+      
+      res.status(201).json({
+        message: "Welcome message created successfully",
+        data: createdMessage
+      });
+    } catch (error) {
+      if (error instanceof ZodError) {
+        const validationError = fromZodError(error);
+        res.status(400).json({
+          message: "Validation error",
+          errors: validationError.message
+        });
+      } else {
+        console.error("Error creating welcome message:", error);
+        res.status(500).json({
+          message: "An error occurred while creating the welcome message"
+        });
+      }
+    }
+  });
+  
+  app.get("/api/welcome-messages", async (req, res) => {
+    try {
+      const messages = await storage.getWelcomeMessages();
+      res.status(200).json(messages);
+    } catch (error) {
+      console.error("Error fetching welcome messages:", error);
+      res.status(500).json({
+        message: "An error occurred while fetching welcome messages"
+      });
+    }
+  });
+  
+  app.get("/api/welcome-messages/:id", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      if (isNaN(id)) {
+        return res.status(400).json({
+          message: "Invalid ID format"
+        });
+      }
+      
+      const message = await storage.getWelcomeMessage(id);
+      if (!message) {
+        return res.status(404).json({
+          message: "Welcome message not found"
+        });
+      }
+      
+      res.status(200).json(message);
+    } catch (error) {
+      console.error("Error fetching welcome message:", error);
+      res.status(500).json({
+        message: "An error occurred while fetching the welcome message"
+      });
+    }
+  });
+  
+  app.get("/api/welcome-messages/name/:name", async (req, res) => {
+    try {
+      const { name } = req.params;
+      
+      const message = await storage.getWelcomeMessageByName(name);
+      if (!message) {
+        return res.status(404).json({
+          message: "Welcome message not found"
+        });
+      }
+      
+      res.status(200).json(message);
+    } catch (error) {
+      console.error("Error fetching welcome message by name:", error);
+      res.status(500).json({
+        message: "An error occurred while fetching the welcome message by name"
       });
     }
   });
