@@ -5,10 +5,10 @@ const HeroSection = () => {
   return (
     <section className="pt-24 bg-gray-900 text-white relative overflow-hidden">
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-black opacity-50"></div>
+        <div className="absolute inset-0 bg-black opacity-60"></div>
         <img 
-          src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80" 
-          alt="People working out in a fitness studio" 
+          src="/images/gym-interior-3.jpg" 
+          alt="Hanma Fitness Studio Interior" 
           className="object-cover w-full h-full"
         />
       </div>
