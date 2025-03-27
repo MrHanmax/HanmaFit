@@ -15,13 +15,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       // Send notification email
       const transporter = nodemailer.createTransport({
-        host: process.env.SMTP_HOST,
-        port: 465,
-        secure: true,
+        host: "smtp.gmail.com",
+        port: 587,
+        secure: false,
         auth: {
           user: process.env.SMTP_USER,
           pass: process.env.SMTP_PASS,
         },
+        tls: {
+          rejectUnauthorized: false
+        }
       });
 
       await transporter.sendMail({
@@ -103,13 +106,16 @@ How they heard about us: ${validatedData.howHeard}
 
       // Send notification email
       const transporter = nodemailer.createTransport({
-        host: process.env.SMTP_HOST,
-        port: 465,
-        secure: true,
+        host: "smtp.gmail.com",
+        port: 587,
+        secure: false,
         auth: {
           user: process.env.SMTP_USER,
           pass: process.env.SMTP_PASS,
         },
+        tls: {
+          rejectUnauthorized: false
+        }
       });
 
       await transporter.sendMail({
