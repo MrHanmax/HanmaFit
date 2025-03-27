@@ -70,7 +70,7 @@ const ContactPage = () => {
                 
                 <div className="space-y-4 mb-6">
                   <div className="flex items-start">
-                    <div className="bg-[#e63946] text-white rounded-full h-10 w-10 flex items-center justify-center mt-1 mr-4 flex-shrink-0">
+                    <div className="bg-[#FFA500] text-white rounded-full h-10 w-10 flex items-center justify-center mt-1 mr-4 flex-shrink-0">
                       <MapPin />
                     </div>
                     <div>
@@ -80,43 +80,43 @@ const ContactPage = () => {
                   </div>
                   
                   <div className="flex items-start">
-                    <div className="bg-[#e63946] text-white rounded-full h-10 w-10 flex items-center justify-center mt-1 mr-4 flex-shrink-0">
+                    <div className="bg-[#FFA500] text-white rounded-full h-10 w-10 flex items-center justify-center mt-1 mr-4 flex-shrink-0">
                       <Phone />
                     </div>
                     <div>
                       <h4 className="font-semibold text-lg mb-1">Phone</h4>
-                      <p><a href="tel:03167911505" className="hover:text-[#e63946] transition-colors duration-300">03167911505</a></p>
+                      <p><a href="tel:03167911505" className="hover:text-[#FFA500] transition-colors duration-300">03167911505</a></p>
                     </div>
                   </div>
                   
                   <div className="flex items-start">
-                    <div className="bg-[#e63946] text-white rounded-full h-10 w-10 flex items-center justify-center mt-1 mr-4 flex-shrink-0">
+                    <div className="bg-[#FFA500] text-white rounded-full h-10 w-10 flex items-center justify-center mt-1 mr-4 flex-shrink-0">
                       <FaWhatsapp />
                     </div>
                     <div>
                       <h4 className="font-semibold text-lg mb-1">WhatsApp</h4>
-                      <p><a href="https://wa.me/923167911505" className="hover:text-[#e63946] transition-colors duration-300">03167911505</a></p>
+                      <p><a href="https://wa.me/923167911505" className="hover:text-[#FFA500] transition-colors duration-300">03167911505</a></p>
                       <p className="text-sm text-gray-600">Replies during business hours</p>
                     </div>
                   </div>
                   
                   <div className="flex items-start">
-                    <div className="bg-[#e63946] text-white rounded-full h-10 w-10 flex items-center justify-center mt-1 mr-4 flex-shrink-0">
+                    <div className="bg-[#FFA500] text-white rounded-full h-10 w-10 flex items-center justify-center mt-1 mr-4 flex-shrink-0">
                       <Mail />
                     </div>
                     <div>
                       <h4 className="font-semibold text-lg mb-1">Email</h4>
-                      <p><a href="mailto:hanma.pk@gmail.com" className="hover:text-[#e63946] transition-colors duration-300">hanma.pk@gmail.com</a></p>
+                      <p><a href="mailto:hanma.pk@gmail.com" className="hover:text-[#FFA500] transition-colors duration-300">hanma.pk@gmail.com</a></p>
                     </div>
                   </div>
                   
                   <div className="flex items-start">
-                    <div className="bg-[#e63946] text-white rounded-full h-10 w-10 flex items-center justify-center mt-1 mr-4 flex-shrink-0">
+                    <div className="bg-[#FFA500] text-white rounded-full h-10 w-10 flex items-center justify-center mt-1 mr-4 flex-shrink-0">
                       <Instagram />
                     </div>
                     <div>
                       <h4 className="font-semibold text-lg mb-1">Instagram</h4>
-                      <p><a href="https://www.instagram.com/hanma.pk/" target="_blank" rel="noopener noreferrer" className="hover:text-[#e63946] transition-colors duration-300">@hanma.pk</a></p>
+                      <p><a href="https://www.instagram.com/hanma.pk/" target="_blank" rel="noopener noreferrer" className="hover:text-[#FFA500] transition-colors duration-300">@hanma.pk</a></p>
                     </div>
                   </div>
                 </div>
@@ -222,7 +222,7 @@ const ContactPage = () => {
                 <Link href="/trial">
                   <Button 
                     size="lg" 
-                    className="w-full bg-[#e63946] hover:bg-red-700 text-white font-medium"
+                    className="w-full bg-[#FFA500] hover:bg-amber-600 text-white font-medium"
                   >
                     Book Free Trial Class
                   </Button>

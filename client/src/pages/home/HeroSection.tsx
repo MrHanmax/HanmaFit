@@ -16,7 +16,7 @@ const HeroSection = () => {
       <div className="container mx-auto px-4 py-16 md:py-24 relative z-10">
         <div className="max-w-4xl">
           <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-4">
-            <span className="text-[#e63946]">UNLEASH YOUR STRENGTH:</span> <br />
+            <span className="text-[#FFA500]">UNLEASH YOUR STRENGTH:</span> <br />
             HANMA FITNESS
           </h1>
           <h2 className="text-xl md:text-2xl mb-8">Johar's Premium Training Studio</h2>
@@ -25,7 +25,7 @@ const HeroSection = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Link href="/trial">
-              <Button size="lg" className="bg-[#e63946] hover:bg-red-700 text-white font-semibold text-lg">
+              <Button size="lg" className="bg-[#FFA500] hover:bg-amber-600 text-white font-semibold text-lg">
                 Book Your Free Trial Class
               </Button>
             </Link>
@@ -42,8 +42,8 @@ const HeroSection = () => {
       <div className="hidden lg:block absolute right-12 bottom-12 bg-white/95 text-[#1d3557] p-6 rounded-lg shadow-lg max-w-xs">
         <h3 className="font-bold text-lg mb-2">Operating Hours</h3>
         <p className="mb-1"><span className="font-medium">Mon-Sat:</span> 7AM-12AM</p>
-        <p className="mb-3"><span className="text-[#e63946] font-medium">Female-only hours:</span> 1PM-5PM</p>
-        <Link href="/contact" className="text-[#e63946] hover:underline font-medium">
+        <p className="mb-3"><span className="text-[#FFA500] font-medium">Female-only hours:</span> 1PM-5PM</p>
+        <Link href="/contact" className="text-[#FFA500] hover:underline font-medium">
           View full schedule →
         </Link>
       </div>

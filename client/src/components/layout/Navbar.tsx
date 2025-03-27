@@ -50,15 +50,15 @@ const Navbar = () => {
               <Link 
                 key={link.href} 
                 href={link.href}
-                className={`hover:text-[#e63946] transition-colors duration-300 ${
-                  location === link.href ? "text-[#e63946]" : ""
+                className={`hover:text-[#FFA500] transition-colors duration-300 ${
+                  location === link.href ? "text-[#FFA500]" : ""
                 }`}
               >
                 {link.label}
               </Link>
             ))}
             <Link href="/trial">
-              <Button className="bg-[#e63946] hover:bg-red-700 text-white font-medium">
+              <Button className="bg-[#FFA500] hover:bg-amber-600 text-white font-medium">
                 Free Trial
               </Button>
             </Link>
@@ -72,8 +72,8 @@ const Navbar = () => {
               <Link 
                 key={link.href} 
                 href={link.href}
-                className={`hover:text-[#e63946] transition-colors duration-300 ${
-                  location === link.href ? "text-[#e63946]" : ""
+                className={`hover:text-[#FFA500] transition-colors duration-300 ${
+                  location === link.href ? "text-[#FFA500]" : ""
                 }`}
                 onClick={closeMenu}
               >
@@ -81,7 +81,7 @@ const Navbar = () => {
               </Link>
             ))}
             <Link href="/trial" onClick={closeMenu}>
-              <Button className="w-full bg-[#e63946] hover:bg-red-700 text-white font-medium">
+              <Button className="w-full bg-[#FFA500] hover:bg-amber-600 text-white font-medium">
                 Free Trial
               </Button>
             </Link>

@@ -38,19 +38,19 @@ const ServicesPage = () => {
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                 <div className="flex items-start">
-                  <Check className="text-[#e63946] mt-1 mr-2 flex-shrink-0" size={18} />
+                  <Check className="text-[#FFA500] mt-1 mr-2 flex-shrink-0" size={18} />
                   <span>Personalized workout plans</span>
                 </div>
                 <div className="flex items-start">
-                  <Check className="text-[#e63946] mt-1 mr-2 flex-shrink-0" size={18} />
+                  <Check className="text-[#FFA500] mt-1 mr-2 flex-shrink-0" size={18} />
                   <span>Nutrition guidance</span>
                 </div>
                 <div className="flex items-start">
-                  <Check className="text-[#e63946] mt-1 mr-2 flex-shrink-0" size={18} />
+                  <Check className="text-[#FFA500] mt-1 mr-2 flex-shrink-0" size={18} />
                   <span>Regular progress assessments</span>
                 </div>
                 <div className="flex items-start">
-                  <Check className="text-[#e63946] mt-1 mr-2 flex-shrink-0" size={18} />
+                  <Check className="text-[#FFA500] mt-1 mr-2 flex-shrink-0" size={18} />
                   <span>Certified expert trainers</span>
                 </div>
               </div>
@@ -80,19 +80,19 @@ const ServicesPage = () => {
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                 <div className="flex items-start">
-                  <Check className="text-[#e63946] mt-1 mr-2 flex-shrink-0" size={18} />
+                  <Check className="text-[#FFA500] mt-1 mr-2 flex-shrink-0" size={18} />
                   <span>MMA Training</span>
                 </div>
                 <div className="flex items-start">
-                  <Check className="text-[#e63946] mt-1 mr-2 flex-shrink-0" size={18} />
+                  <Check className="text-[#FFA500] mt-1 mr-2 flex-shrink-0" size={18} />
                   <span>Strength & Conditioning</span>
                 </div>
                 <div className="flex items-start">
-                  <Check className="text-[#e63946] mt-1 mr-2 flex-shrink-0" size={18} />
+                  <Check className="text-[#FFA500] mt-1 mr-2 flex-shrink-0" size={18} />
                   <span>Zumba & Aerobics</span>
                 </div>
                 <div className="flex items-start">
-                  <Check className="text-[#e63946] mt-1 mr-2 flex-shrink-0" size={18} />
+                  <Check className="text-[#FFA500] mt-1 mr-2 flex-shrink-0" size={18} />
                   <span>Female-only sessions available</span>
                 </div>
               </div>
@@ -122,19 +122,19 @@ const ServicesPage = () => {
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                 <div className="flex items-start">
-                  <Check className="text-[#e63946] mt-1 mr-2 flex-shrink-0" size={18} />
+                  <Check className="text-[#FFA500] mt-1 mr-2 flex-shrink-0" size={18} />
                   <span>Access during all operating hours</span>
                 </div>
                 <div className="flex items-start">
-                  <Check className="text-[#e63946] mt-1 mr-2 flex-shrink-0" size={18} />
+                  <Check className="text-[#FFA500] mt-1 mr-2 flex-shrink-0" size={18} />
                   <span>Premium equipment</span>
                 </div>
                 <div className="flex items-start">
-                  <Check className="text-[#e63946] mt-1 mr-2 flex-shrink-0" size={18} />
+                  <Check className="text-[#FFA500] mt-1 mr-2 flex-shrink-0" size={18} />
                   <span>Supportive environment</span>
                 </div>
                 <div className="flex items-start">
-                  <Check className="text-[#e63946] mt-1 mr-2 flex-shrink-0" size={18} />
+                  <Check className="text-[#FFA500] mt-1 mr-2 flex-shrink-0" size={18} />
                   <span>Staff assistance available</span>
                 </div>
               </div>
@@ -164,19 +164,19 @@ const ServicesPage = () => {
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                 <div className="flex items-start">
-                  <Check className="text-[#e63946] mt-1 mr-2 flex-shrink-0" size={18} />
+                  <Check className="text-[#FFA500] mt-1 mr-2 flex-shrink-0" size={18} />
                   <span>Injury rehabilitation</span>
                 </div>
                 <div className="flex items-start">
-                  <Check className="text-[#e63946] mt-1 mr-2 flex-shrink-0" size={18} />
+                  <Check className="text-[#FFA500] mt-1 mr-2 flex-shrink-0" size={18} />
                   <span>Performance enhancement</span>
                 </div>
                 <div className="flex items-start">
-                  <Check className="text-[#e63946] mt-1 mr-2 flex-shrink-0" size={18} />
+                  <Check className="text-[#FFA500] mt-1 mr-2 flex-shrink-0" size={18} />
                   <span>Pain management</span>
                 </div>
                 <div className="flex items-start">
-                  <Check className="text-[#e63946] mt-1 mr-2 flex-shrink-0" size={18} />
+                  <Check className="text-[#FFA500] mt-1 mr-2 flex-shrink-0" size={18} />
                   <span>Customized treatment plans</span>
                 </div>
               </div>
@@ -193,7 +193,7 @@ const ServicesPage = () => {
           <Link href="/schedule">
             <Button 
               size="lg" 
-              className="bg-[#e63946] hover:bg-red-700 text-white font-medium inline-flex items-center"
+              className="bg-[#FFA500] hover:bg-amber-600 text-white font-medium inline-flex items-center"
             >
               View Schedule & Membership Options
               <ArrowRight className="ml-2" size={18} />

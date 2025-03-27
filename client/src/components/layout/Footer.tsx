@@ -19,14 +19,14 @@ const Footer = () => {
                 href="https://www.instagram.com/hanma.pk/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-white hover:text-[#e63946] transition-colors duration-300"
+                className="text-white hover:text-[#FFA500] transition-colors duration-300"
                 aria-label="Instagram"
               >
                 <Instagram size={24} />
               </a>
               <a 
                 href="https://wa.me/923167911505" 
-                className="text-white hover:text-[#e63946] transition-colors duration-300"
+                className="text-white hover:text-[#FFA500] transition-colors duration-300"
                 aria-label="WhatsApp"
               >
                 <FaWhatsapp size={24} />
@@ -37,25 +37,25 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-bold mb-4">Quick Links</h4>
             <ul className="space-y-2">
-              <li><Link href="/" className="hover:text-[#e63946] transition-colors duration-300">Home</Link></li>
-              <li><Link href="/services" className="hover:text-[#e63946] transition-colors duration-300">Services</Link></li>
-              <li><Link href="/schedule" className="hover:text-[#e63946] transition-colors duration-300">Schedule</Link></li>
-              <li><Link href="/pricing" className="hover:text-[#e63946] transition-colors duration-300">Pricing</Link></li>
-              <li><Link href="/about" className="hover:text-[#e63946] transition-colors duration-300">About Us</Link></li>
-              <li><Link href="/testimonials" className="hover:text-[#e63946] transition-colors duration-300">Testimonials</Link></li>
-              <li><Link href="/contact" className="hover:text-[#e63946] transition-colors duration-300">Contact</Link></li>
+              <li><Link href="/" className="hover:text-[#FFA500] transition-colors duration-300">Home</Link></li>
+              <li><Link href="/services" className="hover:text-[#FFA500] transition-colors duration-300">Services</Link></li>
+              <li><Link href="/schedule" className="hover:text-[#FFA500] transition-colors duration-300">Schedule</Link></li>
+              <li><Link href="/pricing" className="hover:text-[#FFA500] transition-colors duration-300">Pricing</Link></li>
+              <li><Link href="/about" className="hover:text-[#FFA500] transition-colors duration-300">About Us</Link></li>
+              <li><Link href="/testimonials" className="hover:text-[#FFA500] transition-colors duration-300">Testimonials</Link></li>
+              <li><Link href="/contact" className="hover:text-[#FFA500] transition-colors duration-300">Contact</Link></li>
             </ul>
           </div>
           
           <div>
             <h4 className="text-lg font-bold mb-4">Services</h4>
             <ul className="space-y-2">
-              <li><Link href="/services/personal-training" className="hover:text-[#e63946] transition-colors duration-300">Personal Training</Link></li>
-              <li><Link href="/services/group-classes" className="hover:text-[#e63946] transition-colors duration-300">Group Classes</Link></li>
-              <li><Link href="/services/group-classes" className="hover:text-[#e63946] transition-colors duration-300">MMA Training</Link></li>
-              <li><Link href="/services/group-classes" className="hover:text-[#e63946] transition-colors duration-300">Strength Training</Link></li>
-              <li><Link href="/services/group-classes" className="hover:text-[#e63946] transition-colors duration-300">Zumba & Aerobics</Link></li>
-              <li><Link href="/schedule" className="hover:text-[#e63946] transition-colors duration-300">Female-Only Sessions</Link></li>
+              <li><Link href="/services/personal-training" className="hover:text-[#FFA500] transition-colors duration-300">Personal Training</Link></li>
+              <li><Link href="/services/group-classes" className="hover:text-[#FFA500] transition-colors duration-300">Group Classes</Link></li>
+              <li><Link href="/services/group-classes" className="hover:text-[#FFA500] transition-colors duration-300">MMA Training</Link></li>
+              <li><Link href="/services/group-classes" className="hover:text-[#FFA500] transition-colors duration-300">Strength Training</Link></li>
+              <li><Link href="/services/group-classes" className="hover:text-[#FFA500] transition-colors duration-300">Zumba & Aerobics</Link></li>
+              <li><Link href="/schedule" className="hover:text-[#FFA500] transition-colors duration-300">Female-Only Sessions</Link></li>
             </ul>
           </div>
           
@@ -68,15 +68,15 @@ const Footer = () => {
               </li>
               <li className="flex items-center">
                 <Phone className="mr-2 flex-shrink-0" size={18} />
-                <a href="tel:03167911505" className="hover:text-[#e63946] transition-colors duration-300">03167911505</a>
+                <a href="tel:03167911505" className="hover:text-[#FFA500] transition-colors duration-300">03167911505</a>
               </li>
               <li className="flex items-center">
                 <FaWhatsapp className="mr-2 flex-shrink-0" size={18} />
-                <a href="https://wa.me/923167911505" className="hover:text-[#e63946] transition-colors duration-300">03167911505</a>
+                <a href="https://wa.me/923167911505" className="hover:text-[#FFA500] transition-colors duration-300">03167911505</a>
               </li>
               <li className="flex items-center">
                 <Mail className="mr-2 flex-shrink-0" size={18} />
-                <a href="mailto:hanma.pk@gmail.com" className="hover:text-[#e63946] transition-colors duration-300">hanma.pk@gmail.com</a>
+                <a href="mailto:hanma.pk@gmail.com" className="hover:text-[#FFA500] transition-colors duration-300">hanma.pk@gmail.com</a>
               </li>
             </ul>
           </div>

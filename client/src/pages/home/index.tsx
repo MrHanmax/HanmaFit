@@ -32,7 +32,7 @@ const HomePage = () => {
               </p>
               <div className="space-y-4 mb-8">
                 <div className="flex items-start">
-                  <div className="bg-[#e63946] text-white rounded-full h-8 w-8 flex items-center justify-center mt-1 mr-4 flex-shrink-0">
+                  <div className="bg-[#FFA500] text-white rounded-full h-8 w-8 flex items-center justify-center mt-1 mr-4 flex-shrink-0">
                     <CheckCircle size={16} />
                   </div>
                   <div>
@@ -41,7 +41,7 @@ const HomePage = () => {
                   </div>
                 </div>
                 <div className="flex items-start">
-                  <div className="bg-[#e63946] text-white rounded-full h-8 w-8 flex items-center justify-center mt-1 mr-4 flex-shrink-0">
+                  <div className="bg-[#FFA500] text-white rounded-full h-8 w-8 flex items-center justify-center mt-1 mr-4 flex-shrink-0">
                     <CheckCircle size={16} />
                   </div>
                   <div>
@@ -50,7 +50,7 @@ const HomePage = () => {
                   </div>
                 </div>
                 <div className="flex items-start">
-                  <div className="bg-[#e63946] text-white rounded-full h-8 w-8 flex items-center justify-center mt-1 mr-4 flex-shrink-0">
+                  <div className="bg-[#FFA500] text-white rounded-full h-8 w-8 flex items-center justify-center mt-1 mr-4 flex-shrink-0">
                     <CheckCircle size={16} />
                   </div>
                   <div>
@@ -60,7 +60,7 @@ const HomePage = () => {
                 </div>
               </div>
               <Link href="/trial">
-                <Button size="lg" className="bg-[#e63946] hover:bg-red-700 text-white font-medium">
+                <Button size="lg" className="bg-[#FFA500] hover:bg-amber-600 text-white font-medium">
                   Book Your FREE PT Consultation
                 </Button>
               </Link>
@@ -239,7 +239,7 @@ const HomePage = () => {
           
           <div className="mt-12 text-center">
             <Link href="/trial">
-              <Button size="lg" className="bg-[#e63946] hover:bg-red-700 text-white font-medium inline-flex items-center">
+              <Button size="lg" className="bg-[#FFA500] hover:bg-amber-600 text-white font-medium inline-flex items-center">
                 Try Your First Class FREE!
                 <ArrowRight className="ml-2" size={18} />
               </Button>
@@ -295,7 +295,7 @@ const HomePage = () => {
               <p className="mb-4">
                 "I've been a member at Hanma for 6 months and the results speak for themselves. I've lost 15kg and gained significant muscle. The trainers are knowledgeable and push you just right. The MMA classes are my favorite—intense but incredibly satisfying!"
               </p>
-              <p className="text-[#e63946] font-semibold">Goal: Weight Loss & Strength</p>
+              <p className="text-[#FFA500] font-semibold">Goal: Weight Loss & Strength</p>
             </div>
             
             {/* Testimonial 2 */}
@@ -332,7 +332,7 @@ const HomePage = () => {
               <p className="mb-4">
                 "As a woman, I was hesitant to join a gym, but the female-only hours at Hanma made all the difference. Ayesha is an amazing trainer who understands exactly what I need. The Zumba classes are so fun I don't even realize I'm working out!"
               </p>
-              <p className="text-[#e63946] font-semibold">Goal: Fitness & Confidence</p>
+              <p className="text-[#FFA500] font-semibold">Goal: Fitness & Confidence</p>
             </div>
             
             {/* Testimonial 3 */}
@@ -369,7 +369,7 @@ const HomePage = () => {
               <p className="mb-4">
                 "The personal training at Hanma is worth every rupee. Omar designed a program specifically for my goals, and I've seen more progress in 3 months than I did in years at other gyms. The community aspect keeps me accountable—I never want to miss a session!"
               </p>
-              <p className="text-[#e63946] font-semibold">Goal: Muscle Building</p>
+              <p className="text-[#FFA500] font-semibold">Goal: Muscle Building</p>
             </div>
           </div>
           

@@ -13,15 +13,15 @@ const IntroSection = () => {
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <div className="flex items-center text-[#457b9d]">
-              <CheckCircle className="mr-2 text-[#e63946]" size={20} />
+              <CheckCircle className="mr-2 text-[#FFA500]" size={20} />
               <span>Expert Coaching</span>
             </div>
             <div className="flex items-center text-[#457b9d]">
-              <CheckCircle className="mr-2 text-[#e63946]" size={20} />
+              <CheckCircle className="mr-2 text-[#FFA500]" size={20} />
               <span>Measurable Results</span>
             </div>
             <div className="flex items-center text-[#457b9d]">
-              <CheckCircle className="mr-2 text-[#e63946]" size={20} />
+              <CheckCircle className="mr-2 text-[#FFA500]" size={20} />
               <span>Supportive Community</span>
             </div>
           </div>

@@ -27,15 +27,15 @@ const ServicesOverview = () => {
               <p className="mb-4">Get personalized attention and faster results with our certified personal trainers. Custom workout plans tailored to your specific goals.</p>
               <ul className="mb-6 space-y-2">
                 <li className="flex items-start">
-                  <Check className="text-[#e63946] mt-1 mr-2 flex-shrink-0" size={18} />
+                  <Check className="text-[#FFA500] mt-1 mr-2 flex-shrink-0" size={18} />
                   <span>One-on-one expert guidance</span>
                 </li>
                 <li className="flex items-start">
-                  <Check className="text-[#e63946] mt-1 mr-2 flex-shrink-0" size={18} />
+                  <Check className="text-[#FFA500] mt-1 mr-2 flex-shrink-0" size={18} />
                   <span>Customized fitness programs</span>
                 </li>
                 <li className="flex items-start">
-                  <Check className="text-[#e63946] mt-1 mr-2 flex-shrink-0" size={18} />
+                  <Check className="text-[#FFA500] mt-1 mr-2 flex-shrink-0" size={18} />
                   <span>Nutritional support</span>
                 </li>
               </ul>
@@ -62,15 +62,15 @@ const ServicesOverview = () => {
               <p className="mb-4">High-energy, motivating group workouts with a variety of class types. Experience the energy of training with others.</p>
               <ul className="mb-6 space-y-2">
                 <li className="flex items-start">
-                  <Check className="text-[#e63946] mt-1 mr-2 flex-shrink-0" size={18} />
+                  <Check className="text-[#FFA500] mt-1 mr-2 flex-shrink-0" size={18} />
                   <span>MMA training</span>
                 </li>
                 <li className="flex items-start">
-                  <Check className="text-[#e63946] mt-1 mr-2 flex-shrink-0" size={18} />
+                  <Check className="text-[#FFA500] mt-1 mr-2 flex-shrink-0" size={18} />
                   <span>Strength & conditioning</span>
                 </li>
                 <li className="flex items-start">
-                  <Check className="text-[#e63946] mt-1 mr-2 flex-shrink-0" size={18} />
+                  <Check className="text-[#FFA500] mt-1 mr-2 flex-shrink-0" size={18} />
                   <span>Zumba & aerobics</span>
                 </li>
               </ul>
@@ -97,15 +97,15 @@ const ServicesOverview = () => {
               <p className="mb-4">Join a supportive fitness family that keeps you motivated and accountable. Train in a positive, encouraging environment.</p>
               <ul className="mb-6 space-y-2">
                 <li className="flex items-start">
-                  <Check className="text-[#e63946] mt-1 mr-2 flex-shrink-0" size={18} />
+                  <Check className="text-[#FFA500] mt-1 mr-2 flex-shrink-0" size={18} />
                   <span>Supportive training environment</span>
                 </li>
                 <li className="flex items-start">
-                  <Check className="text-[#e63946] mt-1 mr-2 flex-shrink-0" size={18} />
+                  <Check className="text-[#FFA500] mt-1 mr-2 flex-shrink-0" size={18} />
                   <span>Community challenges & events</span>
                 </li>
                 <li className="flex items-start">
-                  <Check className="text-[#e63946] mt-1 mr-2 flex-shrink-0" size={18} />
+                  <Check className="text-[#FFA500] mt-1 mr-2 flex-shrink-0" size={18} />
                   <span>Accountability partnerships</span>
                 </li>
               </ul>
@@ -122,7 +122,7 @@ const ServicesOverview = () => {
           <Link href="/schedule">
             <Button 
               size="lg" 
-              className="bg-[#e63946] hover:bg-red-700 text-white font-medium inline-flex items-center"
+              className="bg-[#FFA500] hover:bg-amber-600 text-white font-medium inline-flex items-center"
             >
               View Class Schedule
               <ArrowRight className="ml-2" size={18} />

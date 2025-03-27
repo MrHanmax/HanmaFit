@@ -32,7 +32,7 @@ const PersonalTrainingPage = () => {
               Our personal training program is designed to give you the individualized attention and expertise you need to reach your fitness goals efficiently and safely.
             </p>
             <Link href="/trial">
-              <Button size="lg" className="bg-[#e63946] hover:bg-red-700 text-white font-semibold text-lg">
+              <Button size="lg" className="bg-[#FFA500] hover:bg-amber-600 text-white font-semibold text-lg">
                 Book Your FREE PT Consultation
               </Button>
             </Link>
@@ -54,7 +54,7 @@ const PersonalTrainingPage = () => {
                 <h3 className="font-semibold text-xl mb-4 text-[#1d3557]">THE PERSONAL TRAINING PROCESS</h3>
                 <div className="space-y-6 mb-6">
                   <div className="flex items-start">
-                    <div className="bg-[#e63946] text-white rounded-full h-8 w-8 flex items-center justify-center mt-1 mr-4 flex-shrink-0">
+                    <div className="bg-[#FFA500] text-white rounded-full h-8 w-8 flex items-center justify-center mt-1 mr-4 flex-shrink-0">
                       <span className="font-bold">1</span>
                     </div>
                     <div>
@@ -63,7 +63,7 @@ const PersonalTrainingPage = () => {
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <div className="bg-[#e63946] text-white rounded-full h-8 w-8 flex items-center justify-center mt-1 mr-4 flex-shrink-0">
+                    <div className="bg-[#FFA500] text-white rounded-full h-8 w-8 flex items-center justify-center mt-1 mr-4 flex-shrink-0">
                       <span className="font-bold">2</span>
                     </div>
                     <div>
@@ -72,7 +72,7 @@ const PersonalTrainingPage = () => {
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <div className="bg-[#e63946] text-white rounded-full h-8 w-8 flex items-center justify-center mt-1 mr-4 flex-shrink-0">
+                    <div className="bg-[#FFA500] text-white rounded-full h-8 w-8 flex items-center justify-center mt-1 mr-4 flex-shrink-0">
                       <span className="font-bold">3</span>
                     </div>
                     <div>
@@ -81,7 +81,7 @@ const PersonalTrainingPage = () => {
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <div className="bg-[#e63946] text-white rounded-full h-8 w-8 flex items-center justify-center mt-1 mr-4 flex-shrink-0">
+                    <div className="bg-[#FFA500] text-white rounded-full h-8 w-8 flex items-center justify-center mt-1 mr-4 flex-shrink-0">
                       <span className="font-bold">4</span>
                     </div>
                     <div>
@@ -96,35 +96,35 @@ const PersonalTrainingPage = () => {
                 <h3 className="font-semibold text-xl mb-4 text-[#1d3557]">THE BENEFITS OF PERSONAL TRAINING</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="flex items-start">
-                    <CheckCircle className="text-[#e63946] mt-1 mr-2 flex-shrink-0" size={20} />
+                    <CheckCircle className="text-[#FFA500] mt-1 mr-2 flex-shrink-0" size={20} />
                     <span>Customized workout programs</span>
                   </div>
                   <div className="flex items-start">
-                    <CheckCircle className="text-[#e63946] mt-1 mr-2 flex-shrink-0" size={20} />
+                    <CheckCircle className="text-[#FFA500] mt-1 mr-2 flex-shrink-0" size={20} />
                     <span>Proper exercise technique</span>
                   </div>
                   <div className="flex items-start">
-                    <CheckCircle className="text-[#e63946] mt-1 mr-2 flex-shrink-0" size={20} />
+                    <CheckCircle className="text-[#FFA500] mt-1 mr-2 flex-shrink-0" size={20} />
                     <span>Faster, safer results</span>
                   </div>
                   <div className="flex items-start">
-                    <CheckCircle className="text-[#e63946] mt-1 mr-2 flex-shrink-0" size={20} />
+                    <CheckCircle className="text-[#FFA500] mt-1 mr-2 flex-shrink-0" size={20} />
                     <span>Nutritional guidance</span>
                   </div>
                   <div className="flex items-start">
-                    <CheckCircle className="text-[#e63946] mt-1 mr-2 flex-shrink-0" size={20} />
+                    <CheckCircle className="text-[#FFA500] mt-1 mr-2 flex-shrink-0" size={20} />
                     <span>Increased motivation</span>
                   </div>
                   <div className="flex items-start">
-                    <CheckCircle className="text-[#e63946] mt-1 mr-2 flex-shrink-0" size={20} />
+                    <CheckCircle className="text-[#FFA500] mt-1 mr-2 flex-shrink-0" size={20} />
                     <span>Adaptable as you progress</span>
                   </div>
                   <div className="flex items-start">
-                    <CheckCircle className="text-[#e63946] mt-1 mr-2 flex-shrink-0" size={20} />
+                    <CheckCircle className="text-[#FFA500] mt-1 mr-2 flex-shrink-0" size={20} />
                     <span>Injury prevention</span>
                   </div>
                   <div className="flex items-start">
-                    <CheckCircle className="text-[#e63946] mt-1 mr-2 flex-shrink-0" size={20} />
+                    <CheckCircle className="text-[#FFA500] mt-1 mr-2 flex-shrink-0" size={20} />
                     <span>Accountability and support</span>
                   </div>
                 </div>
@@ -154,14 +154,14 @@ const PersonalTrainingPage = () => {
                 <p className="italic mb-2">
                   "The personal training at Hanma is worth every rupee. Omar designed a program specifically for my goals, and I've seen more progress in 3 months than I did in years at other gyms. The community aspect keeps me accountable—I never want to miss a session!"
                 </p>
-                <p className="text-[#e63946] font-semibold">Goal: Muscle Building</p>
+                <p className="text-[#FFA500] font-semibold">Goal: Muscle Building</p>
               </div>
               
               <div className="text-center md:text-left">
                 <Link href="/trial">
                   <Button 
                     size="lg" 
-                    className="bg-[#e63946] hover:bg-red-700 text-white font-medium inline-flex items-center"
+                    className="bg-[#FFA500] hover:bg-amber-600 text-white font-medium inline-flex items-center"
                   >
                     Book Your FREE PT Consultation
                     <ArrowRight className="ml-2" size={18} />
@@ -186,13 +186,13 @@ const PersonalTrainingPage = () => {
                 <div className="space-y-4">
                   <div className="flex items-center">
                     <Phone className="mr-3 flex-shrink-0" size={20} />
-                    <a href="tel:03167911505" className="hover:text-[#e63946] transition-colors duration-300">
+                    <a href="tel:03167911505" className="hover:text-[#FFA500] transition-colors duration-300">
                       Call: 03167911505
                     </a>
                   </div>
                   <div className="flex items-center">
                     <FaWhatsapp className="mr-3 flex-shrink-0" size={20} />
-                    <a href="https://wa.me/923167911505" className="hover:text-[#e63946] transition-colors duration-300">
+                    <a href="https://wa.me/923167911505" className="hover:text-[#FFA500] transition-colors duration-300">
                       WhatsApp: 03167911505
                     </a>
                   </div>
@@ -212,7 +212,7 @@ const PersonalTrainingPage = () => {
                     </div>
                     <div>
                       <h4 className="font-semibold">Ahmed Khan</h4>
-                      <p className="text-sm text-[#e63946]">Head Coach / MMA Specialist</p>
+                      <p className="text-sm text-[#FFA500]">Head Coach / MMA Specialist</p>
                     </div>
                   </div>
                   <div className="flex items-center">
@@ -225,7 +225,7 @@ const PersonalTrainingPage = () => {
                     </div>
                     <div>
                       <h4 className="font-semibold">Omar Raza</h4>
-                      <p className="text-sm text-[#e63946]">Strength & Conditioning Coach</p>
+                      <p className="text-sm text-[#FFA500]">Strength & Conditioning Coach</p>
                     </div>
                   </div>
                   <Link href="/about">
@@ -255,7 +255,7 @@ const PersonalTrainingPage = () => {
                 <Link href="/trial">
                   <Button 
                     size="lg" 
-                    className="w-full bg-[#e63946] hover:bg-red-700 text-white font-medium"
+                    className="w-full bg-[#FFA500] hover:bg-amber-600 text-white font-medium"
                   >
                     Book Free Consultation
                   </Button>

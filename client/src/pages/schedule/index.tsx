@@ -80,11 +80,11 @@ const SchedulePage = () => {
                 </p>
                 <div className="flex items-center text-sm text-gray-600 space-x-4">
                   <div className="flex items-center">
-                    <span className="inline-block w-3 h-3 rounded-full bg-[#e63946]/40 mr-1"></span>
+                    <span className="inline-block w-3 h-3 rounded-full bg-[#FFA500]/40 mr-1"></span>
                     <span>45 min</span>
                   </div>
                   <div className="flex items-center">
-                    <span className="inline-block w-3 h-3 rounded-full bg-[#e63946]/40 mr-1"></span>
+                    <span className="inline-block w-3 h-3 rounded-full bg-[#FFA500]/40 mr-1"></span>
                     <span>Moderate-High</span>
                   </div>
                 </div>
@@ -131,7 +131,7 @@ const SchedulePage = () => {
                 All our classes are available in female-only formats during our dedicated women's hours. 
                 These sessions are led by our female trainer, Ayesha, in a comfortable, women-only environment.
               </p>
-              <div className="flex items-center text-sm text-[#e63946] font-medium">
+              <div className="flex items-center text-sm text-[#FFA500] font-medium">
                 <span className="inline-block w-3 h-3 rounded-full bg-pink-300 mr-1"></span>
                 <span>All female-only classes are marked in pink on the schedule</span>
               </div>
@@ -153,7 +153,7 @@ const SchedulePage = () => {
               <Link href="/trial">
                 <Button 
                   size="lg" 
-                  className="bg-[#e63946] hover:bg-red-700 text-white font-medium inline-flex items-center"
+                  className="bg-[#FFA500] hover:bg-amber-600 text-white font-medium inline-flex items-center"
                 >
                   Try a Free Class
                   <ArrowRight className="ml-2" size={18} />

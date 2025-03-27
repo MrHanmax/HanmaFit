@@ -32,7 +32,7 @@ const GroupClassesPage = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link href="/schedule">
-                <Button size="lg" className="bg-[#e63946] hover:bg-red-700 text-white font-semibold text-lg">
+                <Button size="lg" className="bg-[#FFA500] hover:bg-amber-600 text-white font-semibold text-lg">
                   View Live Class Schedule
                 </Button>
               </Link>
@@ -56,22 +56,22 @@ const GroupClassesPage = () => {
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
               <div className="flex flex-col items-center">
-                <div className="bg-[#e63946]/10 rounded-full p-4 mb-4">
-                  <Flame className="h-10 w-10 text-[#e63946]" />
+                <div className="bg-[#FFA500]/10 rounded-full p-4 mb-4">
+                  <Flame className="h-10 w-10 text-[#FFA500]" />
                 </div>
                 <h3 className="font-semibold text-xl mb-2">High-Energy Atmosphere</h3>
                 <p>Feed off the energy of the group and push yourself further than you would alone.</p>
               </div>
               <div className="flex flex-col items-center">
-                <div className="bg-[#e63946]/10 rounded-full p-4 mb-4">
-                  <Users className="h-10 w-10 text-[#e63946]" />
+                <div className="bg-[#FFA500]/10 rounded-full p-4 mb-4">
+                  <Users className="h-10 w-10 text-[#FFA500]" />
                 </div>
                 <h3 className="font-semibold text-xl mb-2">Community Support</h3>
                 <p>Join a supportive fitness family that celebrates each other's victories and provides motivation.</p>
               </div>
               <div className="flex flex-col items-center">
-                <div className="bg-[#e63946]/10 rounded-full p-4 mb-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-[#e63946]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div className="bg-[#FFA500]/10 rounded-full p-4 mb-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-[#FFA500]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                   </svg>
                 </div>
@@ -105,15 +105,15 @@ const GroupClassesPage = () => {
                 </p>
                 <div className="flex flex-wrap items-center gap-6 mb-6">
                   <div className="flex items-center">
-                    <Clock className="h-5 w-5 mr-2 text-[#e63946]" />
+                    <Clock className="h-5 w-5 mr-2 text-[#FFA500]" />
                     <span>60 minutes</span>
                   </div>
                   <div className="flex items-center">
-                    <Flame className="h-5 w-5 mr-2 text-[#e63946]" />
+                    <Flame className="h-5 w-5 mr-2 text-[#FFA500]" />
                     <span>High intensity</span>
                   </div>
                   <div className="flex items-center">
-                    <Users className="h-5 w-5 mr-2 text-[#e63946]" />
+                    <Users className="h-5 w-5 mr-2 text-[#FFA500]" />
                     <span>All levels welcome</span>
                   </div>
                 </div>
@@ -152,15 +152,15 @@ const GroupClassesPage = () => {
                 </p>
                 <div className="flex flex-wrap items-center gap-6 mb-6">
                   <div className="flex items-center">
-                    <Clock className="h-5 w-5 mr-2 text-[#e63946]" />
+                    <Clock className="h-5 w-5 mr-2 text-[#FFA500]" />
                     <span>45 minutes</span>
                   </div>
                   <div className="flex items-center">
-                    <Flame className="h-5 w-5 mr-2 text-[#e63946]" />
+                    <Flame className="h-5 w-5 mr-2 text-[#FFA500]" />
                     <span>Moderate-High intensity</span>
                   </div>
                   <div className="flex items-center">
-                    <Users className="h-5 w-5 mr-2 text-[#e63946]" />
+                    <Users className="h-5 w-5 mr-2 text-[#FFA500]" />
                     <span>All levels welcome</span>
                   </div>
                 </div>
@@ -199,15 +199,15 @@ const GroupClassesPage = () => {
                 </p>
                 <div className="flex flex-wrap items-center gap-6 mb-6">
                   <div className="flex items-center">
-                    <Clock className="h-5 w-5 mr-2 text-[#e63946]" />
+                    <Clock className="h-5 w-5 mr-2 text-[#FFA500]" />
                     <span>50 minutes</span>
                   </div>
                   <div className="flex items-center">
-                    <Flame className="h-5 w-5 mr-2 text-[#e63946]" />
+                    <Flame className="h-5 w-5 mr-2 text-[#FFA500]" />
                     <span>Moderate intensity</span>
                   </div>
                   <div className="flex items-center">
-                    <Users className="h-5 w-5 mr-2 text-[#e63946]" />
+                    <Users className="h-5 w-5 mr-2 text-[#FFA500]" />
                     <span>All levels welcome</span>
                   </div>
                 </div>
@@ -246,11 +246,11 @@ const GroupClassesPage = () => {
                 </p>
                 <div className="flex flex-wrap items-center gap-6 mb-6">
                   <div className="flex items-center">
-                    <Clock className="h-5 w-5 mr-2 text-[#e63946]" />
+                    <Clock className="h-5 w-5 mr-2 text-[#FFA500]" />
                     <span>Various class lengths</span>
                   </div>
                   <div className="flex items-center">
-                    <Users className="h-5 w-5 mr-2 text-[#e63946]" />
+                    <Users className="h-5 w-5 mr-2 text-[#FFA500]" />
                     <span>All fitness levels</span>
                   </div>
                 </div>
@@ -292,7 +292,7 @@ const GroupClassesPage = () => {
                   </div>
                   <div>
                     <h4 className="font-bold text-[#1d3557]">Imran S.</h4>
-                    <p className="text-sm text-[#e63946]">MMA Class Member</p>
+                    <p className="text-sm text-[#FFA500]">MMA Class Member</p>
                   </div>
                 </div>
                 <p className="text-sm italic mb-2">
@@ -312,7 +312,7 @@ const GroupClassesPage = () => {
                   </div>
                   <div>
                     <h4 className="font-bold text-[#1d3557]">Sana K.</h4>
-                    <p className="text-sm text-[#e63946]">Zumba Class Member</p>
+                    <p className="text-sm text-[#FFA500]">Zumba Class Member</p>
                   </div>
                 </div>
                 <p className="text-sm italic mb-2">
@@ -336,7 +336,7 @@ const GroupClassesPage = () => {
               <Link href="/trial">
                 <Button 
                   size="lg" 
-                  className="bg-[#e63946] hover:bg-red-700 text-white font-medium inline-flex items-center"
+                  className="bg-[#FFA500] hover:bg-amber-600 text-white font-medium inline-flex items-center"
                 >
                   Try Your First Class FREE!
                   <ArrowRight className="ml-2" size={18} />

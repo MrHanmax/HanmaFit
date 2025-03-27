@@ -47,8 +47,8 @@ const TrialPage = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-16">
             <div className="flex flex-col items-center text-center p-6 bg-gray-50 rounded-lg">
-              <div className="bg-[#e63946]/10 rounded-full p-4 mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-[#e63946]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <div className="bg-[#FFA500]/10 rounded-full p-4 mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-[#FFA500]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
               </div>
@@ -59,8 +59,8 @@ const TrialPage = () => {
             </div>
             
             <div className="flex flex-col items-center text-center p-6 bg-gray-50 rounded-lg">
-              <div className="bg-[#e63946]/10 rounded-full p-4 mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-[#e63946]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <div className="bg-[#FFA500]/10 rounded-full p-4 mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-[#FFA500]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                 </svg>
               </div>
@@ -71,8 +71,8 @@ const TrialPage = () => {
             </div>
             
             <div className="flex flex-col items-center text-center p-6 bg-gray-50 rounded-lg">
-              <div className="bg-[#e63946]/10 rounded-full p-4 mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-[#e63946]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <div className="bg-[#FFA500]/10 rounded-full p-4 mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-[#FFA500]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
                 </svg>
               </div>
@@ -101,11 +101,11 @@ const TrialPage = () => {
                   <p className="mb-4">Learn striking, grappling, and self-defense techniques in our high-energy MMA classes.</p>
                   <ul className="space-y-2 mb-4">
                     <li className="flex items-start">
-                      <CheckCircle className="text-[#e63946] mt-1 mr-2 flex-shrink-0" size={16} />
+                      <CheckCircle className="text-[#FFA500] mt-1 mr-2 flex-shrink-0" size={16} />
                       <span>Expert instruction for all levels</span>
                     </li>
                     <li className="flex items-start">
-                      <CheckCircle className="text-[#e63946] mt-1 mr-2 flex-shrink-0" size={16} />
+                      <CheckCircle className="text-[#FFA500] mt-1 mr-2 flex-shrink-0" size={16} />
                       <span>Improve strength and cardio</span>
                     </li>
                   </ul>
@@ -126,11 +126,11 @@ const TrialPage = () => {
                   <p className="mb-4">Build muscle, increase power, and improve overall strength with our comprehensive programs.</p>
                   <ul className="space-y-2 mb-4">
                     <li className="flex items-start">
-                      <CheckCircle className="text-[#e63946] mt-1 mr-2 flex-shrink-0" size={16} />
+                      <CheckCircle className="text-[#FFA500] mt-1 mr-2 flex-shrink-0" size={16} />
                       <span>Personalized weight training</span>
                     </li>
                     <li className="flex items-start">
-                      <CheckCircle className="text-[#e63946] mt-1 mr-2 flex-shrink-0" size={16} />
+                      <CheckCircle className="text-[#FFA500] mt-1 mr-2 flex-shrink-0" size={16} />
                       <span>Functional fitness focus</span>
                     </li>
                   </ul>
@@ -151,11 +151,11 @@ const TrialPage = () => {
                   <p className="mb-4">Dance your way to fitness with fun, energetic sessions that combine cardio with vibrant music.</p>
                   <ul className="space-y-2 mb-4">
                     <li className="flex items-start">
-                      <CheckCircle className="text-[#e63946] mt-1 mr-2 flex-shrink-0" size={16} />
+                      <CheckCircle className="text-[#FFA500] mt-1 mr-2 flex-shrink-0" size={16} />
                       <span>Fun, high-energy workouts</span>
                     </li>
                     <li className="flex items-start">
-                      <CheckCircle className="text-[#e63946] mt-1 mr-2 flex-shrink-0" size={16} />
+                      <CheckCircle className="text-[#FFA500] mt-1 mr-2 flex-shrink-0" size={16} />
                       <span>Great for all fitness levels</span>
                     </li>
                   </ul>
@@ -176,11 +176,11 @@ const TrialPage = () => {
                   <p className="mb-4">Get 1-on-1 attention with custom workout plans designed for your specific fitness goals.</p>
                   <ul className="space-y-2 mb-4">
                     <li className="flex items-start">
-                      <CheckCircle className="text-[#e63946] mt-1 mr-2 flex-shrink-0" size={16} />
+                      <CheckCircle className="text-[#FFA500] mt-1 mr-2 flex-shrink-0" size={16} />
                       <span>Tailored to your needs</span>
                     </li>
                     <li className="flex items-start">
-                      <CheckCircle className="text-[#e63946] mt-1 mr-2 flex-shrink-0" size={16} />
+                      <CheckCircle className="text-[#FFA500] mt-1 mr-2 flex-shrink-0" size={16} />
                       <span>Faster, better results</span>
                     </li>
                   </ul>
@@ -204,7 +204,7 @@ const TrialPage = () => {
                 <p className="mb-4">
                   We offer dedicated female-only training sessions daily from 1:00 PM to 5:00 PM, led by our expert female trainer, Ayesha. These sessions provide a comfortable, supportive environment where women can focus on their fitness goals.
                 </p>
-                <div className="flex flex-col sm:flex-row items-center gap-4 text-[#e63946] font-medium">
+                <div className="flex flex-col sm:flex-row items-center gap-4 text-[#FFA500] font-medium">
                   <div className="flex items-center">
                     <CheckCircle className="mr-1" size={16} />
                     <span>Women's MMA</span>
@@ -266,7 +266,7 @@ const TrialPage = () => {
               <p className="mb-4 italic">
                 "I came for a free trial and was immediately impressed by the quality of coaching and facilities. The trainers made me feel welcome and showed genuine interest in my goals. I signed up that same day!"
               </p>
-              <p className="text-[#e63946] font-semibold">Now a 6-month member</p>
+              <p className="text-[#FFA500] font-semibold">Now a 6-month member</p>
             </div>
             
             {/* Testimonial 2 */}
@@ -293,7 +293,7 @@ const TrialPage = () => {
               <p className="mb-4 italic">
                 "The female-only trial class was exactly what I needed. I felt comfortable, supported, and challenged. Ayesha is an amazing instructor who understands how to motivate women of all fitness levels."
               </p>
-              <p className="text-[#e63946] font-semibold">Regular in women's classes</p>
+              <p className="text-[#FFA500] font-semibold">Regular in women's classes</p>
             </div>
             
             {/* Testimonial 3 */}
@@ -320,7 +320,7 @@ const TrialPage = () => {
               <p className="mb-4 italic">
                 "My free personal training session convinced me this was the gym for me. Omar assessed my fitness level and created a plan that was challenging but achievable. The difference in coaching quality is obvious."
               </p>
-              <p className="text-[#e63946] font-semibold">PT client for 3 months</p>
+              <p className="text-[#FFA500] font-semibold">PT client for 3 months</p>
             </div>
           </div>
         </div>

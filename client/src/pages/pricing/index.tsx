@@ -34,8 +34,8 @@ const pricingPlans: PricingPlan[] = [
       "Priority booking for special events"
     ],
     isPopular: true,
-    bgColor: "bg-[#e63946]",
-    buttonColor: "bg-[#e63946] hover:bg-red-700"
+    bgColor: "bg-[#FFA500]",
+    buttonColor: "bg-[#FFA500] hover:bg-amber-600"
   },
   {
     id: "pt-package",
@@ -102,11 +102,11 @@ const PricingPage = () => {
               <div 
                 key={plan.id}
                 className={`bg-white rounded-lg shadow-lg overflow-hidden transform transition-transform duration-300 hover:scale-105 ${
-                  plan.isPopular ? '-mt-4 md:mt-0 border-2 border-[#e63946] relative z-10' : ''
+                  plan.isPopular ? '-mt-4 md:mt-0 border-2 border-[#FFA500] relative z-10' : ''
                 }`}
               >
                 {plan.isPopular && (
-                  <div className="absolute top-0 right-0 bg-[#e63946] text-white px-4 py-1 text-sm font-bold uppercase">
+                  <div className="absolute top-0 right-0 bg-[#FFA500] text-white px-4 py-1 text-sm font-bold uppercase">
                     Most Popular
                   </div>
                 )}
@@ -121,7 +121,7 @@ const PricingPage = () => {
                   <ul className="space-y-3 mb-8">
                     {plan.features.map((feature, index) => (
                       <li key={index} className="flex items-start">
-                        <Check className="text-[#e63946] mt-1 mr-2 flex-shrink-0" size={18} />
+                        <Check className="text-[#FFA500] mt-1 mr-2 flex-shrink-0" size={18} />
                         <span>{feature}</span>
                       </li>
                     ))}
@@ -146,22 +146,22 @@ const PricingPage = () => {
                 </p>
                 <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600">
                   <div className="flex items-center">
-                    <Check className="text-[#e63946] mr-1" size={16} />
+                    <Check className="text-[#FFA500] mr-1" size={16} />
                     <span>No obligation</span>
                   </div>
                   <div className="flex items-center">
-                    <Check className="text-[#e63946] mr-1" size={16} />
+                    <Check className="text-[#FFA500] mr-1" size={16} />
                     <span>All classes included</span>
                   </div>
                   <div className="flex items-center">
-                    <Check className="text-[#e63946] mr-1" size={16} />
+                    <Check className="text-[#FFA500] mr-1" size={16} />
                     <span>Free consultation</span>
                   </div>
                 </div>
               </div>
               <div className="md:w-1/3">
                 <Link href="/trial">
-                  <Button size="lg" className="w-full bg-[#e63946] hover:bg-red-700 text-white font-medium text-lg">
+                  <Button size="lg" className="w-full bg-[#FFA500] hover:bg-amber-600 text-white font-medium text-lg">
                     Claim Your Free Trial
                   </Button>
                 </Link>
@@ -281,7 +281,7 @@ const PricingPage = () => {
               </Link>
               <Link href="/trial">
                 <Button 
-                  className="bg-[#e63946] hover:bg-red-700 text-white font-medium"
+                  className="bg-[#FFA500] hover:bg-amber-600 text-white font-medium"
                 >
                   Start Free Trial
                 </Button>

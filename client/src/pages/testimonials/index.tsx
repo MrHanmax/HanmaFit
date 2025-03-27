@@ -152,7 +152,7 @@ const TestimonialsPage = () => {
                 <p className="mb-4">
                   "{testimonial.text}"
                 </p>
-                <p className="text-[#e63946] font-semibold">Goal: {testimonial.goal}</p>
+                <p className="text-[#FFA500] font-semibold">Goal: {testimonial.goal}</p>
               </div>
             ))}
           </div>
@@ -194,7 +194,7 @@ const TestimonialsPage = () => {
                             alt={`After ${transformation.name}`} 
                             className="w-full h-64 object-cover rounded"
                           />
-                          <div className="absolute top-0 left-0 bg-[#e63946] text-white px-3 py-1 text-sm font-bold">
+                          <div className="absolute top-0 left-0 bg-[#FFA500] text-white px-3 py-1 text-sm font-bold">
                             AFTER
                           </div>
                         </div>
@@ -220,8 +220,8 @@ const TestimonialsPage = () => {
                 <p className="mb-4">
                   "When I joined Hanma, I was struggling with my weight and confidence. The trainers created a personalized plan that included strength training and nutrition guidance. Six months later, I'm down 20kg and feel amazing!"
                 </p>
-                <div className="flex items-center text-sm text-[#e63946] font-medium">
-                  <span className="inline-block w-3 h-3 rounded-full bg-[#e63946] mr-1"></span>
+                <div className="flex items-center text-sm text-[#FFA500] font-medium">
+                  <span className="inline-block w-3 h-3 rounded-full bg-[#FFA500] mr-1"></span>
                   <span>Lost 20kg in 6 months</span>
                 </div>
               </div>
@@ -231,8 +231,8 @@ const TestimonialsPage = () => {
                 <p className="mb-4">
                   "I was the typical 'skinny guy' who couldn't put on muscle despite trying various workout routines. The strength coaches at Hanma designed a program specific to my body type and goals. Now I've gained 12kg of muscle in 8 months!"
                 </p>
-                <div className="flex items-center text-sm text-[#e63946] font-medium">
-                  <span className="inline-block w-3 h-3 rounded-full bg-[#e63946] mr-1"></span>
+                <div className="flex items-center text-sm text-[#FFA500] font-medium">
+                  <span className="inline-block w-3 h-3 rounded-full bg-[#FFA500] mr-1"></span>
                   <span>Gained 12kg of muscle in 8 months</span>
                 </div>
               </div>
@@ -242,8 +242,8 @@ const TestimonialsPage = () => {
                 <p className="mb-4">
                   "After having my second child, I struggled to find time and energy for fitness. The female-only sessions at Hanma provided the perfect environment for me to rebuild my strength and fitness. The trainers understood my needs as a new mom."
                 </p>
-                <div className="flex items-center text-sm text-[#e63946] font-medium">
-                  <span className="inline-block w-3 h-3 rounded-full bg-[#e63946] mr-1"></span>
+                <div className="flex items-center text-sm text-[#FFA500] font-medium">
+                  <span className="inline-block w-3 h-3 rounded-full bg-[#FFA500] mr-1"></span>
                   <span>Regained pre-pregnancy fitness in 5 months</span>
                 </div>
               </div>
@@ -253,8 +253,8 @@ const TestimonialsPage = () => {
                 <p className="mb-4">
                   "I joined Hanma with zero martial arts experience but a strong interest in MMA. The coaches patiently taught me the fundamentals and progressed me at the right pace. Now I'm competing in amateur tournaments and loving every minute!"
                 </p>
-                <div className="flex items-center text-sm text-[#e63946] font-medium">
-                  <span className="inline-block w-3 h-3 rounded-full bg-[#e63946] mr-1"></span>
+                <div className="flex items-center text-sm text-[#FFA500] font-medium">
+                  <span className="inline-block w-3 h-3 rounded-full bg-[#FFA500] mr-1"></span>
                   <span>From beginner to amateur competitor in 1 year</span>
                 </div>
               </div>
@@ -270,7 +270,7 @@ const TestimonialsPage = () => {
             <Link href="/trial">
               <Button 
                 size="lg" 
-                className="bg-[#e63946] hover:bg-red-700 text-white font-medium inline-flex items-center"
+                className="bg-[#FFA500] hover:bg-amber-600 text-white font-medium inline-flex items-center"
               >
                 Start Your Transformation
                 <ArrowRight className="ml-2" size={18} />
