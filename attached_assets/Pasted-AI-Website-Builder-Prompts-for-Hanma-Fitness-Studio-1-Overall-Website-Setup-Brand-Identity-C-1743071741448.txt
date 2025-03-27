@@ -1,0 +1,112 @@
+AI Website Builder Prompts for Hanma Fitness Studio:
+
+1. Overall Website Setup / Brand Identity:
+
+"Create a website for Hanma Fitness Studio, a premium fitness studio located at Manzoor St, Block 2 Block 1 A Gulistan-e-Johar, Karachi, 35400. My target audience is individuals aged 25-50 in the Johar area seeking high-quality, results-driven fitness coaching, diverse classes (MMA, Strength, Zumba/Aerobics), effective Personal Training, and a strong community atmosphere. We differentiate from cheaper local gyms by focusing on quality coaching and a premium experience, with prices from PKR 6,000-20,000.
+USP: Expert coaching, measurable results, supportive community, unique class offerings.
+Tone of Voice: Energetic, Motivating, Professional, Results-Focused, Strong, Welcoming, Community-Oriented.
+Key Pages: Homepage, Services (with sub-pages for PT, Group Classes), Schedule, Pricing/Memberships, About Us (with Trainer Profiles), Testimonials, Contact Us.
+Primary Goal: Generate qualified leads via contact forms, calls/WhatsApp, and trial bookings."
+2. Homepage:
+
+"Design the Homepage for Hanma Fitness Studio (Gulistan-e-Johar).
+Hero Section: Use a dynamic image/video montage of positive training sessions at the studio. Headline: 'Unleash Your Strength: Hanma Fitness - Johar's Premium Training Studio'. Sub-headline: 'Expert Personal Training, Unique Group Classes (MMA, Strength, Zumba) & A Community That Delivers Results.' Prominent Call-to-Action (CTA) button: 'Book Your Free Trial Class'.
+Intro Section: Briefly explain Hanma's focus on quality coaching, personalized attention, and community in Gulistan-e-Johar. Mention the different training slots (Co-ed & Female Only).
+Services Overview: 3-4 visual blocks: Personal Training (Personalized Results), Group Classes (Energy & Variety - mention MMA/Strength/Zumba), Community (Support & Motivation). Each links to the relevant service page. Button: 'Explore Our Programs'.
+Social Proof: Section with 2-3 impactful member testimonials. Button: 'See Member Success Stories' (linking to Testimonials page).
+Operating Hours Snippet: Briefly display hours: 'Mon-Sat | Co-Ed & Dedicated Female-Only Hours Available!' Link to Contact page for full details.
+Final CTA Section: 'Ready to Start? Book Your Free Trial in Johar Today!' with the button again."
+3. Services - Main Page:
+
+"Create a Services overview page. Headline: 'Hanma Programs: Find Your Path to Strength'. Sections for:
+
+Personal Training: Focus on 1-on-1 attention, tailored plans by certified coaches. Link to PT page.
+Group Classes: Highlight variety (MMA, Strength, Zumba/Aerobics) and energy. Link to Group Class page / Schedule.
+Floor Training / Open Gym (If offered): Describe access.
+Physiotherapy: Mention availability for injury/performance. Link to details/Contact.
+Use strong visuals. Main CTA: 'View Schedule & Membership Options'."
+4. Services - Personal Training Page:
+
+"Create a dedicated page for Personal Training at Hanma (Gulistan-e-Johar). Headline: 'Achieve Your Goals Faster with 1-on-1 Expert Coaching in Johar'.
+Content: Emphasize benefits: personalized plans, faster results (weight loss, muscle gain), accountability, expert guidance. Describe the process (Consultation -> Assessment -> Plan -> Support). Highlight trainer qualifications (link to bios). Include a PT-specific testimonial.
+CTA: 'Book Your FREE PT Consultation - Call/WhatsApp 03167911505 or Fill Form' (Include form/link)."
+5. Services - Group Classes Page:
+
+"Create a dedicated page for Group Classes. Headline: 'Dynamic Classes, Powerful Results: Join the Hanma Community!'.
+Content: Describe the atmosphere. Sub-sections for MMA, Strength Training, and Zumba/Aerobics. Explain each class, benefits, and target audience. Use energetic photos/videos of your classes.
+CTA: 'View Live Class Schedule' (link) and 'Try Your First Class FREE!' (link)."
+6. Pricing / Membership Page:
+
+"Create a Pricing/Memberships page. Headline: 'Invest In Quality: Hanma Fitness Membership Options'.
+Content: Clearly list main membership tiers (e.g., 'Group Class Access', 'Unlimited Access', 'PT Packages') with standard prices and inclusions.
+Intro Offer: Feature ONE clear introductory offer (e.g., 'Free Trial Week for New Johar Residents').
+Value Proposition: Reinforce value for premium price (expert coaching, community, results). Avoid mentioning ad-hoc discounts.
+CTA: 'Choose Your Membership' (link) or 'Book a Studio Tour'."
+7. About Us Page:
+
+"Create an About Us page for Hanma Fitness Studio in Gulistan-e-Johar. Headline: 'Meet the Team & Discover the Hanma Difference'.
+Content:
+
+Our Story/Philosophy: Explain the 'Why' behind Hanma, mission for the Johar community.
+Meet the Founder: Your bio.
+Meet the Team: Include the Trainer Profiles section detailed below (Prompt 7a).
+Community Focus: Text about the supportive environment.
+Visuals: Team photos, studio space.
+CTA: 'Meet Our Coaches' (Scroll link) or 'Visit Our Johar Studio'."
+7a. Trainer Profiles Section (Within 'About Us'):
+
+"Create a 'Meet Our Expert Coaches' section. Use a grid/card layout. For EACH trainer (mentioning the female trainer for female-only slots), include:
+
+High-Quality Photo: Professional headshot or action shot.
+Trainer Name:
+Title/Specialization: (e.g., 'Head Coach', 'MMA Instructor', 'Zumba Specialist', 'Female Training Coach').
+Short Bio (2-4 sentences): Certifications, experience, specializations, training philosophy relevant to Hanma's premium, community feel. (Provide specific details for each trainer to the AI or edit the AI output heavily)."
+8. Testimonials / Results Page:
+
+"Create a Testimonials/Results page. Headline: 'Real People, Real Results at Hanma Fitness Johar'.
+Content: Feature multiple text testimonials (Name, Photo optional). Showcase Before & After photos (with permission). Embed video testimonials if available. Group by goal achieved.
+CTA: 'Start Your Transformation - Book a Free Trial!'"
+9. Contact Us Page:
+
+"Create a Contact Us page. Headline: 'Visit or Contact Hanma Fitness in Gulistan-e-Johar'.
+Content:
+
+Address: Manzoor St, Block 2 Block 1 A Gulistan-e-Johar, Karachi, 35400.
+Map: Embed Google Map pinpointing the address.
+Phone: 03167911505 (Clickable: tel:03167911505).
+WhatsApp: 03167911505 (Clickable link: https://wa.me/923167911505). Add note: 'Replies during business hours.'
+Email: hanma.pk@gmail.com (Clickable: mailto:hanma.pk@gmail.com).
+Operating Hours: Clearly list:
+Monday - Saturday:
+7:00 AM - 10:00 AM (Co-Ed Training)
+1:00 PM - 5:00 PM (Female Only Hours)
+5:00 PM - 12:00 AM (Co-Ed Training)
+Sunday: Closed
+Contact Form: (Name, Email, Phone, Service Interested In [Dropdown], Message).
+Instagram Link: Icon linking to https://www.instagram.com/hanma.pk/.
+CTA on Form: 'Send Inquiry'."
+10. Landing Page - Free Trial (For Google Ads):
+
+"Design: Minimalist, focused on Johar location, mobile-first. No main navigation.
+Headline: 'Claim Your FREE Trial Class at Hanma Fitness in Gulistan-e-Johar!'
+Sub-headline: 'Experience Premium Coaching & Johar's Most Motivating Fitness Community.'
+Body: Bullets on benefits (Try MMA/Strength/Zumba, Meet expert coaches, Dedicated Female-Only times available).
+Visual: Compelling image/video of a class.
+Form: Name, Email, Phone.
+CTA Button: 'Claim My FREE Class!'
+Optional: Short testimonial.
+Goal: Maximize trial sign-ups from local searchers."
+11. Landing Page - PT Consultation (For PT Ad Group):
+
+"Design: Minimalist, professional, focused on Johar location, mobile-first. No main navigation.
+Headline: 'Get Your FREE Personal Training Consultation in Gulistan-e-Johar'
+Sub-headline: 'Personalized Plans, Expert Trainers, Real Results at Hanma Fitness.'
+Body: Bullets on PT benefits (Tailored plans, Faster results, 1-on-1 guidance).
+Visual: Compelling image/video of a PT session.
+Form: Name, Email, Phone, Fitness Goal (Optional).
+CTA Button: 'Book My FREE PT Consult!'
+Optional: Short PT testimonial.
+Goal: Maximize PT consultation requests."
+12. Website Footer (Instruction for AI):
+
+"Ensure the website footer on all pages includes: Copyright Hanma Fitness Studio [Current Year], link to Privacy Policy (if you have one), Phone: 03167911505, Email: hanma.pk@gmail.com, and a clickable Instagram icon linking to @hanma.pk."
