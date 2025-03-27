@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Phone, WhatsappIcon } from "lucide-react";
+import { Phone } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 
 const trialFormSchema = z.object({
@@ -183,7 +183,6 @@ const TrialForm = () => {
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="">Select a class</SelectItem>
                       <SelectItem value="mma">MMA Training</SelectItem>
                       <SelectItem value="strength">Strength Training</SelectItem>
                       <SelectItem value="zumba">Zumba/Aerobics</SelectItem>
@@ -212,7 +211,6 @@ const TrialForm = () => {
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="">Select an option</SelectItem>
                       <SelectItem value="instagram">Instagram</SelectItem>
                       <SelectItem value="google">Google Search</SelectItem>
                       <SelectItem value="friend">Friend/Family</SelectItem>

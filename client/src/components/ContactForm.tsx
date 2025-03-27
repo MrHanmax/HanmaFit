@@ -119,7 +119,6 @@ const ContactForm = () => {
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value="">Select a service</SelectItem>
                   <SelectItem value="personal-training">Personal Training</SelectItem>
                   <SelectItem value="group-classes">Group Classes</SelectItem>
                   <SelectItem value="mma">MMA Training</SelectItem>
