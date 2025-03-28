@@ -23,7 +23,7 @@ export async function sendEmail({ to, subject, text, from }: SendEmailParams): P
     }
 
     // Default sender email or use provided sender
-    const senderEmail = from?.email || 'noreply@hanmafitness.com';
+    const senderEmail = from?.email || 'hanma.pk@gmail.com';
     const senderName = from?.name || 'Hanma Fitness Studio';
 
     const response = await axios.post(
