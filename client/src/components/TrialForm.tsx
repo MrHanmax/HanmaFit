@@ -1,63 +1,41 @@
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import { useToast } from "@/hooks/use-toast";
-import { apiRequest } from "@/lib/queryClient";
-import { TrialFormData } from "@/lib/types";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { useEffect, useRef } from "react";
 import { Phone } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 
-const trialFormSchema = z.object({
-  name: z.string().min(2, { message: "Name must be at least 2 characters" }),
-  email: z.string().email({ message: "Please enter a valid email address" }),
-  phone: z.string().min(8, { message: "Please enter a valid phone number" }),
-  classInterest: z.string().optional(),
-  howHeard: z.string().optional()
-});
-
 const TrialForm = () => {
-  const { toast } = useToast();
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  
-  const form = useForm<TrialFormData>({
-    resolver: zodResolver(trialFormSchema),
-    defaultValues: {
-      name: "",
-      email: "",
-      phone: "",
-      classInterest: "",
-      howHeard: ""
-    }
-  });
-  
-  const onSubmit = async (data: TrialFormData) => {
-    setIsSubmitting(true);
-    try {
-      await apiRequest("POST", "/api/trial-leads", data);
+  const iframeContainerRef = useRef<HTMLDivElement>(null);
+
+  // This runs after the component mounts to inject custom fields for class interest and referral
+  useEffect(() => {
+    // Give Brevo form time to load
+    const timeoutId = setTimeout(() => {
+      const iframeContainer = iframeContainerRef.current;
+      if (!iframeContainer) return;
       
-      toast({
-        title: "Success!",
-        description: "Thank you for your interest! We will contact you shortly to schedule your free trial class.",
-        variant: "default",
-      });
+      const iframe = iframeContainer.querySelector('iframe');
+      if (!iframe) return;
       
-      form.reset();
-    } catch (error) {
-      console.error("Error submitting form:", error);
-      toast({
-        title: "Something went wrong.",
-        description: "There was a problem submitting your form. Please try again.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+      // Attempt to access and modify the iframe content
+      try {
+        const iframeWindow = iframe.contentWindow;
+        if (!iframeWindow) return;
+        
+        // Message to communicate with the iframe
+        iframeWindow.postMessage({
+          type: 'CUSTOMIZE_FORM',
+          data: {
+            // Details for form customization if possible
+            addClassInterest: true,
+            addHowHeard: true
+          }
+        }, '*');
+      } catch (error) {
+        console.error("Could not customize the Brevo form", error);
+      }
+    }, 1500);
+    
+    return () => clearTimeout(timeoutId);
+  }, []);
   
   return (
     <div className="flex flex-col lg:flex-row items-center bg-[#1d3557] rounded-lg overflow-hidden shadow-xl">
@@ -123,116 +101,28 @@ const TrialForm = () => {
       <div className="lg:w-1/2 p-8 lg:p-12 bg-white w-full">
         <h3 className="font-bold text-2xl mb-6 text-[#1d3557] text-center">BOOK YOUR FREE TRIAL NOW</h3>
         
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-            <FormField
-              control={form.control}
-              name="name"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Name</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Your name" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Email</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Your email" type="email" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            
-            <FormField
-              control={form.control}
-              name="phone"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Phone</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Your phone number" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            
-            <FormField
-              control={form.control}
-              name="classInterest"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Which class are you interested in?</FormLabel>
-                  <Select 
-                    onValueChange={field.onChange} 
-                    defaultValue={field.value}
-                  >
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select a class" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      <SelectItem value="mma">MMA Training</SelectItem>
-                      <SelectItem value="strength">Strength Training</SelectItem>
-                      <SelectItem value="zumba">Zumba/Aerobics</SelectItem>
-                      <SelectItem value="personal">Personal Training</SelectItem>
-                      <SelectItem value="general">Not sure yet</SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            
-            <FormField
-              control={form.control}
-              name="howHeard"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>How did you hear about us?</FormLabel>
-                  <Select 
-                    onValueChange={field.onChange} 
-                    defaultValue={field.value}
-                  >
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select an option" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      <SelectItem value="instagram">Instagram</SelectItem>
-                      <SelectItem value="google">Google Search</SelectItem>
-                      <SelectItem value="friend">Friend/Family</SelectItem>
-                      <SelectItem value="other">Other</SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            
-            <div className="pt-2">
-              <Button 
-                type="submit" 
-                className="w-full bg-[#FFA500] hover:bg-amber-600 text-white font-bold text-lg h-12"
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? "SUBMITTING..." : "CLAIM MY FREE CLASS"}
-              </Button>
-            </div>
-          </form>
-        </Form>
+        <div ref={iframeContainerRef} className="w-full flex justify-center">
+          {/* Brevo embedded form */}
+          <iframe 
+            width="100%" 
+            height="550" 
+            src="https://sibforms.com/serve/MUIFAIpZbYtqP5r0rYsjCos7KKNClvmVj8G_rPnhOIUbKRJpobAHjpo5ng2GCQQsiaBcbbZZTGGOoEK1H_UXfBodnkm-36vXUrbKuBxjQOWe-V0SnPMR-ZkEpzSmjiTnkWsYxZOIDPEcdXk4-LFm-Qu4hKOvGC7EtNSP7a5AnCZglCcDF2IClK6dsFG2alDqIycLr3muEvfPtpA0" 
+            frameBorder="0" 
+            scrolling="auto" 
+            allowFullScreen 
+            style={{ 
+              display: "block", 
+              marginLeft: "auto", 
+              marginRight: "auto", 
+              maxWidth: "100%" 
+            }}
+          ></iframe>
+          
+          {/* Note about additional options */}
+          <div className="mt-3 text-center text-sm text-gray-500">
+            <p>Please let us know in the message field which class you're interested in and how you heard about us.</p>
+          </div>
+        </div>
       </div>
     </div>
   );
