@@ -1,4 +1,4 @@
-import axios from 'axios';
+import nodemailer from 'nodemailer';
 
 interface SendEmailParams {
   to: string;
@@ -11,50 +11,46 @@ interface SendEmailParams {
 }
 
 /**
- * Send email using Brevo (formerly SendinBlue) API
+ * Send email using Brevo (formerly SendinBlue) SMTP
  */
 export async function sendEmail({ to, subject, text, from }: SendEmailParams): Promise<boolean> {
   try {
-    const apiKey = process.env.BREVO_API_KEY;
+    const smtpUser = process.env.SMTP_USER;
+    const smtpPass = process.env.SMTP_PASS;
+    const smtpFrom = process.env.SMTP_FROM;
     
-    if (!apiKey) {
-      console.error('Missing Brevo API key');
+    if (!smtpUser || !smtpPass || !smtpFrom) {
+      console.error('Missing SMTP credentials');
       return false;
     }
 
     // Default sender email or use provided sender
-    const senderEmail = from?.email || 'hanma.pk@gmail.com';
+    const senderEmail = from?.email || smtpFrom;
     const senderName = from?.name || 'Hanma Fitness Studio';
 
-    const response = await axios.post(
-      'https://api.sendinblue.com/v3/smtp/email',
-      {
-        sender: {
-          name: senderName,
-          email: senderEmail
-        },
-        to: [{ email: to }],
-        subject: subject,
-        textContent: text
-      },
-      {
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          'api-key': apiKey
-        }
+    // Create a transporter using SMTP
+    const transporter = nodemailer.createTransport({
+      host: 'smtp-relay.brevo.com',
+      port: 587,
+      secure: false, // true for 465, false for other ports
+      auth: {
+        user: smtpUser,
+        pass: smtpPass
       }
-    );
+    });
 
-    if (response.status >= 200 && response.status < 300) {
-      console.log('Email sent successfully via Brevo API');
-      return true;
-    } else {
-      console.error('Failed to send email:', response.status, response.data);
-      return false;
-    }
+    // Send mail with defined transport object
+    const info = await transporter.sendMail({
+      from: `"${senderName}" <${senderEmail}>`,
+      to: to,
+      subject: subject,
+      text: text
+    });
+
+    console.log('Email sent successfully via Brevo SMTP:', info.messageId);
+    return true;
   } catch (error) {
-    console.error('Error sending email via Brevo API:', error);
+    console.error('Error sending email via Brevo SMTP:', error);
     return false;
   }
 }
