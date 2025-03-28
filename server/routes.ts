@@ -8,7 +8,7 @@ import { sendEmail } from './emailService';
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // API routes for trial lead submissions
-  app.post("/api/trial-leads", async (req, res) => {
+  app.post("/api/trial_leads", async (req, res) => {
     try {
       const validatedData = insertTrialLeadSchema.parse(req.body);
       const createdLead = await storage.createTrialLead(validatedData);
@@ -106,7 +106,7 @@ How they heard about us: ${validatedData.howHeard}
   });
 
   // API routes for contact inquiries
-  app.post("/api/contact-inquiries", async (req, res) => {
+  app.post("/api/contact_inquiries", async (req, res) => {
     try {
       const validatedData = insertContactInquirySchema.parse(req.body);
       const createdInquiry = await storage.createContactInquiry(validatedData);
@@ -204,7 +204,7 @@ Message: ${validatedData.message}
   });
 
   // API routes for welcome messages
-  app.post("/api/welcome-messages", async (req, res) => {
+  app.post("/api/welcome_messages", async (req, res) => {
     try {
       const validatedData = insertWelcomeMessageSchema.parse(req.body);
 
