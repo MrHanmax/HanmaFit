@@ -74,7 +74,7 @@ const AboutPage = () => {
       <section className="pt-16 pb-12 bg-gray-900 text-white relative overflow-hidden">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-black opacity-60"></div>
-          <div className="bg-gray-800 w-full h-full"></div>
+          <img src="/images/hanma/gym-3.jpg" alt="Hanma Fitness Gym Interior" className="w-full h-full object-cover" />
         </div>
         
         <div className="container mx-auto px-4 py-12 relative z-10">
@@ -108,17 +108,17 @@ const AboutPage = () => {
               </div>
               <div className="md:w-1/2">
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-gray-200 rounded-lg h-56 flex items-center justify-center">
-                    <span className="text-gray-500">Training Area</span>
+                  <div className="rounded-lg h-56 overflow-hidden">
+                    <img src="/images/hanma/gym-1.jpg" alt="Training Area" className="w-full h-full object-cover" />
                   </div>
-                  <div className="bg-gray-200 rounded-lg h-56 flex items-center justify-center">
-                    <span className="text-gray-500">Equipment</span>
+                  <div className="rounded-lg h-56 overflow-hidden">
+                    <img src="/images/hanma/gym-2.jpg" alt="Equipment" className="w-full h-full object-cover" />
                   </div>
-                  <div className="bg-gray-200 rounded-lg h-56 flex items-center justify-center">
-                    <span className="text-gray-500">Power Rack</span>
+                  <div className="rounded-lg h-56 overflow-hidden">
+                    <img src="/images/hanma/gym-3.jpg" alt="Power Rack" className="w-full h-full object-cover" />
                   </div>
-                  <div className="bg-gray-200 rounded-lg h-56 flex items-center justify-center">
-                    <span className="text-gray-500">Studio</span>
+                  <div className="rounded-lg h-56 overflow-hidden bg-gray-800 flex items-center justify-center">
+                    <img src="/images/hanma/logo.png" alt="Hanma Logo" className="h-20" />
                   </div>
                 </div>
               </div>
@@ -207,8 +207,8 @@ const AboutPage = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div>
-              <div className="bg-gray-200 rounded-lg h-64 w-full flex items-center justify-center mb-4">
-                <span className="text-gray-500">Training Area</span>
+              <div className="rounded-lg h-64 w-full overflow-hidden mb-4">
+                <img src="/images/hanma/gym-1.jpg" alt="Training Area" className="w-full h-full object-cover" />
               </div>
               <h3 className="font-bold text-xl mb-2 text-[#1d3557]">Premium Training Area</h3>
               <p>
@@ -217,8 +217,8 @@ const AboutPage = () => {
             </div>
             
             <div>
-              <div className="bg-gray-200 rounded-lg h-64 w-full flex items-center justify-center mb-4">
-                <span className="text-gray-500">MMA Zone</span>
+              <div className="rounded-lg h-64 w-full overflow-hidden mb-4">
+                <img src="/images/hanma/gym-2.jpg" alt="MMA Zone" className="w-full h-full object-cover" />
               </div>
               <h3 className="font-bold text-xl mb-2 text-[#1d3557]">Strength and MMA Zone</h3>
               <p>
@@ -227,8 +227,8 @@ const AboutPage = () => {
             </div>
             
             <div>
-              <div className="bg-gray-200 rounded-lg h-64 w-full flex items-center justify-center mb-4">
-                <span className="text-gray-500">Strength Zone</span>
+              <div className="rounded-lg h-64 w-full overflow-hidden mb-4">
+                <img src="/images/hanma/gym-3.jpg" alt="Strength Zone" className="w-full h-full object-cover" />
               </div>
               <h3 className="font-bold text-xl mb-2 text-[#1d3557]">Strength Training Zone</h3>
               <p>

@@ -7,7 +7,7 @@ const HeroSection = () => {
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-black opacity-60"></div>
         <img 
-          src="/images/gym-interior-3.jpg" 
+          src="/images/hanma/gym-1.jpg" 
           alt="Hanma Fitness Studio Interior" 
           className="object-cover w-full h-full"
         />
