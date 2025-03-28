@@ -1,4 +1,4 @@
-import nodemailer from 'nodemailer';
+import * as SibApiV3Sdk from '@sendinblue/client';
 
 interface SendEmailParams {
   to: string;
@@ -11,46 +11,52 @@ interface SendEmailParams {
 }
 
 /**
- * Send email using Brevo (formerly SendinBlue) SMTP
+ * Send email using Brevo (formerly SendinBlue) API
  */
 export async function sendEmail({ to, subject, text, from }: SendEmailParams): Promise<boolean> {
   try {
-    const smtpUser = process.env.SMTP_USER;
-    const smtpPass = process.env.SMTP_PASS;
-    const smtpFrom = process.env.SMTP_FROM;
+    const apiKey = process.env.BREVO_API_KEY;
     
-    if (!smtpUser || !smtpPass || !smtpFrom) {
-      console.error('Missing SMTP credentials');
+    if (!apiKey) {
+      console.error('Missing Brevo API key');
       return false;
     }
 
     // Default sender email or use provided sender
-    const senderEmail = from?.email || smtpFrom;
-    const senderName = from?.name || 'Hanma Fitness Studio';
+    const senderEmail = from?.email || '4faddyt@gmail.com';
+    const senderName = from?.name || 'Fawad Haris';
 
-    // Create a transporter using SMTP
-    const transporter = nodemailer.createTransport({
-      host: 'smtp-relay.brevo.com',
-      port: 587,
-      secure: false, // true for 465, false for other ports
-      auth: {
-        user: smtpUser,
-        pass: smtpPass
-      }
-    });
+    // Configure API key authorization
+    const apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
+    apiInstance.setApiKey(SibApiV3Sdk.TransactionalEmailsApiApiKeys.apiKey, apiKey);
 
-    // Send mail with defined transport object
-    const info = await transporter.sendMail({
-      from: `"${senderName}" <${senderEmail}>`,
-      to: to,
-      subject: subject,
-      text: text
-    });
+    // Create the email sender
+    const sender = new SibApiV3Sdk.SendSmtpEmailSender();
+    sender.email = senderEmail;
+    sender.name = senderName;
 
-    console.log('Email sent successfully via Brevo SMTP:', info.messageId);
+    // Create the email recipient
+    const recipient = new SibApiV3Sdk.SendSmtpEmailTo();
+    recipient.email = to;
+
+    // Create the email object
+    const sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();
+    sendSmtpEmail.sender = sender;
+    sendSmtpEmail.to = [recipient];
+    sendSmtpEmail.subject = subject;
+    sendSmtpEmail.textContent = text;
+
+    // Optional: HTML content
+    if (text.includes('<')) {
+      sendSmtpEmail.htmlContent = text;
+    }
+
+    // Send the email
+    const data = await apiInstance.sendTransacEmail(sendSmtpEmail);
+    console.log('Email sent successfully via Brevo API:', data);
     return true;
   } catch (error) {
-    console.error('Error sending email via Brevo SMTP:', error);
+    console.error('Error sending email via Brevo API:', error);
     return false;
   }
 }

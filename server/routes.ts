@@ -27,16 +27,20 @@ How they heard about us: ${validatedData.howHeard}
 
         // Send notification email to admin
         if (process.env.NOTIFICATION_EMAIL) {
-          const emailSent = await sendEmail({
-            to: process.env.NOTIFICATION_EMAIL,
-            subject: 'New Trial Class Request - Hanma Fitness',
-            text: emailContent
-          });
-          
-          if (emailSent) {
-            console.log("Trial lead notification email sent successfully via Brevo API");
-          } else {
-            console.log("Failed to send trial lead notification email via Brevo API");
+          try {
+            const emailSent = await sendEmail({
+              to: process.env.NOTIFICATION_EMAIL,
+              subject: 'New Trial Class Request - Hanma Fitness',
+              text: emailContent
+            });
+            
+            if (emailSent) {
+              console.log("Trial lead notification email sent successfully via Brevo API");
+            } else {
+              console.log("Failed to send trial lead notification email via Brevo API");
+            }
+          } catch (emailSendError) {
+            console.error("Error in trial lead email sending:", emailSendError);
           }
         }
       } catch (emailError) {
@@ -121,16 +125,20 @@ Message: ${validatedData.message}
 
         // Send notification email to admin
         if (process.env.NOTIFICATION_EMAIL) {
-          const emailSent = await sendEmail({
-            to: process.env.NOTIFICATION_EMAIL,
-            subject: 'New Contact Form Submission - Hanma Fitness',
-            text: emailContent
-          });
-          
-          if (emailSent) {
-            console.log("Contact inquiry notification email sent successfully via Brevo API");
-          } else {
-            console.log("Failed to send contact inquiry notification email via Brevo API");
+          try {
+            const emailSent = await sendEmail({
+              to: process.env.NOTIFICATION_EMAIL,
+              subject: 'New Contact Form Submission - Hanma Fitness',
+              text: emailContent
+            });
+            
+            if (emailSent) {
+              console.log("Contact inquiry notification email sent successfully via Brevo API");
+            } else {
+              console.log("Failed to send contact inquiry notification email via Brevo API");
+            }
+          } catch (emailSendError) {
+            console.error("Error in contact inquiry email sending:", emailSendError);
           }
         }
       } catch (emailError) {
@@ -257,22 +265,27 @@ Message: ${validatedData.message}
       try {
         // If user provided their email, send them the welcome message as well
         if (validatedData.email) {
-          const emailSent = await sendEmail({
-            to: validatedData.email,
-            subject: 'Welcome to Hanma Fitness Studio!',
-            text: fullMessage
-          });
-          
-          if (emailSent) {
-            console.log("Welcome email sent successfully to user via Brevo API");
-          } else {
-            console.log("Failed to send welcome email to user via Brevo API");
+          try {
+            const emailSent = await sendEmail({
+              to: validatedData.email,
+              subject: 'Welcome to Hanma Fitness Studio!',
+              text: fullMessage
+            });
+            
+            if (emailSent) {
+              console.log("Welcome email sent successfully to user via Brevo API");
+            } else {
+              console.log("Failed to send welcome email to user via Brevo API");
+            }
+          } catch (emailSendError) {
+            console.error("Error sending welcome email to user:", emailSendError);
           }
         }
         
         // Send notification to admin
         if (process.env.NOTIFICATION_EMAIL) {
-          const adminEmailContent = `
+          try {
+            const adminEmailContent = `
 New welcome message generated:
 Name: ${validatedData.name}
 Fitness Goals: ${validatedData.fitnessGoals}
@@ -280,18 +293,21 @@ Preferred Workout Type: ${validatedData.preferredWorkoutType}
 Experience Level: ${validatedData.experienceLevel}
 Generated Message: 
 ${fullMessage}
-          `;
-          
-          const emailSent = await sendEmail({
-            to: process.env.NOTIFICATION_EMAIL,
-            subject: 'New Welcome Message Generated - Hanma Fitness',
-            text: adminEmailContent
-          });
-          
-          if (emailSent) {
-            console.log("Welcome message notification email sent successfully to admin via Brevo API");
-          } else {
-            console.log("Failed to send welcome message notification to admin via Brevo API");
+            `;
+            
+            const emailSent = await sendEmail({
+              to: process.env.NOTIFICATION_EMAIL,
+              subject: 'New Welcome Message Generated - Hanma Fitness',
+              text: adminEmailContent
+            });
+            
+            if (emailSent) {
+              console.log("Welcome message notification email sent successfully to admin via Brevo API");
+            } else {
+              console.log("Failed to send welcome message notification to admin via Brevo API");
+            }
+          } catch (emailSendError) {
+            console.error("Error sending welcome message notification to admin:", emailSendError);
           }
         }
       } catch (emailError) {
