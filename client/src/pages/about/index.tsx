@@ -109,10 +109,10 @@ const AboutPage = () => {
               <div className="md:w-1/2">
                 <div className="grid grid-cols-2 gap-4">
                   <div className="rounded-lg h-56 overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1534367610401-9f5ed68180aa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Professional Training Area" className="w-full h-full object-cover" />
+                    <img src="/images/hanma/gym-1.jpg" alt="Training Area" className="w-full h-full object-cover" />
                   </div>
                   <div className="rounded-lg h-56 overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Modern Gym Equipment" className="w-full h-full object-cover" />
+                    <img src="/images/hanma/gym-2.jpg" alt="Equipment" className="w-full h-full object-cover" />
                   </div>
                   <div className="rounded-lg h-56 overflow-hidden">
                     <img src="/images/hanma/gym-3.jpg" alt="Power Rack" className="w-full h-full object-cover" />
