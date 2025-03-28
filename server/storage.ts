@@ -4,9 +4,8 @@ import {
   contactInquiries, type ContactInquiry, type InsertContactInquiry,
   welcomeMessages, type WelcomeMessage, type InsertWelcomeMessage
 } from "@shared/schema";
-
-// modify the interface with any CRUD methods
-// you might need
+import { db } from "./db";
+import { eq } from "drizzle-orm";
 
 export interface IStorage {
   // User methods (original)
@@ -31,33 +30,25 @@ export interface IStorage {
   getWelcomeMessageByName(name: string): Promise<WelcomeMessage | undefined>;
 }
 
-import { db } from "./db";
-import { eq } from "drizzle-orm";
-
 export class DatabaseStorage implements IStorage {
   // User methods
   async getUser(id: number): Promise<User | undefined> {
     const [user] = await db.select().from(users).where(eq(users.id, id));
-    return user || undefined;
+    return user;
   }
 
   async getUserByUsername(username: string): Promise<User | undefined> {
     const [user] = await db.select().from(users).where(eq(users.username, username));
-    return user || undefined;
+    return user;
   }
 
   async createUser(insertUser: InsertUser): Promise<User> {
-    const [user] = await db
-      .insert(users)
-      .values(insertUser)
-      .returning();
+    const [user] = await db.insert(users).values(insertUser).returning();
     return user;
   }
-  
-  // Trial lead methods
+
   async createTrialLead(lead: InsertTrialLead): Promise<TrialLead> {
-    const [trialLead] = await db
-      .insert(trialLeads)
+    const [trialLead] = await db.insert(trialLeads)
       .values({
         ...lead,
         createdAt: new Date()
@@ -65,20 +56,18 @@ export class DatabaseStorage implements IStorage {
       .returning();
     return trialLead;
   }
-  
+
   async getTrialLeads(): Promise<TrialLead[]> {
     return await db.select().from(trialLeads);
   }
-  
+
   async getTrialLead(id: number): Promise<TrialLead | undefined> {
     const [trialLead] = await db.select().from(trialLeads).where(eq(trialLeads.id, id));
-    return trialLead || undefined;
+    return trialLead;
   }
-  
-  // Contact inquiry methods
+
   async createContactInquiry(inquiry: InsertContactInquiry): Promise<ContactInquiry> {
-    const [contactInquiry] = await db
-      .insert(contactInquiries)
+    const [contactInquiry] = await db.insert(contactInquiries)
       .values({
         ...inquiry,
         createdAt: new Date()
@@ -86,20 +75,18 @@ export class DatabaseStorage implements IStorage {
       .returning();
     return contactInquiry;
   }
-  
+
   async getContactInquiries(): Promise<ContactInquiry[]> {
     return await db.select().from(contactInquiries);
   }
-  
+
   async getContactInquiry(id: number): Promise<ContactInquiry | undefined> {
     const [contactInquiry] = await db.select().from(contactInquiries).where(eq(contactInquiries.id, id));
-    return contactInquiry || undefined;
+    return contactInquiry;
   }
-  
-  // Welcome message methods
+
   async createWelcomeMessage(message: InsertWelcomeMessage): Promise<WelcomeMessage> {
-    const [welcomeMessage] = await db
-      .insert(welcomeMessages)
+    const [welcomeMessage] = await db.insert(welcomeMessages)
       .values({
         ...message,
         createdAt: new Date()
@@ -107,21 +94,19 @@ export class DatabaseStorage implements IStorage {
       .returning();
     return welcomeMessage;
   }
-  
+
   async getWelcomeMessages(): Promise<WelcomeMessage[]> {
     return await db.select().from(welcomeMessages);
   }
-  
+
   async getWelcomeMessage(id: number): Promise<WelcomeMessage | undefined> {
     const [welcomeMessage] = await db.select().from(welcomeMessages).where(eq(welcomeMessages.id, id));
-    return welcomeMessage || undefined;
+    return welcomeMessage;
   }
-  
+
   async getWelcomeMessageByName(name: string): Promise<WelcomeMessage | undefined> {
-    // Since we can't do case-insensitive comparisons easily in SQL without using ILIKE (which might not be available in all databases)
-    // we'll fetch all messages and then filter in JS (not optimal for large datasets)
-    const messages = await db.select().from(welcomeMessages);
-    return messages.find(message => message.name.toLowerCase() === name.toLowerCase()) || undefined;
+    const [welcomeMessage] = await db.select().from(welcomeMessages).where(eq(welcomeMessages.name, name));
+    return welcomeMessage;
   }
 }
 
