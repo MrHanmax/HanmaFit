@@ -143,9 +143,22 @@ const ContactPage = () => {
               </div>
             </div>
             
-            <div id="trialform">
-              <TrialForm />
-            </div>
+          </div>
+        </div>
+      </section>
+      
+      {/* Trial Form Section */}
+      <section className="py-16 bg-gray-50" id="trialform">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="font-bold text-3xl md:text-4xl mb-4 text-[#1d3557]">BOOK YOUR FREE TRIAL CLASS</h2>
+            <p className="text-lg max-w-2xl mx-auto">
+              Take the first step towards achieving your fitness goals with a complimentary trial class at Hanma Fitness Studio.
+            </p>
+          </div>
+          
+          <div className="max-w-6xl mx-auto">
+            <TrialForm />
           </div>
         </div>
       </section>
@@ -218,21 +231,19 @@ const ContactPage = () => {
                 </p>
               </div>
               <div className="md:w-1/3">
-                <Link href="#trialform">
-                  <Button 
-                    size="lg" 
-                    className="w-full bg-[#FFA500] hover:bg-amber-600 text-white font-medium"
-                    onClick={() => {
-                      // Scroll to the trial form
-                      const element = document.getElementById('trialform');
-                      if (element) {
-                        element.scrollIntoView({ behavior: 'smooth' });
-                      }
-                    }}
-                  >
-                    Book Free Trial Class
-                  </Button>
-                </Link>
+                <Button 
+                  size="lg" 
+                  className="w-full bg-[#FFA500] hover:bg-amber-600 text-white font-medium"
+                  onClick={() => {
+                    // Scroll to the trial form
+                    const element = document.getElementById('trialform');
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
+                >
+                  Book Free Trial Class
+                </Button>
               </div>
             </div>
           </div>
