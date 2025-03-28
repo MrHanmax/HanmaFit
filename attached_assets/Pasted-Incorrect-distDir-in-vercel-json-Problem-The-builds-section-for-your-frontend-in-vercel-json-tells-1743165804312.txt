@@ -1,0 +1,57 @@
+Incorrect distDir in vercel.json:
+Problem: The builds section for your frontend in vercel.json tells Vercel where to find the built static files (HTML, CSS, JS). If the specified distDir doesn't match the actual folder your build script (npm run build or vite build) creates, Vercel can't find your index.html to serve. Common build output folders are dist or build.
+Solution:
+Check your package.json build script. What command does it run?
+Run that build command locally (npm run build or vite build) in your project folder.
+See exactly which folder is created containing index.html and other assets (is it dist, build, or something else?).
+Ensure the "distDir" value in your vercel.json's static build configuration exactly matches this folder name.
+Example vercel.json snippet (if output is dist):
+{
+   "src": "package.json",
+   "use": "@vercel/static-build",
+   "config": { "distDir": "dist" } // Make sure this is correct!
+ }
+Use code with caution.
+Json
+Commit and push the corrected vercel.json and redeploy.
+Incorrect Root Directory Setting in Vercel:
+Problem: When importing the project, Vercel asks for the "Root Directory". If your package.json, vercel.json, src, and server folders are not in the root of your GitHub repository (e.g., they are inside another subfolder), you need to tell Vercel. By default, it assumes they are at the root.
+Solution:
+Go to your Vercel Project Settings -> General.
+Check the "Root Directory" setting. If your code lives within a subfolder in the GitHub repo, update this setting to point to that subfolder (e.g., my-project-subfolder/).
+Redeploy.
+Issues with Routing in vercel.json:
+Problem: The routes section tells Vercel how to handle incoming requests. If the catch-all route for the frontend is incorrect or missing, it might not find index.html.
+Solution: Double-check your routes section in vercel.json. The standard pattern for a React app (using client-side routing) with an API folder is generally correct as provided before:
+"routes": [
+   // API routes first
+   {
+     "src": "/api/(.*)",
+     "dest": "/server/index.ts" // Or wherever your API entry point is relative to root
+   },
+   // Handle static files served by the build process
+   {
+     "handle": "filesystem"
+   },
+   // Fallback for client-side routing (Single Page App)
+   {
+     "src": "/(.*)",
+     "dest": "/index.html" // Serve the main index.html for all other routes
+   }
+ ]
+Use code with caution.
+Json
+Ensure the final dest points to the correct index.html relative to the root directory of your build output (usually just /index.html if distDir is set correctly).
+Build Failure:
+Problem: The Vercel build process itself might have failed silently or with errors you missed, meaning there's no built site to serve.
+Solution: Go to your Vercel project dashboard -> Deployments tab. Click on the latest deployment. Look at the "Build Logs". Scroll through carefully for any red error messages during the npm install, build script execution, or Vercel builder steps. Address any errors found (e.g., missing dependencies, TypeScript errors, build script failures).
+Incorrect Backend Entry Point:
+Problem: In vercel.json, the builds section and the routes section for the API must point to the correct entry file for your Express server (e.g., server/index.ts). If this path is wrong relative to the project root, the API functions won't build or route correctly.
+Solution: Verify the src path in the API build step and the dest path in the API route step within vercel.json accurately point to server/index.ts (or your main server file).
+Troubleshooting Steps:
+
+Check Build Output Folder: Run npm run build locally and confirm the output folder name (dist? build?).
+Verify vercel.json distDir: Ensure it matches the folder name from step 1.
+Verify vercel.json Routes: Ensure the final route points to /index.html.
+Check Vercel Root Directory Setting: Ensure it points to the correct location of your package.json within the repository.
+Check Vercel Deployment Logs: Look for any build errors in the latest deployment.
