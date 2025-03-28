@@ -31,7 +31,7 @@ const PersonalTrainingPage = () => {
             <p className="text-lg md:text-xl mb-6 max-w-2xl">
               Our personal training program is designed to give you the individualized attention and expertise you need to reach your fitness goals efficiently and safely.
             </p>
-            <Link href="/trial">
+            <Link href="/contact#trialform">
               <Button size="lg" className="bg-[#FFA500] hover:bg-amber-600 text-white font-semibold text-lg">
                 Book Your FREE PT Consultation
               </Button>
@@ -158,7 +158,7 @@ const PersonalTrainingPage = () => {
               </div>
               
               <div className="text-center md:text-left">
-                <Link href="/trial">
+                <Link href="/contact#trialform">
                   <Button 
                     size="lg" 
                     className="bg-[#FFA500] hover:bg-amber-600 text-white font-medium inline-flex items-center"
@@ -252,7 +252,7 @@ const PersonalTrainingPage = () => {
                 </p>
               </div>
               <div className="md:w-1/3">
-                <Link href="/contact">
+                <Link href="/contact#trialform">
                   <Button 
                     size="lg" 
                     className="w-full bg-[#FFA500] hover:bg-amber-600 text-white font-medium"

@@ -5,7 +5,6 @@ import { useEffect } from "react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle } from "lucide-react";
-import TrialForm from "@/components/TrialForm";
 
 const HomePage = () => {
   // Scroll to top on page load
@@ -59,7 +58,7 @@ const HomePage = () => {
                   </div>
                 </div>
               </div>
-              <Link href="/trial">
+              <Link href="/contact#trialform">
                 <Button size="lg" className="bg-[#FFA500] hover:bg-amber-600 text-white font-medium">
                   Book Your FREE PT Consultation
                 </Button>
@@ -238,7 +237,7 @@ const HomePage = () => {
           </div>
           
           <div className="mt-12 text-center">
-            <Link href="/contact">
+            <Link href="/contact#trialform">
               <Button size="lg" className="bg-[#FFA500] hover:bg-amber-600 text-white font-medium inline-flex items-center">
                 Try Your First Class FREE!
                 <ArrowRight className="ml-2" size={18} />
@@ -383,10 +382,20 @@ const HomePage = () => {
         </div>
       </section>
       
-      {/* Trial Form Section */}
-      <section id="trial-form" className="py-16 bg-gray-100">
-        <div className="container mx-auto px-4">
-          <TrialForm />
+      {/* Trial Form CTA Section */}
+      <section id="trial-cta" className="py-16 bg-gray-100">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="font-bold text-3xl md:text-4xl mb-4 text-[#1d3557]">
+            READY TO START YOUR FITNESS JOURNEY?
+          </h2>
+          <p className="text-lg max-w-2xl mx-auto mb-8">
+            Book your free trial class today and experience the Hanma difference for yourself!
+          </p>
+          <Link href="/contact#trialform">
+            <Button size="lg" className="bg-[#FFA500] hover:bg-amber-600 text-white font-semibold text-lg">
+              Book Your Free Trial Now
+            </Button>
+          </Link>
         </div>
       </section>
     </div>

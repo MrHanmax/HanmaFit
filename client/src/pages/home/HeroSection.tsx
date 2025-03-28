@@ -24,7 +24,7 @@ const HeroSection = () => {
             Expert Personal Training, Unique Group Classes (MMA, Strength, Zumba) & A Community That Delivers Results.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
-            <Link href="/contact">
+            <Link href="/contact#trialform">
               <Button size="lg" className="bg-[#FFA500] hover:bg-amber-600 text-white font-semibold text-lg">
                 Book Your Free Trial Class
               </Button>

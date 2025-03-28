@@ -3,7 +3,7 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Phone, MapPin, Mail, Instagram } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
-import ContactForm from "@/components/ContactForm";
+import TrialForm from "@/components/TrialForm";
 
 const ContactPage = () => {
   // Scroll to top on page load
@@ -143,9 +143,8 @@ const ContactPage = () => {
               </div>
             </div>
             
-            <div className="bg-white rounded-lg shadow-lg p-8">
-              <h3 className="font-bold text-2xl mb-6 text-[#1d3557]">SEND US A MESSAGE</h3>
-              <ContactForm />
+            <div id="trialform">
+              <TrialForm />
             </div>
           </div>
         </div>
@@ -219,10 +218,17 @@ const ContactPage = () => {
                 </p>
               </div>
               <div className="md:w-1/3">
-                <Link href="/trial">
+                <Link href="#trialform">
                   <Button 
                     size="lg" 
                     className="w-full bg-[#FFA500] hover:bg-amber-600 text-white font-medium"
+                    onClick={() => {
+                      // Scroll to the trial form
+                      const element = document.getElementById('trialform');
+                      if (element) {
+                        element.scrollIntoView({ behavior: 'smooth' });
+                      }
+                    }}
                   >
                     Book Free Trial Class
                   </Button>

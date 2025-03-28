@@ -1,13 +1,15 @@
 import { useEffect } from "react";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { CheckCircle } from "lucide-react";
 import TrialForm from "@/components/TrialForm";
 
 const TrialPage = () => {
-  // Scroll to top on page load
+  const [, setLocation] = useLocation();
+
+  // Redirect to contact page with trial form
   useEffect(() => {
-    window.scrollTo(0, 0);
+    setLocation("/contact#trialform");
   }, []);
 
   return (
