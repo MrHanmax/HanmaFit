@@ -291,7 +291,7 @@ const AboutPage = () => {
               Your first class is on us!
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Link href="/trial">
+              <Link href="/contact">
                 <Button 
                   size="lg"
                   className="bg-[#FFA500] hover:bg-amber-600 text-white font-medium"

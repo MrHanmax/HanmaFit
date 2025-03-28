@@ -252,7 +252,7 @@ const PersonalTrainingPage = () => {
                 </p>
               </div>
               <div className="md:w-1/3">
-                <Link href="/trial">
+                <Link href="/contact">
                   <Button 
                     size="lg" 
                     className="w-full bg-[#FFA500] hover:bg-amber-600 text-white font-medium"

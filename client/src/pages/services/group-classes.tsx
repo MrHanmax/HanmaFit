@@ -333,7 +333,7 @@ const GroupClassesPage = () => {
               Experience the power of group fitness at Hanma. Try any class for free and discover the motivation, energy, and results that come from training with our community.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Link href="/trial">
+              <Link href="/contact">
                 <Button 
                   size="lg" 
                   className="bg-[#FFA500] hover:bg-amber-600 text-white font-medium inline-flex items-center"

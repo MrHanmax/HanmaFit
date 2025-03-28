@@ -58,7 +58,7 @@ const Navbar = () => {
                 {link.label}
               </Link>
             ))}
-            <Link href="/trial">
+            <Link href="/contact">
               <Button className="bg-[#FFA500] hover:bg-amber-600 text-white font-medium">
                 Free Trial
               </Button>
@@ -81,7 +81,7 @@ const Navbar = () => {
                 {link.label}
               </Link>
             ))}
-            <Link href="/trial" onClick={closeMenu}>
+            <Link href="/contact" onClick={closeMenu}>
               <Button className="w-full bg-[#FFA500] hover:bg-amber-600 text-white font-medium">
                 Free Trial
               </Button>

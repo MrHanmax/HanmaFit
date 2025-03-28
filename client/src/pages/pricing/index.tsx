@@ -126,7 +126,7 @@ const PricingPage = () => {
                       </li>
                     ))}
                   </ul>
-                  <Link href="/trial">
+                  <Link href="/contact">
                     <Button className={`w-full ${plan.buttonColor} text-white font-medium`}>
                       Choose Plan
                     </Button>
@@ -160,7 +160,7 @@ const PricingPage = () => {
                 </div>
               </div>
               <div className="md:w-1/3">
-                <Link href="/trial">
+                <Link href="/contact">
                   <Button size="lg" className="w-full bg-[#FFA500] hover:bg-amber-600 text-white font-medium text-lg">
                     Claim Your Free Trial
                   </Button>
@@ -279,7 +279,7 @@ const PricingPage = () => {
                   Contact Us
                 </Button>
               </Link>
-              <Link href="/trial">
+              <Link href="/contact">
                 <Button 
                   className="bg-[#FFA500] hover:bg-amber-600 text-white font-medium"
                 >

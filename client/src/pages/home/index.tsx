@@ -238,7 +238,7 @@ const HomePage = () => {
           </div>
           
           <div className="mt-12 text-center">
-            <Link href="/trial">
+            <Link href="/contact">
               <Button size="lg" className="bg-[#FFA500] hover:bg-amber-600 text-white font-medium inline-flex items-center">
                 Try Your First Class FREE!
                 <ArrowRight className="ml-2" size={18} />
