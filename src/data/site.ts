@@ -307,7 +307,7 @@ export const programmes: Programme[] = [
       'From 1 pm to 5 pm the whole studio is women only. Monday to Friday, Samina coaches on the floor; on Saturday the studio stays women only as an open floor.',
       'Join the aerobics and Zumba classes, lift in a coached group, or book personal training with Samina. Prefer evenings? Samina also runs a coed aerobics class from 5 to 6 pm.',
     ],
-    photo: '/img/studio-class-room.webp',
+    photo: '/img/studio-strength-blue.webp',
     includes: ['Aerobics and Zumba classes, 5,000 a month', 'Personal training with Samina, priced by plan, ask us', 'Female coach on the floor, Monday to Friday', 'Coed aerobics class, 5 to 6 pm, Monday to Friday'],
   },
   {
@@ -325,7 +325,6 @@ export const programmes: Programme[] = [
       'Three classes a week in our dedicated class room, separate from the weights floor.',
       'Every class covers technique, drilling and conditioning. Beginners start with the basics and progress at their own pace.',
     ],
-    photo: '/img/studio-class-room.webp',
     includes: ['Tuesday, Thursday and Saturday, 9 pm', 'Striking and grappling fundamentals', 'Conditioning in every class', 'Separate class room'],
   },
   {
@@ -353,8 +352,8 @@ export const tour = [
   { src: '/img/studio-rack.webp', alt: 'Squat rack and Olympic plates on the Hanma strength floor', label: 'Strength floor' },
   { src: '/img/studio-strength-blue.webp', alt: 'Benches and racks on the Hanma strength floor in Gulistan e Johar', label: 'Strength floor' },
   { src: '/img/studio-machines.webp', alt: 'Cable machines at Hanma Fitness Studio', label: 'Machines' },
-  { src: '/img/studio-class-room.webp', alt: 'The Hanma class room used for MMA and aerobics', label: 'Class room' },
+  { src: '/img/studio-training-area.webp', alt: 'Training area at Hanma Fitness Studio, Gulistan e Johar', label: 'Training floor' },
   { src: '/img/studio-physio-room.webp', alt: 'The physiotherapy room at Hanma Fitness Studio', label: 'Physio room' },
-  { src: '/img/studio-consult-room.webp', alt: 'The nutrition consultation room at Hanma', label: 'Consultation room' },
+  { src: '/img/studio-hanma-health.webp', alt: 'Hanma Health at Hanma Fitness Studio', label: 'Hanma Health' },
   { src: '/img/studio-floor.webp', alt: 'Open training floor at Hanma Fitness Studio', label: 'Training floor' },
 ];
