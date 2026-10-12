@@ -133,7 +133,7 @@ export default function FloorNow() {
         {(day === 6
           ? [
               { key: 's1', kind: 'open', time: '7 to 11 am', who: 'Open floor' },
-              { key: 's2', kind: 'women-open', time: '1 to 5 pm', who: 'Women only, open floor' },
+              { key: 's2', kind: 'open', time: '1 to 5 pm', who: 'Open floor' },
               { key: 's3', kind: 'open', time: '5 pm to 12 am', who: 'Open floor, Khubaib in for a short session' },
             ]
           : [

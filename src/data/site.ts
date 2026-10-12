@@ -60,13 +60,13 @@ export const schedule: Block[] = [
   { id: 'mma', label: 'MMA class', start: 21, end: 22.5, coach: 'Owais', kind: 'mma', days: [2, 4, 6], track: 'room' },
   // Saturday: open floor, front desk on site
   { id: 'sat-morning', label: 'Open floor', start: 7, end: 11, coach: 'Open floor', kind: 'coed', days: SAT, track: 'floor' },
-  { id: 'sat-women', label: 'Women only, open floor', start: 13, end: 17, coach: 'Open floor', kind: 'women', days: SAT, track: 'floor' },
+  { id: 'sat-afternoon', label: 'Open floor', start: 13, end: 17, coach: 'Open floor', kind: 'coed', days: SAT, track: 'floor' },
   { id: 'sat-evening', label: 'Open floor', start: 17, end: 24, coach: 'Open floor', kind: 'coed', days: SAT, track: 'floor' },
 ];
 
 export const hoursSummary = [
   { label: 'Morning, coed', time: '7 am to 11 am' },
-  { label: 'Women only', time: '1 pm to 5 pm' },
+  { label: 'Women only', time: 'Mon to Fri, 1 pm to 5 pm' },
   { label: 'Evening, coed', time: '5 pm to 12 am' },
   { label: 'Aerobics class, coed', time: 'Mon to Fri, 5 pm to 6 pm' },
   { label: 'MMA class', time: 'Tue, Thu, Sat, 9 pm to 10:30 pm' },
@@ -223,7 +223,7 @@ export const faqs = [
   },
   {
     q: 'Do you have women only hours?',
-    a: 'Yes. Every afternoon from 1 pm to 5 pm the whole studio is women only. Monday to Friday Samina coaches; Saturday is an open floor.',
+    a: 'Yes. Monday to Friday, 1 pm to 5 pm, the whole studio is women only and coached by Samina.',
   },
   {
     q: 'How much is membership?',
@@ -296,16 +296,16 @@ export const programmes: Programme[] = [
   {
     slug: 'women-only',
     name: 'Women only sessions',
-    short: 'The whole studio, women only, every afternoon.',
-    when: 'Every afternoon, 1 pm to 5 pm. Coached by Samina Monday to Friday',
+    short: 'The whole studio, women only, every weekday afternoon.',
+    when: 'Monday to Friday, 1 pm to 5 pm, with Samina',
     who: 'Aerobics, Zumba, strength and personal training for women',
     from: '5,000 a month',
     tone: 'women',
     goal: 'Women only sessions',
     title: 'Ladies Gym in Gulistan e Johar | Hanma Fitness Studio',
-    description: 'Ladies gym in Gulistan e Johar, Karachi. Women only hours every afternoon, 1 to 5 pm, with a female coach: aerobics, Zumba, strength and personal training.',
+    description: 'Ladies gym in Gulistan e Johar, Karachi. Women only hours Monday to Friday, 1 to 5 pm, with a female coach: aerobics, Zumba and strength.',
     intro: [
-      'From 1 pm to 5 pm the whole studio is women only. Monday to Friday, Samina coaches on the floor; on Saturday the studio stays women only as an open floor.',
+      'Monday to Friday, from 1 pm to 5 pm, the whole studio is women only, with Samina coaching on the floor.',
       'Join the aerobics and Zumba classes, lift in a coached group, or book personal training with Samina. Prefer evenings? Samina also runs a coed aerobics class from 5 to 6 pm.',
     ],
     photo: '/img/studio-strength-blue.webp',
