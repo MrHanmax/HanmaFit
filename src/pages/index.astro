@@ -13,12 +13,12 @@ import { img, studioPhotos, waLink, faqs, business, tour } from '../data/site';
 ---
 <Base
   title="Best Gym in Gulistan e Johar, Karachi | Hanma Fitness Studio"
-  description="Hanma Fitness Studio is a coached gym in Gulistan e Johar, Karachi, rated 4.7 on Google. Personal training, group training, a ladies gym every afternoon, MMA and physio. First session free."
+  description="Coached gym in Gulistan e Johar, Karachi, rated 4.7 on Google. Personal training, ladies gym hours, MMA and physio. First session free."
   faq={faqs}
 >
   <!-- Hero: the studio floor itself, with what is on right now -->
   <section class="relative isolate overflow-hidden">
-    <img src={img(studioPhotos.hero)} alt="" width="1600" height="1064" class="absolute inset-0 -z-20 h-full w-full object-cover" fetchpriority="high" />
+    <img src={img(studioPhotos.hero)} srcset={`/img/f4f9190c-fea4-4cd9-b698-415c289217aa-800.webp 800w, ${img(studioPhotos.hero)} 1600w`} sizes="100vw" alt="" width="1600" height="1064" class="absolute inset-0 -z-20 h-full w-full object-cover" fetchpriority="high" />
     <div class="absolute inset-0 -z-10 bg-ink/80" aria-hidden="true"></div>
     <div class="wrap grid gap-12 py-14 md:py-24 lg:grid-cols-[1.2fr_1fr] lg:items-center">
       <div>

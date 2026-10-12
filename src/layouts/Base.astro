@@ -4,12 +4,13 @@ import { business, img, studioPhotos, waLink, hoursSummary, schedule } from '../
 import LeadPrompts from '../components/LeadPrompts';
 
 interface Props {
+  noindex?: boolean;
   title: string;
   description: string;
   image?: string;
   faq?: { q: string; a: string }[];
 }
-const { title, description, image, faq } = Astro.props;
+const { title, description, image, faq, noindex } = Astro.props;
 const cleanPath = Astro.url.pathname.replace(/\.html$/, '').replace(/\/index$/, '/').replace(/(.)\/$/, '$1');
 const canonical = cleanPath === '/' ? 'https://hanmafit.com' : `https://hanmafit.com${cleanPath}`;
 const ogImage = image ?? 'https://hanmafit.com/brand/og.jpg';
@@ -66,7 +67,7 @@ const faqSchema = faq?.length
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href={canonical} />
+    {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
     <meta name="theme-color" content="#f4f0e4" />
     <link rel="icon" type="image/png" href="/brand/favicon.png" />
     <link rel="apple-touch-icon" href="/brand/apple-touch-icon.png" />

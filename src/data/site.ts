@@ -266,7 +266,7 @@ export const programmes: Programme[] = [
     from: '20,000 a month',
     tone: 'coed',
     goal: 'Get stronger',
-    title: 'Personal Trainer in Gulistan e Johar, Karachi | Hanma Fitness Studio',
+    title: 'Personal Trainer in Gulistan e Johar | Hanma Fitness',
     description: 'Personal trainer in Gulistan e Johar, Karachi. One to one coaching, your own plan and nutrition guidance at Hanma Fitness Studio. First session free.',
     intro: [
       'You train with the same coach every session. They write your programme, correct your form rep by rep, and adjust the plan as you progress.',
@@ -284,7 +284,7 @@ export const programmes: Programme[] = [
     from: '12,000 a month',
     tone: 'coed',
     goal: 'Get stronger',
-    title: 'Group Training Classes in Gulistan e Johar, Karachi | Hanma Fitness Studio',
+    title: 'Group Training Classes in Gulistan e Johar | Hanma',
     description: 'Coached small group strength and conditioning classes in Gulistan e Johar. A coach watches every rep. First session free.',
     intro: [
       'Groups are kept small, so your coach can still watch your form and push your numbers.',
@@ -302,7 +302,7 @@ export const programmes: Programme[] = [
     from: '5,000 a month',
     tone: 'women',
     goal: 'Women only sessions',
-    title: 'Ladies Gym in Gulistan e Johar, Women Only Hours | Hanma Fitness Studio',
+    title: 'Ladies Gym in Gulistan e Johar | Hanma Fitness Studio',
     description: 'Ladies gym in Gulistan e Johar, Karachi. Women only hours every afternoon, 1 to 5 pm, with a female coach: aerobics, Zumba, strength and personal training.',
     intro: [
       'From 1 pm to 5 pm the whole studio is women only. Monday to Friday, Samina coaches on the floor; on Saturday the studio stays women only as an open floor.',
@@ -320,7 +320,7 @@ export const programmes: Programme[] = [
     from: '5,000 a month',
     tone: 'mma',
     goal: 'Learn MMA',
-    title: 'MMA Classes in Gulistan e Johar, Karachi | Hanma Fitness Studio',
+    title: 'MMA Classes in Gulistan e Johar | Hanma Fitness Studio',
     description: 'MMA classes in Gulistan e Johar, Karachi. Striking, grappling and conditioning, three evenings a week. Beginners welcome. First class free.',
     intro: [
       'Three classes a week in our dedicated class room, separate from the weights floor.',
@@ -338,7 +338,7 @@ export const programmes: Programme[] = [
     from: '3,000 a session',
     tone: 'health',
     goal: 'Train around an injury',
-    title: 'Physiotherapy and Diet Plans in Gulistan e Johar | Hanma Health',
+    title: 'Physio and Diet Plans in Gulistan e Johar | Hanma Health',
     description: 'Physiotherapy, clinical diet plans and nutrition consultations at Hanma Fitness Studio, Gulistan e Johar. Train safely around injuries and conditions.',
     intro: [
       'Dr Ismail, DPT, assesses injuries and builds your rehab, then hands you over to a coach who trains around it.',
