@@ -253,6 +253,7 @@ export type Programme = {
   intro: string[];
   includes: string[];
   photo?: string;
+  video?: { src: string; poster: string; label: string };
 };
 
 export const programmes: Programme[] = [
@@ -325,6 +326,7 @@ export const programmes: Programme[] = [
       'Three classes a week in our dedicated class room, separate from the weights floor.',
       'Every class covers technique, drilling and conditioning. Beginners start with the basics and progress at their own pace.',
     ],
+    video: { src: '/video/mma-clip.mp4', poster: '/img/mma-clip.webp', label: 'Boxing and pad work at Hanma Fitness Studio' },
     includes: ['Tuesday, Thursday and Saturday, 9 pm', 'Striking and grappling fundamentals', 'Conditioning in every class', 'Separate class room'],
   },
   {

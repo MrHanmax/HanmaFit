@@ -186,6 +186,7 @@ const faqSchema = faq?.length
     <!-- Subtle 3D tilt on cards for mouse users; off for touch and reduced motion -->
     <script is:inline>
       (function () {
+        if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.querySelectorAll('video[autoplay]').forEach(function (v) { v.pause(); v.controls = true; });
         if (!matchMedia('(pointer: fine)').matches || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
         document.addEventListener('pointermove', function (e) {
           var el = e.target.closest && e.target.closest('[data-tilt]');

@@ -36,7 +36,10 @@ const others = programmes.filter((o) => o.slug !== p.slug);
           ))}
         </ul>
       </div>
-      {p.photo && <img src={img(p.photo)} alt={`${p.name} at Hanma Fitness Studio`} class="w-full rounded-[2px] object-cover lg:aspect-[4/5]" loading="lazy" />}
+      {p.video && (
+        <video src={p.video.src} poster={p.video.poster} autoplay muted loop playsinline preload="metadata" aria-label={p.video.label} width="540" height="960" class="mx-auto w-full max-w-sm rounded-[2px] border border-line object-cover lg:aspect-[9/16]"></video>
+      )}
+      {!p.video && p.photo && <img src={img(p.photo)} alt={`${p.name} at Hanma Fitness Studio`} class="w-full rounded-[2px] object-cover lg:aspect-[4/5]" loading="lazy" />}
     </div>
   </section>
 
