@@ -6,7 +6,7 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   site: 'https://hanmafit.com',
   trailingSlash: 'never',
-  build: { format: 'directory' },
+  build: { format: 'file' },
   integrations: [react(), sitemap()],
   vite: { plugins: [tailwindcss()] },
 });
