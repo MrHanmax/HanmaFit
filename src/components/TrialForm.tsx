@@ -78,7 +78,7 @@ export default function TrialForm({ defaultGoal }: { defaultGoal?: string }) {
       <div className="paper rounded-[2px] border border-rule bg-card p-6 text-ink sm:p-8" role="status">
         <p className="eyebrow">Booked</p>
         <p className="mt-4 font-[family-name:var(--font-serif)] text-4xl font-medium leading-none">You Are on the List, {name.trim().split(' ')[0]}.</p>
-        <p className="mt-3 text-ink-soft">Humaira at the front desk will message you on WhatsApp to confirm your time. Want it confirmed faster? Send your details now.</p>
+        <p className="mt-3 text-ink-soft">Humaira at the front desk will message you on WhatsApp to confirm your time. The desk replies until 10:30 pm. Want it confirmed faster? Send your details now.</p>
         <a className="btn btn-gold mt-6 w-full" href={waLink(message(), src.code || 'WEB')} data-wa data-track="form_success_whatsapp">
           Send my details on WhatsApp
         </a>

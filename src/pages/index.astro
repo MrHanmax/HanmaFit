@@ -9,6 +9,7 @@ import Visit from '../components/Visit.astro';
 import SectionHead from '../components/SectionHead.astro';
 import Dumbbell3D from '../components/Dumbbell3D';
 import FounderReel from '../components/FounderReel.astro';
+import TickerBand from '../components/TickerBand.astro';
 import { img, studioPhotos, waLink, faqs, business, tour } from '../data/site';
 ---
 <Base
@@ -18,43 +19,45 @@ import { img, studioPhotos, waLink, faqs, business, tour } from '../data/site';
 >
   <!-- Hero: the studio floor itself, with what is on right now -->
   <section class="relative isolate overflow-hidden">
-    <img src={img(studioPhotos.hero)} srcset={`/img/f4f9190c-fea4-4cd9-b698-415c289217aa-800.webp 800w, ${img(studioPhotos.hero)} 1600w`} sizes="100vw" alt="" width="1600" height="1064" class="absolute inset-0 -z-20 h-full w-full object-cover" fetchpriority="high" />
+    <img src={img(studioPhotos.hero)} srcset={`/img/f4f9190c-fea4-4cd9-b698-415c289217aa-800.webp 800w, ${img(studioPhotos.hero)} 1600w`} sizes="100vw" alt="" width="1600" height="1064" class="kenburns absolute inset-0 -z-20 h-full w-full object-cover" fetchpriority="high" />
     <div class="absolute inset-0 -z-10 bg-ink/80" aria-hidden="true"></div>
     <div class="wrap grid gap-12 py-14 md:py-24 lg:grid-cols-[1.2fr_1fr] lg:items-center">
       <div>
         <h1>
-          <span class="eyebrow block">Best gym in Gulistan e Johar, Karachi</span>
-          <span class="rule-under mt-6 block text-[3.6rem] leading-[0.95] sm:text-7xl lg:text-[5.75rem]">Train With a Coach, Not Just a Membership.</span>
+          <span class="eyebrow blur-in" style="--d:50ms">Best gym in Gulistan e Johar, Karachi</span>
+          <span style="--d:180ms" class="blur-in rule-under mt-6 block text-[3.6rem] leading-[0.95] sm:text-7xl lg:text-[5.75rem]">Train With a Coach, Not Just a Membership.</span>
         </h1>
-        <p class="dek mt-6 max-w-xl text-xl">Strength, a ladies gym every weekday afternoon, MMA and physio under one roof. Your first session is free, and you leave it with a plan.</p>
-        <div class="mt-9 flex flex-col gap-3 sm:flex-row">
+        <p class="blur-in dek mt-6 max-w-xl text-xl" style="--d:340ms">Strength, a ladies gym every weekday afternoon, MMA and physio under one roof. Your first session is free, and you leave it with a plan.</p>
+        <div class="blur-in mt-9 flex flex-col gap-3 sm:flex-row" style="--d:480ms">
           <a class="btn btn-gold" href={waLink('Hi Hanma, I would like to book a free session')} data-wa data-track="hero_whatsapp">Book a Free Session</a>
           <a class="btn btn-line" href="/pricing">See Prices</a>
         </div>
       </div>
-      <FloorNow client:load />
+      <div class="blur-in" style="--d:600ms"><FloorNow client:load /></div>
     </div>
   </section>
 
   <!-- Proof strip: the four things people check before they visit -->
   <section aria-label="Why members choose Hanma" class="border-b border-line bg-raised">
-    <ul class="wrap grid grid-cols-2 gap-x-6 gap-y-5 py-7 md:grid-cols-5">
-      <li><a href={business.mapsUrl} class="block"><span class="price block text-3xl text-gold">{business.googleRating} ★</span><span class="text-sm text-muted">{business.googleReviewCount} Google reviews</span></a></li>
-      <li><span class="price block text-3xl text-gold">Since 2023</span><span class="text-sm text-muted">Coaching in Gulistan e Johar</span></li>
+    <ul class="wrap grid grid-cols-2 gap-x-6 gap-y-5 py-7 md:grid-cols-5" data-reveal-stagger>
+      <li><a href={business.mapsUrl} class="block"><span class="price block text-3xl text-gold"><span data-count={business.googleRating} data-decimals="1">{business.googleRating}</span> ★</span><span class="text-sm text-muted"><span data-count={business.googleReviewCount}>{business.googleReviewCount}</span> Google reviews</span></a></li>
+      <li><span class="price block text-3xl text-gold">Since <span data-count="2023" data-from="2000">2023</span></span><span class="text-sm text-muted">Coaching in Gulistan e Johar</span></li>
       <li><span class="price block text-3xl text-gold">Level 2</span><span class="text-sm text-muted">Certified coaches</span></li>
       <li><span class="price block text-3xl text-gold">1 to 5 pm</span><span class="text-sm text-muted">Women only, Monday to Friday</span></li>
       <li><span class="price block text-3xl text-gold">Free</span><span class="text-sm text-muted">First session, no admission on quarterly plans</span></li>
     </ul>
   </section>
 
-  <section class="py-16 md:py-24" aria-label="Meet the founder">
+  <TickerBand />
+
+  <section class="pb-16 md:pb-24" aria-label="Meet the founder">
     <div class="wrap"><FounderReel /></div>
   </section>
 
   <section class="pb-16 md:pb-24">
     <div class="wrap">
       <SectionHead eyebrow="Programmes" title="Choose How You Train" dek="Personal training, group training, a ladies gym, MMA and physio in Gulistan e Johar. Not sure which fits? Your free session settles it." />
-      <div class="mt-10"><ProgrammeList /></div>
+      <div class="mt-10" data-reveal><ProgrammeList /></div>
       <p class="mt-6"><a href="/pricing" class="font-semibold underline decoration-gold decoration-2 underline-offset-[6px]">See the full price list</a></p>
     </div>
   </section>
@@ -64,7 +67,7 @@ import { img, studioPhotos, waLink, faqs, business, tour } from '../data/site';
     <div class="wrap flex flex-wrap items-end justify-between gap-4">
       <SectionHead id="tour-h" eyebrow="Inside the studio" title="Take the Tour" dek="Real photos of the strength floor, machines and Hanma Health. Swipe through." />
     </div>
-    <ul class="wrap mt-10 flex snap-x snap-mandatory gap-3 overflow-x-auto pb-4 [scrollbar-width:thin]">
+    <ul data-reveal class="wrap mt-10 flex snap-x snap-mandatory gap-3 overflow-x-auto pb-4 [scrollbar-width:thin]">
       {tour.map((t) => (
         <li class="w-[68%] shrink-0 snap-start sm:w-[40%] lg:w-[23%]">
           <figure data-tilt class="relative overflow-hidden rounded-[2px] border border-line transition-transform duration-200 will-change-transform">
@@ -82,7 +85,7 @@ import { img, studioPhotos, waLink, faqs, business, tour } from '../data/site';
         <SectionHead id="why-h" eyebrow="Why Hanma" title="What Makes a Gym the Best in Gulistan e Johar" />
         <Dumbbell3D client:visible className="mt-6 h-[260px] w-full md:h-[340px]" />
       </div>
-      <div class="grid gap-x-8 gap-y-8 sm:grid-cols-2">
+      <div class="grid gap-x-8 gap-y-8 sm:grid-cols-2" data-reveal-stagger>
         <div><h3 class="text-2xl">A Coach on the Floor</h3><p class="mt-2 text-muted">Monday to Friday, every morning, afternoon and evening session is coached. You are corrected, progressed and kept accountable, not left with a membership card.</p></div>
         <div><h3 class="text-2xl">Level 2 Certified Coaches</h3><p class="mt-2 text-muted">Every Hanma coach holds a Level 2 certification, and programmes are written by a founder with a BS in Human Nutrition and Dietetics. <a class="text-cream underline decoration-gold underline-offset-4" href="/about">Meet the coaches</a>.</p></div>
         <div><h3 class="text-2xl">A Ladies Gym Every Weekday</h3><p class="mt-2 text-muted">From 1 to 5 pm the whole studio is women only, with a female coach Monday to Friday. <a class="text-cream underline decoration-gold underline-offset-4" href="/services/women-only">See women only sessions</a>.</p></div>
@@ -96,14 +99,14 @@ import { img, studioPhotos, waLink, faqs, business, tour } from '../data/site';
   <section class="border-y border-line bg-raised py-16 md:py-24">
     <div class="wrap">
       <SectionHead eyebrow="Results" title="Members Who Stuck With It" dek="Real Hanma members and their own results." />
-      <div class="mt-10"><Results /></div>
+      <div class="mt-10" data-reveal><Results /></div>
     </div>
   </section>
 
   <section class="py-16 md:py-24">
     <div class="wrap">
       <SectionHead eyebrow="Your free session" title="How It Works" dek="One coached session. No payment, no pressure." />
-      <ol class="mt-10 grid gap-4 md:grid-cols-3">
+      <ol class="mt-10 grid gap-4 md:grid-cols-3" data-reveal-stagger>
         <li class="rounded-[2px] border border-line bg-raised p-6">
           <p class="numeral text-5xl">01</p>
           <h3 class="mt-4 text-3xl">Tell Us Your Goal</h3>
@@ -128,7 +131,7 @@ import { img, studioPhotos, waLink, faqs, business, tour } from '../data/site';
       <SectionHead id="coaches-h" eyebrow="The team" title="Your Coaches" />
       <a href="/about" class="font-semibold underline decoration-gold decoration-2 underline-offset-[6px]">Meet the team</a>
     </div>
-    <div class="mt-10"><CoachStrip client:visible /></div>
+    <div class="mt-10" data-reveal><CoachStrip client:visible /></div>
   </section>
 
   <TrialSection />

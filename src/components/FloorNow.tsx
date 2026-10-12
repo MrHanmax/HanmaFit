@@ -88,7 +88,7 @@ export default function FloorNow() {
   };
 
   return (
-    <section aria-label="Today at Hanma" className="relative rounded-[2px] border border-line bg-ink/90 p-5 text-cream sm:p-7">
+    <section aria-label="Today at Hanma" className="beam relative rounded-[2px] border border-line bg-ink/90 p-5 text-cream sm:p-7">
       <div className="flex items-start justify-between gap-4">
         <div aria-live="polite">
           <p className="flex items-center gap-2 cond text-[0.85rem] font-semibold uppercase tracking-[0.14em] text-gold">

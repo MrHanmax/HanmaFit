@@ -5,7 +5,7 @@ import SectionHead from './SectionHead.astro';
 <section class="py-16 md:py-24">
   <div class="wrap grid gap-10 lg:grid-cols-[1fr_1.3fr]">
     <div>
-      <SectionHead eyebrow="Visit" title="Come and See the Floor" dek={`${business.addressLine}. Ask for Humaira at the front desk.`} />
+      <SectionHead eyebrow="Visit" title="Come and See the Floor" dek={`${business.addressLine}. Ask for Humaira at the front desk, there until 10:30 pm.`} />
       <dl class="mt-8 border-t border-line">
         {hoursSummary.map((h) => (
           <div class="flex justify-between gap-4 border-b border-line py-3"><dt class="font-semibold">{h.label}</dt><dd class="text-right text-muted">{h.time}</dd></div>

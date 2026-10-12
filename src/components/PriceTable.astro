@@ -2,32 +2,32 @@
 import { pricing, admission } from '../data/site';
 const n = (v: number) => v.toLocaleString('en-PK');
 ---
-<div class="grid gap-10">
+<div class="grid grid-cols-1 gap-10">
   {pricing.map((g) => (
-    <section>
+    <section class="min-w-0">
       <div class="overflow-x-auto">
-        <table class="w-full min-w-[30rem] border-collapse border border-line text-left">
+        <table class="w-full border-collapse border border-line text-left">
           <thead class="bg-raised">
             <tr class="cond text-[0.85rem] font-semibold uppercase tracking-[0.14em] text-gold">
-              <th scope="col" class="px-4 py-3">{g.group}</th>
-              <th scope="col" class="px-4 py-3 text-right">Monthly</th>
-              <th scope="col" class="px-4 py-3 text-right">Quarterly</th>
+              <th scope="col" class="px-3 sm:px-4 py-3">{g.group}</th>
+              <th scope="col" class="px-3 sm:px-4 py-3 text-right">Monthly</th>
+              <th scope="col" class="px-3 sm:px-4 py-3 text-right">Quarterly</th>
             </tr>
           </thead>
           <tbody>
             {g.items.map((p) => (
               <tr class="border-t border-line align-top">
-                <th scope="row" class="px-4 py-4 font-normal">
+                <th scope="row" class="px-3 sm:px-4 py-4 font-normal">
                   <span class="block text-xl font-semibold">{p.name}</span>
                   {p.note && <span class="block text-base text-muted">{p.note}</span>}
                 </th>
-                <td class="px-4 py-4 text-right whitespace-nowrap">
-                  {p.monthly ? <span class="price text-2xl">{n(p.monthly)}</span>
-                    : p.once ? <><span class="price text-2xl">{n(p.once)}</span><span class="block text-sm text-muted">{g.group === 'Gym access' ? 'per day' : 'one time'}</span></>
+                <td class="px-3 sm:px-4 py-4 text-right whitespace-nowrap">
+                  {p.monthly ? <span class="price text-xl sm:text-2xl">{n(p.monthly)}</span>
+                    : p.once ? <><span class="price text-xl sm:text-2xl">{n(p.once)}</span><span class="block text-sm text-muted">{g.group === 'Gym access' ? 'per day' : 'one time'}</span></>
                     : <span class="text-muted">Ask us</span>}
                 </td>
-                <td class="px-4 py-4 text-right whitespace-nowrap">
-                  {p.quarterly ? <><span class="price text-2xl">{n(p.quarterly)}</span><span class="block text-sm text-gold">{p.save}</span></> : <span class="text-muted">·</span>}
+                <td class="px-3 sm:px-4 py-4 text-right whitespace-nowrap">
+                  {p.quarterly ? <><span class="price text-xl sm:text-2xl">{n(p.quarterly)}</span><span class="block text-sm text-gold">{p.save}</span></> : <span class="text-muted">·</span>}
                 </td>
               </tr>
             ))}

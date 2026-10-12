@@ -1,0 +1,30 @@
+---
+// Moving banners (Magic UI marquee). Pure CSS, no JS: two bands crossing on the home page,
+// or one slim band at the top of every page.
+import { Marquee } from './magic';
+import { business } from '../data/site';
+interface Props { variant?: 'cross' | 'top' }
+const { variant = 'cross' } = Astro.props;
+const a = ['First session free', 'Women only, 1 to 5 pm, Monday to Friday', 'Level 2 certified coaches', `Rated ${business.googleRating} on Google`, 'Physio in house', 'Gulistan e Johar, Karachi'];
+const b = ['Strength', 'Personal training', 'Group training', 'Aerobics and Zumba', 'MMA, Tue, Thu, Sat', 'Hanma Health', 'Since 2023'];
+---
+{variant === 'top' ? (
+  <div class="cond overflow-hidden bg-ink text-gold" aria-label="Studio highlights">
+    <Marquee duration="45s" gap="2.5rem" className="py-1.5 text-[0.8rem] font-semibold uppercase tracking-[0.18em]">
+      {a.map((t) => <span class="flex shrink-0 items-center gap-2.5 whitespace-nowrap"><span class="h-1.5 w-1.5 bg-gold" aria-hidden="true"></span>{t}</span>)}
+    </Marquee>
+  </div>
+) : (
+  <section aria-label="What Hanma offers" class="relative overflow-hidden py-12 md:py-16">
+    <div class="relative z-10 -mx-8 -rotate-[1.5deg] border-y border-gold-deep bg-gold text-ink">
+      <Marquee duration="38s" gap="2.5rem" pauseOnHover={false} className="py-3.5">
+        {a.map((t) => <span class="cond flex shrink-0 items-center gap-3 whitespace-nowrap text-xl font-bold uppercase tracking-[0.12em] md:text-2xl"><span class="h-2.5 w-2.5 bg-ink" aria-hidden="true"></span>{t}</span>)}
+      </Marquee>
+    </div>
+    <div class="relative -mx-8 -mt-2 rotate-[1.5deg] border-y border-line bg-raised text-cream" aria-hidden="true">
+      <Marquee duration="44s" gap="2.5rem" reverse pauseOnHover={false} className="py-3">
+        {b.map((t) => <span class="flex shrink-0 items-center gap-3 whitespace-nowrap font-[family-name:var(--font-serif)] text-xl italic md:text-2xl"><span class="h-2 w-2 rotate-45 bg-gold" aria-hidden="true"></span>{t}</span>)}
+      </Marquee>
+    </div>
+  </section>
+)}

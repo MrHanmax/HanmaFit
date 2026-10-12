@@ -72,6 +72,7 @@ export const hoursSummary = [
   { label: 'Evening, coed', time: '5 pm to 12 am' },
   { label: 'Aerobics class, coed', time: 'Mon to Fri, 5 pm to 6 pm' },
   { label: 'MMA class', time: 'Tue, Thu, Sat, 9 pm to 10:30 pm' },
+  { label: 'Front desk', time: 'Until 10:30 pm' },
   { label: 'Saturday', time: 'Open floor, front desk on site' },
   { label: 'Sunday', time: 'Closed' },
 ];
