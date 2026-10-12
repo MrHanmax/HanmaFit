@@ -40,7 +40,14 @@ export default function TrialForm({ defaultGoal }: { defaultGoal?: string }) {
   const message = () =>
     `Hi Hanma, I am ${name.trim() || 'interested'}. I would like a free session. Goal: ${goal}. Best time: ${time}.`;
 
-  async function submit(e: FormEvent) {
+  // Desk hours: Humaira replies on WhatsApp from 7 am to 10:30 pm, Karachi time.
+  const deskOpen = () => {
+    const p = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Karachi', hour: '2-digit', minute: '2-digit', hour12: false }).formatToParts(new Date());
+    const h = Number(p.find((x) => x.type === 'hour')?.value ?? 0) % 24 + Number(p.find((x) => x.type === 'minute')?.value ?? 0) / 60;
+    return h >= 7 && h < 22.5;
+  };
+
+  function submit(e: FormEvent) {
     e.preventDefault();
     const number = normalisePk(phone);
     if (!name.trim()) return setError('Enter your name so your coach knows who to expect.');
@@ -48,25 +55,29 @@ export default function TrialForm({ defaultGoal }: { defaultGoal?: string }) {
     setError('');
     setState('sending');
     const src = getSource();
+    const code = src.code || 'WEB';
     const body = new URLSearchParams({
       'form-name': 'trial',
       name: name.trim(),
       whatsapp: number,
       goal,
       time,
-      source: src.code || 'WEB',
+      source: code,
       utm_source: src.utm_source ?? '',
       utm_campaign: src.utm_campaign ?? '',
       gclid: src.gclid ?? '',
       landing: src.landing ?? location.pathname,
     });
+    // Save the lead as a backup (Netlify Forms, then Brevo), even if the visitor never presses send in WhatsApp.
     try {
-      await fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: body.toString() });
-    } catch {
-      // The WhatsApp button on the next screen still gets the lead through.
-    }
-    window.gtag?.('event', 'generate_lead', { form_name: 'trial', goal, time, source_code: src.code });
+      fetch('/', { method: 'POST', keepalive: true, headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: body.toString() }).catch(() => {});
+    } catch { /* the WhatsApp step still gets the lead through */ }
+    window.gtag?.('event', 'generate_lead', { form_name: 'trial', goal, time, source_code: code, transport_type: 'beacon' });
+    window.gtag?.('event', 'whatsapp_click', { link_id: 'form_submit', source_code: code, transport_type: 'beacon' });
     setState('done');
+    // Straight into WhatsApp with the details typed out, so Humaira can reply at once.
+    const href = waLink(message(), code);
+    window.setTimeout(() => { window.location.href = href; }, 350);
   }
 
   const chip = (selected: boolean) =>
@@ -76,11 +87,14 @@ export default function TrialForm({ defaultGoal }: { defaultGoal?: string }) {
     const src = getSource();
     return (
       <div className="paper rounded-[2px] border border-rule bg-card p-6 text-ink sm:p-8" role="status">
-        <p className="eyebrow">Booked</p>
-        <p className="mt-4 font-[family-name:var(--font-serif)] text-4xl font-medium leading-none">You Are on the List, {name.trim().split(' ')[0]}.</p>
-        <p className="mt-3 text-ink-soft">Humaira at the front desk will message you on WhatsApp to confirm your time. The desk replies until 10:30 pm. Want it confirmed faster? Send your details now.</p>
+        <p className="eyebrow">Opening WhatsApp</p>
+        <p className="mt-4 font-[family-name:var(--font-serif)] text-4xl font-medium leading-none">Press Send, {name.trim().split(' ')[0]}.</p>
+        <p className="mt-3 text-ink-soft">
+          Your details are typed out in WhatsApp. Press send and Humaira at the front desk will reply to book your time.
+          {deskOpen() ? ' She is at the desk now.' : ' The desk replies from 7 am to 10:30 pm, so she will message you first thing.'}
+        </p>
         <a className="btn btn-gold mt-6 w-full" href={waLink(message(), src.code || 'WEB')} data-wa data-track="form_success_whatsapp">
-          Send my details on WhatsApp
+          WhatsApp did not open? Tap here
         </a>
       </div>
     );
@@ -134,9 +148,9 @@ export default function TrialForm({ defaultGoal }: { defaultGoal?: string }) {
           </label>
           {error && <p className="mt-3 text-sm font-semibold text-[#9b1c1c]" role="alert">{error}</p>}
           <button type="submit" disabled={state === 'sending'} className="btn btn-gold mt-6 w-full disabled:opacity-60">
-            {state === 'sending' ? 'Booking your session' : 'Book My Free Session'}
+            {state === 'sending' ? 'Opening WhatsApp' : 'Book on WhatsApp'}
           </button>
-          <p className="mt-3 text-xs text-stone">We only use your number to arrange your session. No spam.</p>
+          <p className="mt-3 text-xs text-stone">This opens WhatsApp with your details ready to send. We only use your number to arrange your session.</p>
         </fieldset>
       )}
     </form>
