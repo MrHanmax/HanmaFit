@@ -1,0 +1,14 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import PriceTable from '../components/PriceTable.astro';
+import TrialSection from '../components/TrialSection.astro';
+import { waLink } from '../data/site';
+---
+<Base title="Prices | Hanma Fitness Studio, Gulistan e Johar" description="Hanma Fitness Studio prices: personal training 20,000, group training 12,000, basic membership 7,000 a month. Quarterly plans save up to 29% with no admission fee.">
+  <PageHero title="Prices" lede="Every price, upfront. Quarterly plans save up to 29% and skip the admission fee.">
+    <div class="mt-8"><a class="btn btn-wa" href={waLink('Hi Hanma, I have a question about prices')} data-wa data-track="pricing_whatsapp">Ask about a plan on WhatsApp</a></div>
+  </PageHero>
+  <section class="pb-16 md:pb-24"><div class="wrap max-w-4xl"><PriceTable /></div></section>
+  <TrialSection heading="Try before you pay" />
+</Base>

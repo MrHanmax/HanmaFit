@@ -1,0 +1,17 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import TrialSection from '../components/TrialSection.astro';
+import Visit from '../components/Visit.astro';
+import { business, waLink, faqs } from '../data/site';
+---
+<Base title="Contact and Free Trial | Hanma Fitness Studio, Gulistan e Johar" description="Book a free session at Hanma Fitness Studio, Gulistan e Johar, Karachi. WhatsApp 0316 7911505, directions and opening hours." faq={faqs}>
+  <PageHero title="Book a free session" lede="The fastest way is WhatsApp. Humaira replies during studio hours.">
+    <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+      <a class="btn btn-wa" href={waLink('Hi Hanma, I would like to book a free session')} data-wa data-track="contact_whatsapp">WhatsApp {business.phoneDisplay}</a>
+      <a class="btn btn-ghost" href={`tel:${business.phoneTel}`}>Call us</a>
+    </div>
+  </PageHero>
+  <TrialSection heading="Or tell us here" />
+  <Visit />
+</Base>

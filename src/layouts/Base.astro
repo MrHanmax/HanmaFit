@@ -1,0 +1,218 @@
+---
+import '../styles/global.css';
+import { business, img, studioPhotos, waLink, hoursSummary, schedule } from '../data/site';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  faq?: { q: string; a: string }[];
+}
+const { title, description, image, faq } = Astro.props;
+const canonical = new URL(Astro.url.pathname, 'https://hanmafit.com').href.replace(/\/$/, '') || 'https://hanmafit.com';
+const ogImage = image ?? 'https://hanmafit.com/brand/og.jpg';
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+
+const nav = [
+  { href: '/services', label: 'Programmes' },
+  { href: '/pricing', label: 'Prices' },
+  { href: '/about', label: 'Coaches' },
+  { href: '/testimonials', label: 'Results' },
+  { href: '/contact', label: 'Visit' },
+];
+
+const localBusiness = {
+  '@context': 'https://schema.org',
+  '@type': 'ExerciseGym',
+  name: business.name,
+  image: 'https://hanmafit.com/brand/og.jpg',
+  logo: 'https://hanmafit.com/brand/logo.png',
+  url: 'https://hanmafit.com',
+  telephone: business.phoneTel,
+  email: business.email,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Manzoor Street, Gulistan e Johar',
+    addressLocality: 'Karachi',
+    addressRegion: 'Sindh',
+    addressCountry: 'PK',
+  },
+  geo: { '@type': 'GeoCoordinates', latitude: business.lat, longitude: business.lng },
+  hasMap: business.mapsUrl,
+  openingHoursSpecification: [
+    { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'], opens: '07:00', closes: '11:00' },
+    { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'], opens: '13:00', closes: '23:59' },
+  ],
+  priceRange: 'PKR 1,000 to PKR 20,000',
+  sameAs: [business.instagram],
+};
+const faqSchema = faq?.length
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+    }
+  : null;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="theme-color" content="#2f3133" />
+    <link rel="icon" type="image/png" href="/brand/favicon.png" />
+    <link rel="apple-touch-icon" href="/brand/apple-touch-icon.png" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Hanma Fitness Studio" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="en_PK" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="geo.region" content="PK-SD" />
+    <meta name="geo.placename" content="Gulistan e Johar, Karachi" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Google tag: Analytics (G-HS7N64H2QT) and linked Google tag (GT-TQDRWV76), carried over unchanged -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HS7N64H2QT"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-HS7N64H2QT');
+      gtag('config', 'GT-TQDRWV76');
+    </script>
+
+    <!-- Brevo tracking, carried over unchanged -->
+    <script src="https://cdn.brevo.com/js/sdk-loader.js" defer></script>
+    <script is:inline>
+      window.Brevo = window.Brevo || [];
+      Brevo.push(["init", { client_key: "zp3w0mmfoftks2602apwx958", track_page_view: true, track_utm: true }]);
+    </script>
+
+    <script type="application/ld+json" set:html={JSON.stringify(localBusiness)} />
+    {faqSchema && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
+  </head>
+  <body class="min-h-dvh flex flex-col">
+    <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-chalk focus:px-4 focus:py-2">Skip to content</a>
+
+    <header class="sticky top-0 z-40 bg-iron text-chalk">
+      <div class="wrap flex h-16 items-center justify-between gap-4">
+        <a href="/" class="flex items-center gap-3 shrink-0" aria-label="Hanma Fitness Studio, home">
+          <img src="/brand/mark-light.png" alt="" width="40" height="40" class="h-10 w-10 object-contain" />
+          <span class="text-[0.95rem] font-semibold tracking-[0.42em] text-chalk">HANMA</span>
+        </a>
+        <nav class="hidden lg:flex items-center gap-7 text-[0.95rem] font-semibold" aria-label="Main">
+          {nav.map((n) => (
+            <a href={n.href} class:list={['py-2 hover:text-white', path.startsWith(n.href) ? 'text-white underline decoration-gold decoration-2 underline-offset-8' : 'text-chalk/75']}>{n.label}</a>
+          ))}
+        </nav>
+        <div class="flex items-center gap-2">
+          <a href="/contact#trial" class="btn btn-wa !min-h-10 !px-4 text-sm hidden sm:inline-flex" data-track="header_trial">Book a free session</a>
+          <details class="lg:hidden relative group">
+            <summary class="list-none cursor-pointer rounded-full px-3 py-2 font-semibold ring-1 ring-chalk/30" aria-label="Open menu">Menu</summary>
+            <nav class="absolute right-0 mt-3 w-60 rounded-2xl bg-chalk p-2 text-iron shadow-xl ring-1 ring-iron/10" aria-label="Mobile">
+              {nav.map((n) => <a href={n.href} class="block rounded-xl px-4 py-3 font-semibold hover:bg-concrete">{n.label}</a>)}
+              <a href="/contact#trial" class="mt-1 block rounded-xl bg-wa px-4 py-3 font-bold text-white">Book a free session</a>
+            </nav>
+          </details>
+        </div>
+      </div>
+    </header>
+
+    <main id="main" class="flex-1">
+      <slot />
+    </main>
+
+    <footer class="bg-iron text-chalk/80 pb-28 lg:pb-10">
+      <div class="wrap grid gap-10 py-14 md:grid-cols-[1.3fr_1fr_1fr]">
+        <div>
+          <img src="/brand/logo-light.png" alt="Hanma Fitness Studio" width="220" height="132" class="h-auto w-[220px]" loading="lazy" />
+          <p class="mt-3 max-w-sm">A coaching first studio in Gulistan e Johar, with coaches on the floor morning, afternoon and evening.</p>
+          <div class="mt-5 flex flex-wrap gap-3">
+            <a class="btn btn-wa !min-h-11" href={waLink('Hi Hanma, I would like to book a free session')} data-wa>WhatsApp us</a>
+            <a class="btn btn-ghost-light !min-h-11" href={`tel:${business.phoneTel}`}>Call {business.phoneDisplay}</a>
+          </div>
+        </div>
+        <div>
+          <h2 class="font-display text-2xl text-chalk">Hours</h2>
+          <dl class="mt-3 space-y-1.5 text-[0.95rem]">
+            {hoursSummary.map((h) => (
+              <div class="flex justify-between gap-4 border-b border-chalk/10 pb-1.5"><dt>{h.label}</dt><dd class="text-chalk text-right">{h.time}</dd></div>
+            ))}
+          </dl>
+        </div>
+        <div>
+          <h2 class="font-display text-2xl text-chalk">Find us</h2>
+          <p class="mt-3">{business.addressLine}</p>
+          <p class="mt-2"><a class="underline underline-offset-4 hover:text-chalk" href={business.mapsUrl}>Open in Google Maps</a></p>
+          <p class="mt-2"><a class="underline underline-offset-4 hover:text-chalk" href={business.instagram}>Instagram {business.instagramHandle}</a></p>
+          <p class="mt-2"><a class="underline underline-offset-4 hover:text-chalk" href={`mailto:${business.email}`}>{business.email}</a></p>
+        </div>
+      </div>
+      <div class="wrap border-t border-chalk/10 pt-6 text-sm text-chalk/50">
+        © {new Date().getFullYear()} Hanma Fitness Studio, Karachi
+      </div>
+    </footer>
+
+    <!-- Mobile action bar: the two things a visitor wants, always in reach -->
+    <div class="fixed inset-x-0 bottom-0 z-40 border-t border-iron/10 bg-chalk/95 p-3 backdrop-blur lg:hidden" style="padding-bottom: max(0.75rem, env(safe-area-inset-bottom));">
+      <div class="grid grid-cols-[1fr_auto] gap-2">
+        <a class="btn btn-wa w-full" href={waLink('Hi Hanma, I would like to book a free session')} data-wa data-track="sticky_whatsapp">
+          <svg aria-hidden="true" viewBox="0 0 24 24" class="h-5 w-5 fill-current"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5.1-4.5-.1-.2-1.2-1.6-1.2-3.1 0-1.5.8-2.2 1.1-2.5.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.7 1.2 1.6 1.9 1.1 1 2 1.3 2.3 1.4.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.6-.1l2 1c.3.1.5.2.5.3.1.2.1.7-.1 1.3Z"/></svg>
+          Book a free session
+        </a>
+        <a class="btn btn-ghost w-[3.25rem] !px-0" href={`tel:${business.phoneTel}`} aria-label={`Call ${business.phoneDisplay}`} data-track="sticky_call">
+          <svg aria-hidden="true" viewBox="0 0 24 24" class="h-5 w-5 fill-current"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2Z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Lead source: tags every WhatsApp link and form with where the visitor came from -->
+    <script is:inline>
+      (function () {
+        var src = null;
+        try {
+          var q = new URLSearchParams(location.search);
+          var utm = (q.get('utm_source') || '').toLowerCase();
+          var camp = (q.get('utm_campaign') || '').toLowerCase();
+          var code = null;
+          if (q.get('gclid') || q.get('gbraid') || q.get('wbraid') || utm === 'google') {
+            code = camp.indexOf('pmax') > -1 || camp.indexOf('performance') > -1 ? 'G1'
+                 : camp.indexOf('smart') > -1 ? 'G2'
+                 : camp.indexOf('search') > -1 ? 'G3' : 'G';
+          } else if (utm.indexOf('insta') > -1 || utm === 'ig') code = 'IG';
+          else if (utm.indexOf('facebook') > -1 || utm === 'fb') code = 'FB';
+          else if (utm) code = utm.slice(0, 10).toUpperCase();
+          if (code) {
+            src = { code: code, utm_source: utm, utm_campaign: camp, gclid: q.get('gclid') || '', landing: location.pathname };
+            sessionStorage.setItem('hanma_src', JSON.stringify(src));
+          } else {
+            src = JSON.parse(sessionStorage.getItem('hanma_src') || 'null');
+          }
+        } catch (e) {}
+        window.hanmaSource = src || { code: 'WEB', landing: location.pathname };
+        var c = window.hanmaSource.code;
+        if (c && c !== 'WEB') {
+          document.querySelectorAll('a[data-wa]').forEach(function (a) {
+            a.href = a.href.replace(/(\(|%28)WEB(\)|%29)$/, encodeURIComponent('(' + c + ')'));
+          });
+        }
+        document.addEventListener('click', function (e) {
+          var a = e.target.closest && e.target.closest('a');
+          if (!a || typeof gtag !== 'function') return;
+          if (a.hasAttribute('data-wa')) gtag('event', 'whatsapp_click', { link_id: a.getAttribute('data-track') || 'whatsapp', source_code: c });
+          else if (a.href && a.href.indexOf('tel:') === 0) gtag('event', 'phone_click', { link_id: a.getAttribute('data-track') || 'phone' });
+        });
+      })();
+    </script>
+  </body>
+</html>

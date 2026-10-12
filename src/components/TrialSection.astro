@@ -1,0 +1,36 @@
+---
+import TrialForm from './TrialForm';
+import { faqs, waLink } from '../data/site';
+interface Props { goal?: string; heading?: string; showFaq?: boolean }
+const { goal, heading = 'Your first session is free', showFaq = true } = Astro.props;
+---
+<section id="trial" class="scroll-mt-20 bg-iron py-16 text-chalk md:py-24">
+  <div class="wrap grid gap-12 lg:grid-cols-[1fr_1.05fr] lg:items-start">
+    <div>
+      <h2 class="text-5xl md:text-6xl">{heading}</h2>
+      <p class="mt-4 max-w-md text-chalk/75">Tell us what you want and when you can train. We'll confirm a time on WhatsApp and pair you with the right coach. No payment, no pressure.</p>
+      <p class="mt-4 text-chalk/75">Prefer to just message? <a class="font-semibold text-chalk underline underline-offset-4" href={waLink('Hi Hanma, I would like to book a free session')} data-wa data-track="trial_section_whatsapp">WhatsApp us directly</a>.</p>
+      {showFaq && (
+        <div class="mt-10 divide-y divide-chalk/10 border-y border-chalk/10">
+          {faqs.map((f) => (
+            <details class="group py-4">
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold">
+                {f.q}
+                <span class="text-xl text-chalk/50 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+              </summary>
+              <p class="mt-2 text-chalk/70">{f.a}</p>
+            </details>
+          ))}
+        </div>
+      )}
+    </div>
+    <div class="text-iron">
+      <TrialForm client:visible defaultGoal={goal} />
+    </div>
+  </div>
+  <!-- Static copy of the form so Netlify registers it at build time -->
+  <form name="trial" data-netlify="true" netlify-honeypot="bot-field" hidden>
+    <input name="bot-field" /><input name="name" /><input name="whatsapp" /><input name="goal" /><input name="time" />
+    <input name="source" /><input name="utm_source" /><input name="utm_campaign" /><input name="gclid" /><input name="landing" />
+  </form>
+</section>

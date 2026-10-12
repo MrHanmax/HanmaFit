@@ -1,0 +1,13 @@
+---
+interface Props { title: string; lede: string; tone?: 'coed' | 'women' | 'mma' | 'health' }
+const { title, lede, tone = 'coed' } = Astro.props;
+const bar = { coed: 'bg-gold', women: 'bg-plum', mma: 'bg-red', health: 'bg-steel' }[tone];
+---
+<section class="pt-12 pb-10 md:pt-20 md:pb-14">
+  <div class="wrap">
+    <span class:list={['block h-2 w-16 rounded-full', bar]} aria-hidden="true"></span>
+    <h1 class="mt-6 max-w-4xl text-[3.4rem] sm:text-7xl md:text-8xl">{title}</h1>
+    <p class="mt-5 max-w-2xl text-lg text-steel md:text-xl">{lede}</p>
+    <slot />
+  </div>
+</section>
