@@ -6,8 +6,8 @@ import { coaches, img, studioPhotos } from '../data/site';
 const founder = coaches[0];
 const team = coaches.slice(1);
 ---
-<Base title="Coaches | Hanma Fitness Studio, Gulistan e Johar" description="Meet the coaches at Hanma Fitness Studio in Gulistan e Johar: strength, women's, MMA and physiotherapy, led by founder Fawad Haris.">
-  <PageHero eyebrow="The team" title="The People Coaching You" lede="Hanma started with one idea: people get results when someone is actually coaching them. Here is who that is." />
+<Base title="Gym Trainers in Gulistan e Johar | Hanma Fitness Studio Coaches" description="Meet the coaches at Hanma Fitness Studio in Gulistan e Johar: strength, women's, MMA and physiotherapy, led by founder Fawad Haris.">
+  <PageHero crumbs={[{ name: 'Coaches', href: '/about' }]} eyebrow="The team" title="The People Coaching You" lede="Hanma started with one idea: people get results when someone is actually coaching them. Here is who that is." />
 
   <section class="pb-16 md:pb-24">
     <div class="wrap grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
@@ -35,7 +35,7 @@ const team = coaches.slice(1);
             ? <img src={img(c.photo)} alt={c.name} loading="lazy" class="aspect-[4/5] w-full rounded-[2px] object-cover" />
             : <div class="flex aspect-[4/5] w-full items-end rounded-[2px] border border-line bg-raised p-6"><span class="text-8xl italic text-gold" aria-hidden="true">{c.name.split(' ').map((w) => w[0]).slice(0, 2).join('')}</span></div>}
           <h2 class="mt-5 text-4xl">{c.name}</h2>
-          <p class="mt-1 italic text-muted">{c.role}</p>{c.hours && <p class="mt-2 text-[0.7rem] font-semibold uppercase tracking-[0.28em] text-gold">{c.hours}</p>}
+          <p class="mt-1 italic text-muted">{c.role}</p>{c.hours && <p class="mt-2 cond text-[0.85rem] font-semibold uppercase tracking-[0.14em] text-gold">{c.hours}</p>}
           <p class="mt-2 text-muted">{c.bio}</p>
         </article>
       ))}

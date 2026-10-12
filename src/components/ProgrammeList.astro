@@ -4,17 +4,16 @@ import { programmes } from '../data/site';
 <ul class="grid gap-3">
   {programmes.map((p, i) => (
     <li>
-      <a href={`/services/${p.slug}`} class="group grid gap-3 rounded-[2px] border border-line bg-raised p-5 transition-colors hover:border-gold md:grid-cols-[4rem_1.1fr_1.5fr_auto] md:items-center md:gap-8 md:p-6">
-        <span class="numeral text-4xl">{String(i + 1).padStart(2, '0')}</span>
+      <a href={`/services/${p.slug}`} class="group grid gap-3 rounded-[2px] border border-line bg-raised p-5 transition-colors hover:border-gold md:grid-cols-[1.1fr_1.5fr_auto] md:items-center md:gap-8 md:p-6">
         <div>
           <h3 class="text-[2rem] group-hover:underline decoration-gold decoration-2 underline-offset-[6px]">{p.name}</h3>
-          {p.tone === 'women' && <p class="mt-1 text-[0.7rem] font-semibold uppercase tracking-[0.28em] text-gold">Women only</p>}
+          {p.tone === 'women' && <p class="cond mt-1 text-[0.9rem] font-semibold uppercase tracking-[0.14em] text-gold">Women only</p>}
         </div>
         <div>
           <p>{p.short}</p>
-          <p class="text-base italic text-muted">{p.when}</p>
+          <p class="text-base text-muted">{p.when}</p>
         </div>
-        <p class="md:text-right"><span class="text-sm italic text-muted">from</span> <span class="price text-2xl">{p.from}</span></p>
+        <p class="md:text-right"><span class="cond text-sm uppercase tracking-[0.12em] text-muted">from</span> <span class="price text-2xl">{p.from}</span></p>
       </a>
     </li>
   ))}

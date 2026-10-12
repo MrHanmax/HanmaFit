@@ -18,9 +18,12 @@
   --color-ink-soft: #2b2a24;
   --color-stone: #6f6a5c;
 
+  /* Studio pairing: EB Garamond headlines tie to the Hanma brand; Barlow and Barlow Condensed
+     carry the gym floor (labels, numbers, buttons, body) and set the studio apart from coaching. */
   --font-serif: "EB Garamond", Garamond, Georgia, serif;
   --font-hand: Caveat, "EB Garamond", Georgia, serif;
-  --font-sans: "EB Garamond", Garamond, Georgia, serif;
+  --font-sans: Barlow, "Helvetica Neue", Arial, sans-serif;
+  --font-cond: "Barlow Condensed", "Arial Narrow", Arial, sans-serif;
 
   --animate-marquee: marquee var(--duration) infinite linear;
 }
@@ -35,15 +38,16 @@
   body {
     background: var(--color-ink);
     color: var(--color-cream);
-    font-family: var(--font-serif);
-    font-size: 1.1875rem;
-    line-height: 1.5;
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
   }
   h1, h2, h3 {
     font-family: var(--font-serif);
-    font-weight: 600;
-    line-height: 1;
+    font-weight: 500;
+    line-height: 1.02;
+    letter-spacing: -0.005em;
     text-wrap: balance;
   }
   p { text-wrap: pretty; }
@@ -58,24 +62,28 @@
   .wrap { width: 100%; max-width: 74rem; margin-inline: auto; padding-inline: 1rem; }
   @media (min-width: 768px) { .wrap { padding-inline: 2.625rem; } }
 
-  /* Eyebrow: short gold bar, then an uppercase tracked label */
+  /* Studio label: condensed caps after a small gold square, like a plate stamp */
   .eyebrow {
-    display: flex; align-items: center; gap: 0.5rem;
-    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.28em; text-transform: uppercase;
+    display: flex; align-items: center; gap: 0.6rem;
+    font-family: var(--font-cond); font-size: 0.95rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
     color: var(--color-gold);
   }
-  .eyebrow::before { content: ""; width: 25px; height: 4px; border-radius: 999px; background: var(--color-gold); flex: none; }
+  .eyebrow::before { content: ""; width: 8px; height: 8px; background: var(--color-gold); flex: none; }
   .paper .eyebrow { color: var(--color-ink); }
 
-  .dek { font-style: italic; color: var(--color-muted); font-size: 1.15rem; line-height: 1.35; }
+  /* Gold rule under every section title */
+  .rule-under::after { content: ""; display: block; width: 64px; height: 4px; margin-top: 1.1rem; background: var(--color-gold); }
+
+  .dek { color: var(--color-muted); font-size: 1.15rem; line-height: 1.5; }
   .paper .dek { color: var(--color-ink-soft); }
 
-  .numeral { font-style: italic; font-weight: 400; color: var(--color-gold); line-height: 1; font-variant-numeric: lining-nums tabular-nums; }
+  .numeral { font-family: var(--font-cond); font-weight: 700; color: var(--color-gold); line-height: 1; font-variant-numeric: lining-nums tabular-nums; }
+  .cond { font-family: var(--font-cond); }
 
   .btn {
     display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem;
     min-height: 3.25rem; padding: 0 1.5rem; border-radius: 2px;
-    font-family: var(--font-serif); font-weight: 600; font-size: 1.05rem; line-height: 1; text-decoration: none;
+    font-family: var(--font-cond); font-weight: 600; font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1; text-decoration: none;
     transition: background-color .15s ease, color .15s ease, border-color .15s ease;
   }
   .btn-gold { background: var(--color-gold); color: var(--color-ink); }
@@ -85,7 +93,7 @@
   .paper .btn-line { color: var(--color-ink); box-shadow: inset 0 0 0 1px var(--color-ink); }
   .paper .btn-line:hover { background: var(--color-ink); color: var(--color-paper); }
 
-  .price { font-weight: 600; font-variant-numeric: lining-nums tabular-nums; }
+  .price { font-family: var(--font-cond); font-weight: 700; font-variant-numeric: lining-nums tabular-nums; letter-spacing: 0.01em; }
   .prose-hanma p + p { margin-top: 1rem; }
   .frame { border: 1px solid var(--color-gold-deep); padding: 6px; background: var(--color-paper); }
 }

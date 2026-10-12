@@ -1,11 +1,29 @@
 ---
 import SectionHead from './SectionHead.astro';
-interface Props { title: string; lede: string; eyebrow?: string; tone?: string }
-const { title, lede, eyebrow = 'Hanma Fitness Studio' } = Astro.props;
+interface Props { title: string; lede: string; eyebrow?: string; crumbs?: { name: string; href: string }[] }
+const { title, lede, eyebrow = 'Hanma Fitness Studio', crumbs = [] } = Astro.props;
+const trail = [{ name: 'Home', href: '/' }, ...crumbs];
+const schema = crumbs.length ? {
+  '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+  itemListElement: trail.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.name, item: `https://hanmafit.com${c.href === '/' ? '' : c.href}` })),
+} : null;
 ---
-<section class="pt-12 pb-10 md:pt-20 md:pb-14">
+<section class="pt-8 pb-10 md:pt-12 md:pb-14">
   <div class="wrap">
+    {crumbs.length > 0 && (
+      <nav aria-label="Breadcrumb" class="cond mb-8 text-[0.9rem] uppercase tracking-[0.12em] text-muted">
+        <ol class="flex flex-wrap gap-2">
+          {trail.map((c, i) => (
+            <li class="flex items-center gap-2">
+              {i < trail.length - 1 ? <a href={c.href} class="hover:text-cream">{c.name}</a> : <span aria-current="page" class="text-cream">{c.name}</span>}
+              {i < trail.length - 1 && <span aria-hidden="true" class="text-gold">/</span>}
+            </li>
+          ))}
+        </ol>
+      </nav>
+    )}
     <SectionHead as="h1" eyebrow={eyebrow} title={title} dek={lede} />
     <slot />
   </div>
+  {schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
 </section>

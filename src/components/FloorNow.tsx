@@ -89,14 +89,14 @@ export default function FloorNow() {
     <section aria-label="Today at Hanma" className="relative rounded-[2px] border border-line bg-ink/90 p-5 text-cream sm:p-7">
       <div className="flex items-start justify-between gap-4">
         <div aria-live="polite">
-          <p className="flex items-center gap-2 text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-gold">
+          <p className="flex items-center gap-2 cond text-[0.85rem] font-semibold uppercase tracking-[0.14em] text-gold">
             <span className={`inline-block h-2.5 w-2.5 rounded-full ${status?.open ? 'bg-gold' : 'bg-muted/50'}`} />
             {now ? `${DAYS_LONG[now.day]}, ${fmt(Math.floor(now.hour * 60) / 60)} in Karachi` : 'Studio hours'}
           </p>
           <p className="mt-3 text-[2.1rem] font-semibold leading-none sm:text-[2.5rem]">
             {status ? status.headline : 'Coached all day, Monday to Saturday'}
           </p>
-          <p className={`mt-2 italic ${status?.women ? 'text-gold' : 'text-muted'}`}>{status ? status.detail : 'Morning, women only and evening sessions.'}</p>
+          <p className={`mt-2 ${status?.women ? 'text-gold' : 'text-muted'}`}>{status ? status.detail : 'Morning, women only and evening sessions.'}</p>
         </div>
       </div>
 
@@ -122,7 +122,7 @@ export default function FloorNow() {
             <span className="absolute -top-1 -left-[3px] h-2 w-2 rounded-full bg-gold" />
           </div>
         )}
-        <div className="mt-2 flex justify-between text-[0.75rem] italic text-muted tabular-nums" aria-hidden="true">
+        <div className="mt-2 flex justify-between text-[0.75rem] text-muted tabular-nums" aria-hidden="true">
           {[7, 11, 13, 17, 21, 24].map((h) => <span key={h}>{fmt(h)}</span>)}
         </div>
       </div>

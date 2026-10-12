@@ -10,37 +10,43 @@ import SectionHead from '../components/SectionHead.astro';
 import { img, studioPhotos, waLink, faqs, business } from '../data/site';
 ---
 <Base
-  title="Hanma Fitness Studio | Coached Gym in Gulistan e Johar, Karachi"
-  description="A coaching first gym in Gulistan e Johar, Karachi. Personal training, group training, women only hours, MMA and physio. Your first session is free."
+  title="Best Gym in Gulistan e Johar, Karachi | Hanma Fitness Studio"
+  description="Hanma Fitness Studio is a coached gym in Gulistan e Johar, Karachi, rated 4.7 on Google. Personal training, group training, a ladies gym every afternoon, MMA and physio. First session free."
   faq={faqs}
 >
   <!-- Hero: the studio floor itself, with what is on right now -->
   <section class="relative isolate overflow-hidden">
-    <img src={img(studioPhotos.hero)} alt="" class="absolute inset-0 -z-20 h-full w-full object-cover" />
+    <img src={img(studioPhotos.hero)} alt="" width="1600" height="1064" class="absolute inset-0 -z-20 h-full w-full object-cover" fetchpriority="high" />
     <div class="absolute inset-0 -z-10 bg-ink/80" aria-hidden="true"></div>
     <div class="wrap grid gap-12 py-14 md:py-24 lg:grid-cols-[1.2fr_1fr] lg:items-center">
       <div>
-        <p class="eyebrow">Hanma Fitness Studio · Gulistan e Johar</p>
-        <h1 class="mt-6 text-[3.5rem] font-medium leading-[0.92] sm:text-7xl lg:text-[5.5rem]">
-          Train With a Coach.<br /><em class="font-normal text-gold">Not just a membership.</em>
+        <h1>
+          <span class="eyebrow block">Best gym in Gulistan e Johar, Karachi</span>
+          <span class="rule-under mt-6 block text-[3.6rem] leading-[0.95] sm:text-7xl lg:text-[5.75rem]">Train With a Coach, Not Just a Membership.</span>
         </h1>
-        <p class="dek mt-6 max-w-xl text-xl">Strength, women only afternoons, MMA and physio under one roof. Your first session is free, and you leave it with a plan.</p>
+        <p class="dek mt-6 max-w-xl text-xl">Strength, a ladies gym every afternoon, MMA and physio under one roof. Your first session is free, and you leave it with a plan.</p>
         <div class="mt-9 flex flex-col gap-3 sm:flex-row">
-          <a class="btn btn-gold" href={waLink('Hi Hanma, I would like to book a free session')} data-wa data-track="hero_whatsapp">Book a Free Session on WhatsApp</a>
+          <a class="btn btn-gold" href={waLink('Hi Hanma, I would like to book a free session')} data-wa data-track="hero_whatsapp">Book a Free Session</a>
           <a class="btn btn-line" href="/pricing">See Prices</a>
         </div>
-        <p class="mt-6 flex flex-wrap items-center gap-x-5 gap-y-1 text-base text-muted">
-          <a href={business.mapsUrl} class="font-semibold text-cream underline decoration-gold decoration-2 underline-offset-[6px]">{business.googleRating} on Google, {business.googleReviewCount} reviews</a>
-          <span class="italic">Quarterly plans have no admission fee.</span>
-        </p>
       </div>
       <FloorNow client:load />
     </div>
   </section>
 
+  <!-- Proof strip: the four things people check before they visit -->
+  <section aria-label="Why members choose Hanma" class="border-b border-line bg-raised">
+    <ul class="wrap grid grid-cols-2 gap-x-6 gap-y-5 py-7 md:grid-cols-4">
+      <li><a href={business.mapsUrl} class="block"><span class="price block text-3xl text-gold">{business.googleRating} ★</span><span class="text-sm text-muted">{business.googleReviewCount} Google reviews</span></a></li>
+      <li><span class="price block text-3xl text-gold">Since 2023</span><span class="text-sm text-muted">Coaching in Gulistan e Johar</span></li>
+      <li><span class="price block text-3xl text-gold">1 to 5 pm</span><span class="text-sm text-muted">Women only, every day but Sunday</span></li>
+      <li><span class="price block text-3xl text-gold">Free</span><span class="text-sm text-muted">First session, no admission on quarterly plans</span></li>
+    </ul>
+  </section>
+
   <section class="py-16 md:py-24">
     <div class="wrap">
-      <SectionHead eyebrow="Programmes" title="Choose How You Train" dek="Five ways in. Not sure which fits? Your free session settles it." />
+      <SectionHead eyebrow="Programmes" title="Choose How You Train" dek="Personal training, group training, a ladies gym, MMA and physio in Gulistan e Johar. Not sure which fits? Your free session settles it." />
       <div class="mt-10"><ProgrammeList /></div>
       <p class="mt-6"><a href="/pricing" class="font-semibold underline decoration-gold decoration-2 underline-offset-[6px]">See the full price list</a></p>
     </div>
@@ -49,9 +55,21 @@ import { img, studioPhotos, waLink, faqs, business } from '../data/site';
   <!-- Real photos of the studio -->
   <section aria-label="Inside the studio" class="pb-16 md:pb-24">
     <div class="wrap grid grid-cols-2 gap-3 md:grid-cols-3">
-      <img src={img(studioPhotos.session)} alt="A coached strength session on the Hanma floor" loading="lazy" class="col-span-2 aspect-[16/10] w-full rounded-[2px] object-cover md:col-span-2 md:row-span-2 md:aspect-auto md:h-full" />
+      <img src={img(studioPhotos.session)} alt="Coached strength session at Hanma, a gym in Gulistan e Johar" loading="lazy" class="col-span-2 aspect-[16/10] w-full rounded-[2px] object-cover md:col-span-2 md:row-span-2 md:aspect-auto md:h-full" />
       <img src={img(studioPhotos.weights)} alt="The free weights area" loading="lazy" class="aspect-square w-full rounded-[2px] object-cover md:aspect-[4/3]" />
       <img src={img(studioPhotos.strength)} alt="The functional training floor" loading="lazy" class="aspect-square w-full rounded-[2px] object-cover md:aspect-[4/3]" />
+    </div>
+  </section>
+
+  <section class="pb-16 md:pb-24" aria-labelledby="why-h">
+    <div class="wrap grid gap-10 lg:grid-cols-[1fr_1.4fr]">
+      <SectionHead id="why-h" eyebrow="Why Hanma" title="What Makes a Gym the Best in Gulistan e Johar" />
+      <div class="grid gap-x-8 gap-y-8 sm:grid-cols-2">
+        <div><h3 class="text-2xl">A Coach on the Floor</h3><p class="mt-2 text-muted">Morning, afternoon and evening sessions are coached. You are corrected, progressed and kept accountable, not left with a membership card.</p></div>
+        <div><h3 class="text-2xl">A Ladies Gym Every Afternoon</h3><p class="mt-2 text-muted">From 1 to 5 pm the whole studio is women only, with a female coach. <a class="text-cream underline decoration-gold underline-offset-4" href="/services/women-only">See women only sessions</a>.</p></div>
+        <div><h3 class="text-2xl">Physio and Nutrition In House</h3><p class="mt-2 text-muted">Dr Ismail handles injuries and rehab. Diet plans come from a team led by a qualified nutritionist. <a class="text-cream underline decoration-gold underline-offset-4" href="/services/hanma-health">See Hanma Health</a>.</p></div>
+        <div><h3 class="text-2xl">Rated {business.googleRating} on Google</h3><p class="mt-2 text-muted">{business.googleReviewCount} reviews from members in Johar since we opened in 2023. <a class="text-cream underline decoration-gold underline-offset-4" href={business.mapsUrl}>Read them on Google</a>.</p></div>
+      </div>
     </div>
   </section>
 

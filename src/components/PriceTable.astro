@@ -8,7 +8,7 @@ const n = (v: number) => v.toLocaleString('en-PK');
       <div class="overflow-x-auto">
         <table class="w-full min-w-[30rem] border-collapse border border-line text-left">
           <thead class="bg-raised">
-            <tr class="text-[0.7rem] font-semibold uppercase tracking-[0.28em] text-gold">
+            <tr class="cond text-[0.85rem] font-semibold uppercase tracking-[0.14em] text-gold">
               <th scope="col" class="px-4 py-3">{g.group}</th>
               <th scope="col" class="px-4 py-3 text-right">Monthly</th>
               <th scope="col" class="px-4 py-3 text-right">Quarterly</th>
@@ -19,15 +19,15 @@ const n = (v: number) => v.toLocaleString('en-PK');
               <tr class="border-t border-line align-top">
                 <th scope="row" class="px-4 py-4 font-normal">
                   <span class="block text-xl font-semibold">{p.name}</span>
-                  {p.note && <span class="block text-base italic text-muted">{p.note}</span>}
+                  {p.note && <span class="block text-base text-muted">{p.note}</span>}
                 </th>
                 <td class="px-4 py-4 text-right whitespace-nowrap">
                   {p.monthly ? <span class="price text-2xl">{n(p.monthly)}</span>
-                    : p.once ? <><span class="price text-2xl">{n(p.once)}</span><span class="block text-sm italic text-muted">{g.group === 'Gym access' ? 'per day' : 'one time'}</span></>
-                    : <span class="italic text-muted">Ask us</span>}
+                    : p.once ? <><span class="price text-2xl">{n(p.once)}</span><span class="block text-sm text-muted">{g.group === 'Gym access' ? 'per day' : 'one time'}</span></>
+                    : <span class="text-muted">Ask us</span>}
                 </td>
                 <td class="px-4 py-4 text-right whitespace-nowrap">
-                  {p.quarterly ? <><span class="price text-2xl">{n(p.quarterly)}</span><span class="block text-sm italic text-gold">{p.save}</span></> : <span class="text-muted">·</span>}
+                  {p.quarterly ? <><span class="price text-2xl">{n(p.quarterly)}</span><span class="block text-sm text-gold">{p.save}</span></> : <span class="text-muted">·</span>}
                 </td>
               </tr>
             ))}

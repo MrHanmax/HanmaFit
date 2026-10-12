@@ -8,7 +8,7 @@ import SectionHead from './SectionHead.astro';
       <SectionHead eyebrow="Visit" title="Come and See the Floor" dek={`${business.addressLine}. Ask for Humaira at the front desk.`} />
       <dl class="mt-8 border-t border-line">
         {hoursSummary.map((h) => (
-          <div class="flex justify-between gap-4 border-b border-line py-3"><dt class="font-semibold">{h.label}</dt><dd class="text-right italic text-muted">{h.time}</dd></div>
+          <div class="flex justify-between gap-4 border-b border-line py-3"><dt class="font-semibold">{h.label}</dt><dd class="text-right text-muted">{h.time}</dd></div>
         ))}
       </dl>
       <div class="mt-8 flex flex-wrap gap-3">

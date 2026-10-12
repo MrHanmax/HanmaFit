@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import { business, img, studioPhotos, waLink, hoursSummary, schedule } from '../data/site';
+import LeadPrompts from '../components/LeadPrompts';
 
 interface Props {
   title: string;
@@ -45,6 +46,9 @@ const localBusiness = {
     { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'], opens: '13:00', closes: '23:59' },
   ],
   priceRange: 'PKR 1,000 to PKR 20,000',
+  foundingDate: '2023',
+  founder: { '@type': 'Person', name: 'Fawad Haris' },
+  areaServed: ['Gulistan e Johar', 'Gulistan-e-Johar', 'Karachi'],
   sameAs: [business.instagram],
 };
 const faqSchema = faq?.length
@@ -80,7 +84,7 @@ const faqSchema = faq?.length
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Caveat:wght@400;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@500;600;700&family=Caveat:wght@400&display=swap" rel="stylesheet" />
 
     <!-- Google tag: Analytics (G-HS7N64H2QT) and linked Google tag (GT-TQDRWV76), carried over unchanged -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-HS7N64H2QT"></script>
@@ -110,7 +114,7 @@ const faqSchema = faq?.length
         <a href="/" class="shrink-0" aria-label="Hanma Fitness Studio, home">
           <img src="/brand/logo.png" alt="Hanma Fitness Studio" width="96" height="58" class="h-[3.6rem] w-auto" />
         </a>
-        <nav class="hidden lg:flex items-center gap-8 text-[0.8rem] font-semibold uppercase tracking-[0.2em]" aria-label="Main">
+        <nav class="cond hidden lg:flex items-center gap-8 text-[1rem] font-semibold uppercase tracking-[0.12em]" aria-label="Main">
           {nav.map((n) => (
             <a href={n.href} class:list={['py-2', path.startsWith(n.href) ? 'text-ink underline decoration-gold decoration-[3px] underline-offset-[10px]' : 'text-stone hover:text-ink']}>{n.label}</a>
           ))}
@@ -118,7 +122,7 @@ const faqSchema = faq?.length
         <div class="flex items-center gap-2">
           <a href="/contact#trial" class="btn btn-gold !min-h-11 !px-5 text-base hidden sm:inline-flex" data-track="header_trial">Book a Free Session</a>
           <details class="lg:hidden relative">
-            <summary class="list-none cursor-pointer rounded-[2px] border border-ink px-4 py-2 text-[0.8rem] font-semibold uppercase tracking-[0.2em]" aria-label="Open menu">Menu</summary>
+            <summary class="cond list-none cursor-pointer rounded-[2px] border border-ink px-4 py-2 text-[0.95rem] font-semibold uppercase tracking-[0.12em]" aria-label="Open menu">Menu</summary>
             <nav class="absolute right-0 mt-3 w-64 rounded-[2px] border border-rule bg-card p-2 text-ink" aria-label="Mobile">
               {nav.map((n) => <a href={n.href} class="block px-4 py-3 font-semibold hover:bg-paper">{n.label}</a>)}
               <a href="/contact#trial" class="mt-1 block bg-gold px-4 py-3 font-semibold text-ink">Book a Free Session</a>
@@ -136,7 +140,7 @@ const faqSchema = faq?.length
       <div class="wrap grid gap-10 py-14 md:grid-cols-[1.3fr_1fr_1fr]">
         <div>
           <img src="/brand/logo.png" alt="Hanma Fitness Studio" width="200" height="120" class="h-auto w-[200px]" loading="lazy" />
-          <p class="mt-4 max-w-sm italic">A coaching first studio in Gulistan e Johar. Coaches on the floor morning, afternoon and evening.</p>
+          <p class="mt-4 max-w-sm">The best gym in Gulistan e Johar for coached training. A coaching first studio in Gulistan e Johar. Coaches on the floor morning, afternoon and evening.</p>
           <div class="mt-5 flex flex-wrap gap-3">
             <a class="btn btn-gold !min-h-11" href={waLink('Hi Hanma, I would like to book a free session')} data-wa>WhatsApp Us</a>
             <a class="btn btn-line !min-h-11" href={`tel:${business.phoneTel}`}>Call {business.phoneDisplay}</a>
@@ -158,9 +162,9 @@ const faqSchema = faq?.length
           <p class="mt-2"><a class="underline underline-offset-4 hover:text-ink" href={`mailto:${business.email}`}>{business.email}</a></p>
         </div>
       </div>
-      <div class="wrap flex flex-wrap justify-between gap-2 border-t border-rule pt-6 text-[0.7rem] uppercase tracking-[0.2em] text-stone">
+      <div class="wrap cond flex flex-wrap justify-between gap-2 border-t border-rule pt-6 text-[0.85rem] uppercase tracking-[0.14em] text-stone">
         <span>Hanma Fitness Studio · Gulistan e Johar · Karachi</span>
-        <span>© {new Date().getFullYear()}</span>
+        <span>Since 2023 · © {new Date().getFullYear()}</span>
       </div>
     </footer>
 
@@ -176,6 +180,8 @@ const faqSchema = faq?.length
         </a>
       </div>
     </div>
+
+    <LeadPrompts client:idle />
 
     <!-- Lead source: tags every WhatsApp link and form with where the visitor came from -->
     <script is:inline>

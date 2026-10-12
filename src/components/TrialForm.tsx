@@ -77,8 +77,8 @@ export default function TrialForm({ defaultGoal }: { defaultGoal?: string }) {
     return (
       <div className="paper rounded-[2px] border border-rule bg-card p-6 text-ink sm:p-8" role="status">
         <p className="eyebrow">Booked</p>
-        <p className="mt-4 text-4xl font-semibold leading-none">You Are on the List, {name.trim().split(' ')[0]}.</p>
-        <p className="mt-3 italic text-ink-soft">Humaira at the front desk will message you on WhatsApp to confirm your time. Want it confirmed faster? Send your details now.</p>
+        <p className="mt-4 font-[family-name:var(--font-serif)] text-4xl font-medium leading-none">You Are on the List, {name.trim().split(' ')[0]}.</p>
+        <p className="mt-3 text-ink-soft">Humaira at the front desk will message you on WhatsApp to confirm your time. Want it confirmed faster? Send your details now.</p>
         <a className="btn btn-gold mt-6 w-full" href={waLink(message(), src.code || 'WEB')} data-wa data-track="form_success_whatsapp">
           Send my details on WhatsApp
         </a>
@@ -96,7 +96,7 @@ export default function TrialForm({ defaultGoal }: { defaultGoal?: string }) {
 
       {step === 0 && (
         <fieldset>
-          <legend className="text-3xl font-semibold leading-tight">What Do You Want From Training?</legend>
+          <legend className="font-[family-name:var(--font-serif)] text-3xl font-medium leading-tight">What Do You Want From Training?</legend>
           <div className="mt-5 grid grid-cols-2 gap-2">
             {GOALS.map((g) => (
               <button type="button" key={g} onClick={() => pickGoal(g)} className={chip(goal === g)} aria-pressed={goal === g}>{g}</button>
@@ -107,12 +107,12 @@ export default function TrialForm({ defaultGoal }: { defaultGoal?: string }) {
 
       {step === 1 && (
         <fieldset>
-          <legend className="text-3xl font-semibold leading-tight">When Can You Usually Train?</legend>
+          <legend className="font-[family-name:var(--font-serif)] text-3xl font-medium leading-tight">When Can You Usually Train?</legend>
           <div className="mt-5 grid gap-2">
             {TIMES.map((t) => (
               <button type="button" key={t.id} onClick={() => { setTime(t.id); setStep(2); }} className={chip(time === t.id) + ' flex items-baseline justify-between gap-3'} aria-pressed={time === t.id}>
                 <span>{t.label}</span>
-                <span className={`text-sm font-medium ${time === t.id ? 'text-paper/70' : 'text-stone'} italic`}>{t.hint}</span>
+                <span className={`text-sm font-medium ${time === t.id ? 'text-paper/70' : 'text-stone'}`}>{t.hint}</span>
               </button>
             ))}
           </div>
@@ -122,8 +122,8 @@ export default function TrialForm({ defaultGoal }: { defaultGoal?: string }) {
 
       {step === 2 && (
         <fieldset>
-          <legend className="text-3xl font-semibold leading-tight">Where Should We Confirm Your Session?</legend>
-          <p className="mt-2 text-sm italic text-stone">{goal} · {time}. <button type="button" className="font-semibold underline underline-offset-4" onClick={() => setStep(1)}>Change</button></p>
+          <legend className="font-[family-name:var(--font-serif)] text-3xl font-medium leading-tight">Where Should We Confirm Your Session?</legend>
+          <p className="mt-2 text-sm text-stone">{goal} · {time}. <button type="button" className="font-semibold underline underline-offset-4" onClick={() => setStep(1)}>Change</button></p>
           <label className="mt-5 block">
             <span className="text-sm font-semibold">Your name</span>
             <input value={name} onChange={(e) => setName(e.target.value)} autoComplete="name" className="mt-1.5 block w-full rounded-[2px] border border-rule bg-paper px-4 py-3.5 text-ink focus:border-ink focus:outline-none" />
@@ -136,7 +136,7 @@ export default function TrialForm({ defaultGoal }: { defaultGoal?: string }) {
           <button type="submit" disabled={state === 'sending'} className="btn btn-gold mt-6 w-full disabled:opacity-60">
             {state === 'sending' ? 'Booking your session' : 'Book My Free Session'}
           </button>
-          <p className="mt-3 text-xs italic text-stone">We only use your number to arrange your session. No spam.</p>
+          <p className="mt-3 text-xs text-stone">We only use your number to arrange your session. No spam.</p>
         </fieldset>
       )}
     </form>
