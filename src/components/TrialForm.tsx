@@ -38,7 +38,7 @@ export default function TrialForm({ defaultGoal }: { defaultGoal?: string }) {
   };
 
   const message = () =>
-    `Hi Hanma, I'm ${name.trim() || 'interested'}. I'd like a free session. Goal: ${goal}. Best time: ${time}.`;
+    `Hi Hanma, I am ${name.trim() || 'interested'}. I would like a free session. Goal: ${goal}. Best time: ${time}.`;
 
   async function submit(e: FormEvent) {
     e.preventDefault();

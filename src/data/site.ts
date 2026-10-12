@@ -29,8 +29,10 @@ export const business = {
 
 /** Build a wa.me link with a prefilled message. `code` tags where the lead came from. */
 export function waLink(message: string, code = 'WEB') {
-  const text = `${message} (${code})`;
-  return `https://wa.me/${business.whatsapp}?text=${encodeURIComponent(text)}`;
+  const text = `${message} Ref ${code}`;
+  // Strict encoding: apostrophes and brackets left raw can break the link on some phones
+  const encoded = encodeURIComponent(text).replace(/[!'()*]/g, (c) => `%${c.charCodeAt(0).toString(16).toUpperCase()}`);
+  return `https://wa.me/${business.whatsapp}?text=${encoded}`;
 }
 
 // Hours in 24h decimal. Monday = 1 ... Saturday = 6. Sunday closed.

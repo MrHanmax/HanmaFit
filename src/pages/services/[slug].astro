@@ -13,7 +13,7 @@ const others = programmes.filter((o) => o.slug !== p.slug);
 <Base title={p.title} description={p.description}>
   <PageHero crumbs={[{ name: 'Programmes', href: '/services' }, { name: p.name, href: `/services/${p.slug}` }]} eyebrow={p.tone === 'women' ? 'Women only · Programme' : 'Programme'} title={p.name} lede={p.short}>
     <div class="mt-8 flex flex-col gap-3 sm:flex-row">
-      <a class="btn btn-gold" href={waLink(`Hi Hanma, I'd like a free session for ${p.name.toLowerCase()}`)} data-wa data-track={`programme_${p.slug}_whatsapp`}>Book a Free Session</a>
+      <a class="btn btn-gold" href={waLink(`Hi Hanma, I would like a free session for ${p.name.toLowerCase()}`)} data-wa data-track={`programme_${p.slug}_whatsapp`}>Book a Free Session</a>
       <a class="btn btn-line" href="/pricing">See All Prices</a>
     </div>
   </PageHero>

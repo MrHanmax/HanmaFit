@@ -231,7 +231,7 @@ const faqSchema = faq?.length
         var c = window.hanmaSource.code;
         if (c && c !== 'WEB') {
           document.querySelectorAll('a[data-wa]').forEach(function (a) {
-            a.href = a.href.replace(/(\(|%28)WEB(\)|%29)$/, encodeURIComponent('(' + c + ')'));
+            a.href = a.href.replace(/Ref%20WEB$/, 'Ref%20' + encodeURIComponent(c));
           });
         }
         document.addEventListener('click', function (e) {
