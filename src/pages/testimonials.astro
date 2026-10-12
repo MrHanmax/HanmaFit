@@ -1,18 +1,17 @@
 ---
 import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
 import Results from '../components/Results.astro';
 import TrialSection from '../components/TrialSection.astro';
 import { business } from '../data/site';
 ---
 <Base title="Results | Hanma Fitness Studio, Gulistan e Johar" description="Real transformations from Hanma Fitness Studio members in Gulistan e Johar, Karachi: Talal, Amna and Nabeel.">
-  <section class="bg-iron pt-12 pb-16 text-chalk md:pt-20 md:pb-24">
+  <PageHero eyebrow="Results" title="Results From Real Members" lede="No stock photos and no invented names. These are Hanma members, in their own words." />
+  <section class="pb-16 md:pb-24">
     <div class="wrap">
-      <span class="block h-2 w-16 rounded-full bg-gold" aria-hidden="true"></span>
-      <h1 class="mt-6 max-w-4xl text-[3.4rem] sm:text-7xl md:text-8xl">Results from real members</h1>
-      <p class="mt-5 max-w-2xl text-lg text-chalk/70">No stock photos, no made up names. These are Hanma members, in their own words.</p>
-      <div class="mt-12"><Results /></div>
-      <p class="mt-10 text-chalk/70">More from our members on <a class="font-semibold text-chalk underline underline-offset-4" href={business.reviewUrl}>Google</a> and <a class="font-semibold text-chalk underline underline-offset-4" href={business.instagram}>Instagram</a>.</p>
+      <Results />
+      <p class="mt-10 text-muted">More from our members on <a class="font-semibold text-cream underline decoration-gold decoration-2 underline-offset-[6px]" href={business.mapsUrl}>Google</a> and <a class="font-semibold text-cream underline decoration-gold decoration-2 underline-offset-[6px]" href={business.instagram}>Instagram</a>.</p>
     </div>
   </section>
-  <TrialSection heading="Start your own" showFaq={false} />
+  <TrialSection heading="Start Your Own" showFaq={false} />
 </Base>

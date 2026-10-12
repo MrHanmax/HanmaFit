@@ -3,36 +3,56 @@ import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
 import TrialSection from '../components/TrialSection.astro';
 import { coaches, img, studioPhotos } from '../data/site';
+const founder = coaches[0];
+const team = coaches.slice(1);
 ---
 <Base title="Coaches | Hanma Fitness Studio, Gulistan e Johar" description="Meet the coaches at Hanma Fitness Studio in Gulistan e Johar: strength, women's, MMA and physiotherapy, led by founder Fawad Haris.">
-  <PageHero title="The people coaching you" lede="Hanma started with one idea: people get results when someone is actually coaching them. Here's who that is." />
+  <PageHero eyebrow="The team" title="The People Coaching You" lede="Hanma started with one idea: people get results when someone is actually coaching them. Here is who that is." />
+
+  <section class="pb-16 md:pb-24">
+    <div class="wrap grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
+      <div class="frame mx-auto w-full max-w-sm">
+        <img src={img(founder.photo!)} alt="Fawad Haris, founder and head coach" class="aspect-[4/5] w-full object-cover" />
+      </div>
+      <div class="paper border-t-4 border-gold-deep bg-paper p-8 text-[#2b2822] md:p-10">
+        <p class="font-[family-name:var(--font-hand)] text-[2.6rem] leading-[1.1] text-[#1a1a1a]">A note from the founder</p>
+        <span class="mt-3 block h-px w-[84px] bg-gold-deep" aria-hidden="true"></span>
+        <div class="mt-5 space-y-3 font-[family-name:var(--font-hand)] text-[1.45rem] leading-[1.3]">
+          <p>I opened Hanma because I kept seeing people pay for gyms and get no coaching. Here, someone who knows your name and your goal is on the floor with you.</p>
+          <p>Show up, do the work, and we will handle the rest.</p>
+        </div>
+        <p class="mt-6 font-[family-name:var(--font-hand)] text-[2.1rem] text-[#1a1a1a]">Fawad Haris</p>
+        <p class="text-sm italic text-stone">Founder, Head Coach and Clinical Dietitian</p>
+      </div>
+    </div>
+  </section>
 
   <section class="pb-16 md:pb-24">
     <div class="wrap grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
-      {coaches.map((c) => (
+      {team.map((c) => (
         <article>
           {c.photo
-            ? <img src={img(c.photo)} alt={c.name} loading="lazy" class="aspect-[4/5] w-full rounded-[1.75rem] object-cover" />
-            : <div class="flex aspect-[4/5] w-full items-end rounded-[1.75rem] bg-iron p-6"><span class="font-display text-8xl font-extrabold text-chalk/90" aria-hidden="true">{c.name.split(' ').map((w) => w[0]).slice(0, 2).join('')}</span></div>}
-          <h2 class="mt-4 text-4xl">{c.name}</h2>
-          <p class="font-semibold">{c.role}{c.hours && <span class="font-normal text-steel">, {c.hours}</span>}</p>
-          <p class="mt-2 text-steel">{c.bio}</p>
+            ? <img src={img(c.photo)} alt={c.name} loading="lazy" class="aspect-[4/5] w-full rounded-[2px] object-cover" />
+            : <div class="flex aspect-[4/5] w-full items-end rounded-[2px] border border-line bg-raised p-6"><span class="text-8xl italic text-gold" aria-hidden="true">{c.name.split(' ').map((w) => w[0]).slice(0, 2).join('')}</span></div>}
+          <h2 class="mt-5 text-4xl">{c.name}</h2>
+          <p class="mt-1 italic text-muted">{c.role}</p>{c.hours && <p class="mt-2 text-[0.7rem] font-semibold uppercase tracking-[0.28em] text-gold">{c.hours}</p>}
+          <p class="mt-2 text-muted">{c.bio}</p>
         </article>
       ))}
     </div>
   </section>
 
-  <section class="bg-chalk py-16 md:py-24">
+  <section class="border-y border-line bg-raised py-16 md:py-24">
     <div class="wrap grid gap-10 lg:grid-cols-2 lg:items-center">
-      <img src={img(studioPhotos.community)} alt="Members training together at Hanma" loading="lazy" class="w-full rounded-[1.75rem] object-cover" />
+      <img src={img(studioPhotos.community)} alt="Members training together at Hanma" loading="lazy" class="w-full rounded-[2px] object-cover" />
       <div class="prose-hanma max-w-xl text-lg">
-        <h2 class="mb-6 text-5xl">Why Hanma is built around coaching</h2>
-        <p>Most gyms sell you access and leave you to it. We'd rather sell you results, so every programme starts with a coach who knows your name, your goal and your starting point.</p>
-        <p>The studio has a strength floor, a separate class room for MMA and aerobics, and a physio room, so different kinds of training don't get in each other's way.</p>
+        <p class="eyebrow mb-4">The studio</p><h2 class="mb-6 text-5xl">Why Hanma Is Built Around Coaching</h2>
+        <p>Most gyms sell you access and leave you to it. We would rather sell you results, so every programme starts with a coach who knows your name, your goal and your starting point.</p>
+        <p>The studio has a strength floor, a separate class room for MMA and aerobics, and a physio room, so different kinds of training do not get in each other's way.</p>
         <p>Women only hours run every afternoon, Monday to Saturday.</p>
       </div>
     </div>
   </section>
 
-  <TrialSection showFaq={false} heading="Meet them in person" />
+  <TrialSection showFaq={false} heading="Meet Them in Person" />
 </Base>

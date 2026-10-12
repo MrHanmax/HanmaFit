@@ -72,11 +72,11 @@ export default function FloorNow() {
 
   const bar = (b: Block) => {
     const active = isToday && now && now.hour >= b.start && now.hour < b.end;
-    const tone = b.kind === 'women' ? 'bg-plum text-white' : b.kind === 'mma' ? 'bg-red text-white' : 'bg-chalk text-iron';
+    const tone = b.kind === 'women' ? 'bg-gold text-ink' : b.kind === 'mma' ? 'border border-gold text-gold bg-ink' : 'bg-cream/85 text-ink';
     return (
       <div
         key={b.id}
-        className={`absolute top-0 bottom-0 flex items-center overflow-hidden rounded-md px-2 text-[0.72rem] font-semibold leading-tight ${tone} ${active ? 'ring-2 ring-white ring-offset-2 ring-offset-iron' : ''}`}
+        className={`absolute top-0 bottom-0 flex items-center overflow-hidden rounded-[2px] px-2 text-[0.72rem] font-semibold leading-tight ${tone} ${active ? 'outline outline-2 outline-offset-2 outline-cream' : ''}`}
         style={{ left: pct(b.start), width: `calc(${pct(b.end)} - ${pct(b.start)} - 3px)` }}
         title={`${b.label}, ${fmt(b.start)} to ${fmt(b.end)}, ${b.coach}`}
       >
@@ -86,17 +86,17 @@ export default function FloorNow() {
   };
 
   return (
-    <section aria-label="Today at Hanma" className="relative rounded-[1.75rem] bg-iron p-5 text-chalk shadow-[0_30px_60px_-30px_rgba(29,38,50,.6)] sm:p-7">
+    <section aria-label="Today at Hanma" className="relative rounded-[2px] border border-line bg-ink/90 p-5 text-cream sm:p-7">
       <div className="flex items-start justify-between gap-4">
         <div aria-live="polite">
-          <p className="flex items-center gap-2 text-sm text-chalk/70">
-            <span className={`inline-block h-2.5 w-2.5 rounded-full ${status?.open ? 'bg-[#3ddc84] shadow-[0_0_0_4px_rgba(61,220,132,.2)]' : 'bg-chalk/40'}`} />
+          <p className="flex items-center gap-2 text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-gold">
+            <span className={`inline-block h-2.5 w-2.5 rounded-full ${status?.open ? 'bg-gold' : 'bg-muted/50'}`} />
             {now ? `${DAYS_LONG[now.day]}, ${fmt(Math.floor(now.hour * 60) / 60)} in Karachi` : 'Studio hours'}
           </p>
-          <p className="mt-2 font-display text-[2rem] leading-none font-extrabold sm:text-[2.4rem]">
+          <p className="mt-3 text-[2.1rem] font-semibold leading-none sm:text-[2.5rem]">
             {status ? status.headline : 'Coached all day, Monday to Saturday'}
           </p>
-          <p className={`mt-2 ${status?.women ? 'text-plum-soft' : 'text-chalk/75'}`}>{status ? status.detail : 'Morning, women only and evening sessions.'}</p>
+          <p className={`mt-2 italic ${status?.women ? 'text-gold' : 'text-muted'}`}>{status ? status.detail : 'Morning, women only and evening sessions.'}</p>
         </div>
       </div>
 
@@ -107,7 +107,7 @@ export default function FloorNow() {
             role="tab"
             aria-selected={d === day}
             onClick={() => setPicked(d)}
-            className={`min-h-9 rounded-full px-3 text-sm font-semibold transition-colors ${d === day ? 'bg-chalk text-iron' : 'text-chalk/70 hover:text-chalk'}`}
+            className={`min-h-9 rounded-[2px] px-3 text-sm font-semibold uppercase tracking-[0.15em] transition-colors ${d === day ? 'bg-cream text-ink' : 'text-muted hover:text-cream'}`}
           >
             {DAYS[d]}
           </button>
@@ -118,11 +118,11 @@ export default function FloorNow() {
         <div className="relative h-10">{main.map(bar)}</div>
         {mma && <div className="relative mt-1.5 h-7">{bar(mma)}</div>}
         {isToday && now && now.hour >= DAY_START && (
-          <div className="pointer-events-none absolute -top-2 -bottom-2 w-0.5 bg-[#3ddc84]" style={{ left: pct(now.hour) }} aria-hidden="true">
-            <span className="absolute -top-1 -left-[3px] h-2 w-2 rounded-full bg-[#3ddc84]" />
+          <div className="pointer-events-none absolute -top-2 -bottom-2 w-0.5 bg-gold" style={{ left: pct(now.hour) }} aria-hidden="true">
+            <span className="absolute -top-1 -left-[3px] h-2 w-2 rounded-full bg-gold" />
           </div>
         )}
-        <div className="mt-2 flex justify-between text-[0.7rem] text-chalk/50 tabular-nums" aria-hidden="true">
+        <div className="mt-2 flex justify-between text-[0.75rem] italic text-muted tabular-nums" aria-hidden="true">
           {[7, 11, 13, 17, 21, 24].map((h) => <span key={h}>{fmt(h)}</span>)}
         </div>
       </div>
@@ -135,9 +135,9 @@ export default function FloorNow() {
           { key: 'k', kind: 'coed', time: '7 to 11:30 pm', who: 'Khubaib' },
           ...(mma ? [{ key: 'x', kind: 'mma', time: '9 to 10:30 pm', who: 'MMA class, Owais' }] : []),
         ].map((r) => (
-          <li key={r.key} className="flex items-center gap-3 text-chalk/80">
-            <span className={`h-3 w-3 shrink-0 rounded-sm ${r.kind === 'women' ? 'bg-plum' : r.kind === 'mma' ? 'bg-red' : 'bg-chalk'}`} aria-hidden="true" />
-            <span className="w-28 shrink-0 tabular-nums text-chalk">{r.time}</span>
+          <li key={r.key} className="flex items-center gap-3 text-muted">
+            <span className={`h-3 w-3 shrink-0 rounded-sm ${r.kind === 'women' ? 'bg-gold' : r.kind === 'mma' ? 'border border-gold' : 'bg-cream/85'}`} aria-hidden="true" />
+            <span className="w-28 shrink-0 tabular-nums text-cream">{r.time}</span>
             <span>{r.who}</span>
           </li>
         ))}
@@ -147,9 +147,9 @@ export default function FloorNow() {
         href={waLink(`Hi Hanma, I would like to book a free session on ${DAYS_LONG[day]}`, code)}
         data-wa
         data-track="floor_book_day"
-        className="btn btn-wa mt-6 w-full"
+        className="btn btn-gold mt-6 w-full"
       >
-        Book a free session on {DAYS_LONG[day]}
+        Book a Free Session on {DAYS_LONG[day]}
       </a>
     </section>
   );

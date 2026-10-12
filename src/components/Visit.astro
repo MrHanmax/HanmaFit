@@ -1,23 +1,23 @@
 ---
 import { business, hoursSummary } from '../data/site';
+import SectionHead from './SectionHead.astro';
 ---
 <section class="py-16 md:py-24">
   <div class="wrap grid gap-10 lg:grid-cols-[1fr_1.3fr]">
     <div>
-      <h2 class="text-5xl md:text-6xl">Come and see the floor</h2>
-      <p class="mt-4 text-steel">{business.addressLine}. Ask for Humaira at the front desk.</p>
-      <dl class="mt-6 divide-y divide-rule border-y border-rule">
+      <SectionHead eyebrow="Visit" title="Come and See the Floor" dek={`${business.addressLine}. Ask for Humaira at the front desk.`} />
+      <dl class="mt-8 border-t border-line">
         {hoursSummary.map((h) => (
-          <div class="flex justify-between gap-4 py-3"><dt class="font-semibold">{h.label}</dt><dd class="text-right text-steel">{h.time}</dd></div>
+          <div class="flex justify-between gap-4 border-b border-line py-3"><dt class="font-semibold">{h.label}</dt><dd class="text-right italic text-muted">{h.time}</dd></div>
         ))}
       </dl>
-      <div class="mt-6 flex flex-wrap gap-3">
-        <a class="btn btn-ghost" href={business.mapsUrl}>Get directions</a>
-        <a class="btn btn-ghost" href={business.mapsUrl}>{business.googleRating} on Google, read the {business.googleReviewCount} reviews</a>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a class="btn btn-line" href={business.mapsUrl}>Get Directions</a>
+        <a class="btn btn-line" href={business.mapsUrl}>{business.googleRating} on Google · {business.googleReviewCount} Reviews</a>
       </div>
     </div>
-    <div class="overflow-hidden rounded-[1.75rem] bg-chalk ring-1 ring-rule">
-      <iframe src={business.mapEmbed} title="Map showing Hanma Fitness Studio in Gulistan e Johar" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="h-[360px] w-full md:h-full md:min-h-[420px]" style="border:0"></iframe>
+    <div class="overflow-hidden rounded-[2px] border border-line">
+      <iframe src={business.mapEmbed} title="Map showing Hanma Fitness Studio in Gulistan e Johar" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="h-[360px] w-full md:h-full md:min-h-[440px]" style="border:0"></iframe>
     </div>
   </div>
 </section>

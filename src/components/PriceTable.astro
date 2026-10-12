@@ -5,32 +5,39 @@ const n = (v: number) => v.toLocaleString('en-PK');
 <div class="grid gap-10">
   {pricing.map((g) => (
     <section>
-      <h3 class="text-3xl">{g.group}</h3>
-      <table class="mt-4 w-full border-collapse text-left">
-        <thead class="sr-only"><tr><th>Plan</th><th>Monthly</th><th>Quarterly</th></tr></thead>
-        <tbody>
-          {g.items.map((p) => (
-            <tr class="border-t border-rule align-top">
-              <th scope="row" class="py-4 pr-4 font-normal">
-                <span class="block text-lg font-semibold">{p.name}</span>
-                {p.note && <span class="block text-sm text-steel">{p.note}</span>}
-              </th>
-              <td class="py-4 pr-2 text-right whitespace-nowrap">
-                {p.monthly ? <><span class="price text-2xl">{n(p.monthly)}</span><span class="block text-xs text-steel">a month</span></>
-                  : p.once ? <><span class="price text-2xl">{n(p.once)}</span><span class="block text-xs text-steel">{g.group === 'Gym access' ? 'per day' : 'one time'}</span></>
-                  : <span class="text-steel">Ask us</span>}
-              </td>
-              <td class="hidden py-4 pl-4 text-right whitespace-nowrap sm:table-cell">
-                {p.quarterly ? <><span class="price text-2xl">{n(p.quarterly)}</span><span class="block text-xs font-semibold text-gold-ink">{p.save} over 3 months</span></> : <span class="text-steel">·</span>}
-              </td>
+      <div class="overflow-x-auto">
+        <table class="w-full min-w-[30rem] border-collapse border border-line text-left">
+          <thead class="bg-raised">
+            <tr class="text-[0.7rem] font-semibold uppercase tracking-[0.28em] text-gold">
+              <th scope="col" class="px-4 py-3">{g.group}</th>
+              <th scope="col" class="px-4 py-3 text-right">Monthly</th>
+              <th scope="col" class="px-4 py-3 text-right">Quarterly</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-      {g.items.some((p) => p.quarterly) && (
-        <p class="mt-2 text-sm text-steel sm:hidden">Quarterly: {g.items.filter((p) => p.quarterly).map((p) => `${p.name} ${n(p.quarterly!)} (${p.save})`).join(', ')}.</p>
-      )}
+          </thead>
+          <tbody>
+            {g.items.map((p) => (
+              <tr class="border-t border-line align-top">
+                <th scope="row" class="px-4 py-4 font-normal">
+                  <span class="block text-xl font-semibold">{p.name}</span>
+                  {p.note && <span class="block text-base italic text-muted">{p.note}</span>}
+                </th>
+                <td class="px-4 py-4 text-right whitespace-nowrap">
+                  {p.monthly ? <span class="price text-2xl">{n(p.monthly)}</span>
+                    : p.once ? <><span class="price text-2xl">{n(p.once)}</span><span class="block text-sm italic text-muted">{g.group === 'Gym access' ? 'per day' : 'one time'}</span></>
+                    : <span class="italic text-muted">Ask us</span>}
+                </td>
+                <td class="px-4 py-4 text-right whitespace-nowrap">
+                  {p.quarterly ? <><span class="price text-2xl">{n(p.quarterly)}</span><span class="block text-sm italic text-gold">{p.save}</span></> : <span class="text-muted">·</span>}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </section>
   ))}
-  <p class="rounded-2xl bg-chalk p-5 text-[0.95rem]"><strong>Admission {n(admission.fee)}.</strong> {admission.note} All prices in PKR, paid in advance. Quarterly plans run for 90 days.</p>
+  <div class="flex gap-4 border border-line bg-raised p-5">
+    <span class="mt-1 h-1 w-[25px] shrink-0 rounded-full bg-gold" aria-hidden="true"></span>
+    <p><strong>Admission {n(admission.fee)}.</strong> <span class="text-muted">{admission.note} All prices in PKR, paid in advance. Quarterly plans run for 90 days.</span></p>
+  </div>
 </div>

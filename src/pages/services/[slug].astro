@@ -11,42 +11,42 @@ const { p } = Astro.props as { p: Programme };
 const others = programmes.filter((o) => o.slug !== p.slug);
 ---
 <Base title={p.title} description={p.description}>
-  <PageHero title={p.name} lede={p.short} tone={p.tone}>
+  <PageHero eyebrow={p.tone === 'women' ? 'Women only · Programme' : 'Programme'} title={p.name} lede={p.short}>
     <div class="mt-8 flex flex-col gap-3 sm:flex-row">
-      <a class="btn btn-wa" href={waLink(`Hi Hanma, I'd like a free session for ${p.name.toLowerCase()}`)} data-wa data-track={`programme_${p.slug}_whatsapp`}>Book a free session</a>
-      <a class="btn btn-ghost" href="/pricing">See all prices</a>
+      <a class="btn btn-gold" href={waLink(`Hi Hanma, I'd like a free session for ${p.name.toLowerCase()}`)} data-wa data-track={`programme_${p.slug}_whatsapp`}>Book a Free Session</a>
+      <a class="btn btn-line" href="/pricing">See All Prices</a>
     </div>
   </PageHero>
 
   <section class="pb-16 md:pb-24">
     <div class="wrap grid gap-10 lg:grid-cols-[1.2fr_1fr]">
       <div>
-        <dl class="grid gap-6 border-y border-rule py-6 sm:grid-cols-3">
-          <div><dt class="text-sm text-steel">When</dt><dd class="mt-1 font-semibold">{p.when}</dd></div>
-          <div><dt class="text-sm text-steel">Who it suits</dt><dd class="mt-1 font-semibold">{p.who}</dd></div>
-          <div><dt class="text-sm text-steel">From</dt><dd class="mt-1 price text-3xl">{p.from}</dd></div>
+        <dl class="grid gap-6 border-y border-line py-6 sm:grid-cols-3">
+          <div><dt class="text-[0.7rem] font-semibold uppercase tracking-[0.28em] text-gold">When</dt><dd class="mt-1 font-semibold">{p.when}</dd></div>
+          <div><dt class="text-[0.7rem] font-semibold uppercase tracking-[0.28em] text-gold">Who it suits</dt><dd class="mt-1 font-semibold">{p.who}</dd></div>
+          <div><dt class="text-[0.7rem] font-semibold uppercase tracking-[0.28em] text-gold">From</dt><dd class="mt-1 price text-3xl">{p.from}</dd></div>
         </dl>
         <div class="prose-hanma mt-8 max-w-2xl text-lg">
           {p.intro.map((t) => <p>{t}</p>)}
         </div>
-        <h2 class="mt-12 text-4xl">What you get</h2>
+        <p class="eyebrow mt-12">Included</p><h2 class="mt-4 text-4xl">What You Get</h2>
         <ul class="mt-4 grid gap-3">
           {p.includes.map((i) => (
             <li class="flex gap-3"><span class="mt-2.5 h-2 w-2 shrink-0 rounded-full bg-gold" aria-hidden="true"></span><span>{i}</span></li>
           ))}
         </ul>
       </div>
-      {p.photo && <img src={img(p.photo)} alt={`${p.name} at Hanma Fitness Studio`} class="w-full rounded-[1.75rem] object-cover lg:aspect-[4/5]" loading="lazy" />}
+      {p.photo && <img src={img(p.photo)} alt={`${p.name} at Hanma Fitness Studio`} class="w-full rounded-[2px] object-cover lg:aspect-[4/5]" loading="lazy" />}
     </div>
   </section>
 
-  <TrialSection goal={p.goal} heading={`Try ${p.name.toLowerCase()} free`} />
+  <TrialSection goal={p.goal} heading={`Try ${p.name} Free`} />
 
   <section class="py-16 md:py-20">
     <div class="wrap">
-      <h2 class="text-4xl">Other ways to train</h2>
+      <p class="eyebrow">More</p><h2 class="mt-4 text-4xl">Other Ways to Train</h2>
       <ul class="mt-6 grid gap-x-8 gap-y-3 sm:grid-cols-2">
-        {others.map((o) => <li><a class="text-lg font-semibold underline underline-offset-4" href={`/services/${o.slug}`}>{o.name}</a> <span class="text-steel">from {o.from}</span></li>)}
+        {others.map((o) => <li><a class="text-lg font-semibold underline underline-offset-4" href={`/services/${o.slug}`}>{o.name}</a> <span class="text-muted">from {o.from}</span></li>)}
       </ul>
     </div>
   </section>

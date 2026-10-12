@@ -1,0 +1,10 @@
+---
+interface Props { eyebrow: string; title: string; dek?: string; id?: string; as?: 'h1' | 'h2' }
+const { eyebrow, title, dek, id, as = 'h2' } = Astro.props;
+const H = as;
+---
+<div>
+  <p class="eyebrow">{eyebrow}</p>
+  <H id={id} class:list={['mt-4', as === 'h1' ? 'text-[3.25rem] sm:text-7xl md:text-[5rem]' : 'text-[2.6rem] md:text-6xl']}>{title}</H>
+  {dek && <p class="dek mt-4 max-w-2xl">{dek}</p>}
+</div>
