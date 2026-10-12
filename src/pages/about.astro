@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
 import TrialSection from '../components/TrialSection.astro';
+import FounderReel from '../components/FounderReel.astro';
 import { coaches, img, studioPhotos } from '../data/site';
 const founder = coaches[0];
 const team = coaches.slice(1);
@@ -25,6 +26,10 @@ const team = coaches.slice(1);
         <p class="text-sm italic text-stone">Founder and Head Coach · BS Human Nutrition and Dietetics</p>
       </div>
     </div>
+  </section>
+
+  <section class="pb-16 md:pb-24" aria-label="Founder reel">
+    <div class="wrap"><FounderReel /></div>
   </section>
 
   <section class="pb-16 md:pb-24">

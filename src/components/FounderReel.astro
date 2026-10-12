@@ -1,0 +1,57 @@
+---
+import SectionHead from './SectionHead.astro';
+interface Props { heading?: boolean }
+const { heading = true } = Astro.props;
+const videoSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'VideoObject',
+  name: 'Meet Fawad Haris, founder of Hanma Fitness Studio, Gulistan e Johar',
+  description: 'A walk through Hanma Fitness Studio in Gulistan e Johar, Karachi, and what Hanma stands for.',
+  thumbnailUrl: 'https://hanmafit.com/img/founder-reel.webp',
+  contentUrl: 'https://hanmafit.com/video/founder-reel.mp4',
+  uploadDate: '2026-10-12',
+  duration: 'PT43S',
+};
+---
+<div class="grid items-center gap-10 lg:grid-cols-[minmax(0,22rem)_1fr] lg:gap-16">
+  <div class="relative mx-auto w-full max-w-[22rem] overflow-hidden rounded-[2px] border border-line bg-ink" data-reel>
+    <video
+      class="aspect-[9/16] w-full object-cover"
+      src="/video/founder-reel.mp4"
+      poster="/img/founder-reel.webp"
+      preload="none"
+      playsinline
+      width="720"
+      height="1280"
+      aria-label="Fawad Haris introduces Hanma Fitness Studio"
+    ></video>
+    <button type="button" class="absolute inset-0 flex items-center justify-center bg-ink/25 transition-colors hover:bg-ink/10" aria-label="Play the founder's reel with sound" data-reel-play>
+      <span class="flex h-20 w-20 items-center justify-center rounded-full bg-gold text-ink">
+        <svg viewBox="0 0 24 24" class="ml-1 h-8 w-8 fill-current" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+      </span>
+    </button>
+  </div>
+  <div>
+    {heading && <SectionHead eyebrow="Meet the founder" title="Why It Is Called Hanma" dek="Fawad Haris walks you through the studio, what the name means, and who Hanma is built for." />}
+    <ul class="mt-8 grid gap-3 text-muted">
+      <li class="flex gap-3"><span class="mt-2.5 h-2 w-2 shrink-0 bg-gold" aria-hidden="true"></span>Founder and head coach, BS Human Nutrition and Dietetics</li>
+      <li class="flex gap-3"><span class="mt-2.5 h-2 w-2 shrink-0 bg-gold" aria-hidden="true"></span>Writes the programmes every Hanma coach runs</li>
+      <li class="flex gap-3"><span class="mt-2.5 h-2 w-2 shrink-0 bg-gold" aria-hidden="true"></span>Coaching in Gulistan e Johar since 2023</li>
+    </ul>
+    <p class="mt-6"><a href="https://www.instagram.com/fawaadharis/" class="font-semibold underline decoration-gold decoration-2 underline-offset-[6px]">Follow Fawad on Instagram</a></p>
+  </div>
+</div>
+<script type="application/ld+json" set:html={JSON.stringify(videoSchema)} />
+<script>
+  document.querySelectorAll<HTMLElement>('[data-reel]').forEach((box) => {
+    const video = box.querySelector('video')!;
+    const btn = box.querySelector<HTMLButtonElement>('[data-reel-play]')!;
+    btn.addEventListener('click', () => {
+      video.controls = true;
+      video.play().catch(() => {});
+      btn.hidden = true;
+      (window as unknown as { gtag?: (...a: unknown[]) => void }).gtag?.('event', 'video_start', { video_title: 'founder_reel' });
+    });
+    video.addEventListener('ended', () => { video.controls = false; btn.hidden = false; });
+  });
+</script>

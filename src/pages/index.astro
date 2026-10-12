@@ -8,6 +8,7 @@ import TrialSection from '../components/TrialSection.astro';
 import Visit from '../components/Visit.astro';
 import SectionHead from '../components/SectionHead.astro';
 import Dumbbell3D from '../components/Dumbbell3D';
+import FounderReel from '../components/FounderReel.astro';
 import { img, studioPhotos, waLink, faqs, business, tour } from '../data/site';
 ---
 <Base
@@ -46,7 +47,11 @@ import { img, studioPhotos, waLink, faqs, business, tour } from '../data/site';
     </ul>
   </section>
 
-  <section class="py-16 md:py-24">
+  <section class="py-16 md:py-24" aria-label="Meet the founder">
+    <div class="wrap"><FounderReel /></div>
+  </section>
+
+  <section class="pb-16 md:pb-24">
     <div class="wrap">
       <SectionHead eyebrow="Programmes" title="Choose How You Train" dek="Personal training, group training, a ladies gym, MMA and physio in Gulistan e Johar. Not sure which fits? Your free session settles it." />
       <div class="mt-10"><ProgrammeList /></div>

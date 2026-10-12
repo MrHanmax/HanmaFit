@@ -157,6 +157,7 @@ export const coaches: Coach[] = [
   {
     name: 'Dr Muhammad Ismail',
     role: 'Physiotherapist',
+    cert: 'DPT, Doctor of Physical Therapy',
     bio: 'Assessments, injury rehab and return to training, so you can keep coming in while you recover.',
     photo: 'ad88e6d4-b69d-47c1-bbb6-f1b989138a60.png',
     hours: 'By appointment',
@@ -339,7 +340,7 @@ export const programmes: Programme[] = [
     title: 'Physiotherapy and Diet Plans in Gulistan e Johar | Hanma Health',
     description: 'Physiotherapy, clinical diet plans and nutrition consultations at Hanma Fitness Studio, Gulistan e Johar. Train safely around injuries and conditions.',
     intro: [
-      'Dr Ismail assesses injuries and builds your rehab, then hands you over to a coach who trains around it.',
+      'Dr Ismail, DPT, assesses injuries and builds your rehab, then hands you over to a coach who trains around it.',
       'Our nutrition team writes diet plans for weight loss, muscle gain and medical conditions, with follow ups to keep you on track.',
     ],
     photo: '/img/studio-physio-room.webp',
