@@ -34,22 +34,23 @@ type Status = { open: boolean; headline: string; detail: string; women: boolean 
 function statusFor(day: number, hour: number): Status {
   if (day === 0) return { open: false, headline: 'Closed on Sundays', detail: 'Back Monday at 7 am with Faisal.', women: false };
   const today = schedule.filter((b) => b.days.includes(day));
-  const main = today.filter((b) => b.kind !== 'mma');
-  const now = main.find((b) => hour >= b.start && hour < b.end);
-  const mma = today.find((b) => b.kind === 'mma' && hour >= b.start && hour < b.end);
+  const floor = today.filter((b) => b.track === 'floor');
+  const now = floor.find((b) => hour >= b.start && hour < b.end);
+  const cls = today.find((b) => b.track === 'room' && hour >= b.start && hour < b.end);
   if (now) {
-    const coached = now.coach !== 'Front desk';
-    const block = now.kind === 'women' ? 'Women only' : coached ? 'Coaches on the floor' : 'Open floor';
+    const coached = now.coach !== 'Open floor';
+    const what = now.kind === 'women' ? 'Women only' : coached ? 'Coaches on the floor' : 'Open floor';
+    const who = coached ? now.coach : 'Front desk on site';
     return {
       open: true,
       women: now.kind === 'women',
-      headline: `Open now. ${block}.`,
-      detail: `${coached ? now.coach : 'Open floor'} until ${fmt(now.end)}${mma ? '. MMA class running with Owais.' : '.'}`,
+      headline: `Open now. ${what}.`,
+      detail: `${who} until ${fmt(now.end)}.${cls ? ` ${cls.label} with ${cls.coach} in the class room.` : ''}`,
     };
   }
-  const next = main.find((b) => b.start > hour);
-  if (next) return { open: false, women: false, headline: `Opens at ${fmt(next.start)}`, detail: `${next.label} with ${next.coach}.` };
-  return { open: false, women: false, headline: 'Closed for tonight', detail: day === 6 ? 'Back Monday at 7 am.' : 'Back tomorrow at 7 am with Faisal.' };
+  const next = floor.find((b) => b.start > hour);
+  if (next) return { open: false, women: false, headline: `Opens at ${fmt(next.start)}`, detail: next.coach === 'Open floor' ? `${next.label}, front desk on site.` : `${next.label} with ${next.coach}.` };
+  return { open: false, women: false, headline: 'Closed for tonight', detail: day === 6 ? 'Back Monday at 7 am with Faisal.' : day === 5 ? 'Back tomorrow at 7 am, open floor.' : 'Back tomorrow at 7 am with Faisal.' };
 }
 
 export default function FloorNow() {
@@ -66,13 +67,14 @@ export default function FloorNow() {
   const day = picked ?? (now?.day === 0 ? 1 : now?.day ?? 1);
   const isToday = now !== null && day === now.day;
   const blocks = useMemo(() => schedule.filter((b) => b.days.includes(day)), [day]);
-  const main = blocks.filter((b) => b.kind !== 'mma' && b.id !== 'open-late');
-  const mma = blocks.find((b) => b.kind === 'mma');
+  const floor = blocks.filter((b) => b.track === 'floor' && b.id !== 'open-late');
+  const room = blocks.filter((b) => b.track === 'room');
   const status = now ? statusFor(now.day, now.hour) : null;
 
   const bar = (b: Block) => {
     const active = isToday && now && now.hour >= b.start && now.hour < b.end;
-    const tone = b.kind === 'women' ? 'bg-gold text-ink' : b.kind === 'mma' ? 'border border-gold text-gold bg-ink' : 'bg-cream/85 text-ink';
+    const open = b.coach === 'Open floor';
+    const tone = b.kind === 'women' ? (open ? 'border border-gold text-gold bg-ink' : 'bg-gold text-ink') : b.track === 'room' ? 'border border-gold text-gold bg-ink' : open ? 'border border-cream/40 text-muted bg-ink' : 'bg-cream/85 text-ink';
     return (
       <div
         key={b.id}
@@ -80,7 +82,7 @@ export default function FloorNow() {
         style={{ left: pct(b.start), width: `calc(${pct(b.end)} - ${pct(b.start)} - 3px)` }}
         title={`${b.label}, ${fmt(b.start)} to ${fmt(b.end)}, ${b.coach}`}
       >
-        <span className="hidden truncate sm:inline">{b.coach}</span>
+        <span className="hidden truncate sm:inline">{b.coach === 'Open floor' ? 'Open' : b.coach}</span>
       </div>
     );
   };
@@ -94,7 +96,7 @@ export default function FloorNow() {
             {now ? `${DAYS_LONG[now.day]}, ${fmt(Math.floor(now.hour * 60) / 60)} in Karachi` : 'Studio hours'}
           </p>
           <p className="mt-3 text-[2.1rem] font-semibold leading-none sm:text-[2.5rem]">
-            {status ? status.headline : 'Coached all day, Monday to Saturday'}
+            {status ? status.headline : 'Coached Monday to Friday'}
           </p>
           <p className={`mt-2 ${status?.women ? 'text-gold' : 'text-muted'}`}>{status ? status.detail : 'Morning, women only and evening sessions.'}</p>
         </div>
@@ -115,8 +117,8 @@ export default function FloorNow() {
       </div>
 
       <div className="relative mt-4">
-        <div className="relative h-10">{main.map(bar)}</div>
-        {mma && <div className="relative mt-1.5 h-7">{bar(mma)}</div>}
+        <div className="relative h-10">{floor.map(bar)}</div>
+        {room.length > 0 && <div className="relative mt-1.5 h-7">{room.map(bar)}</div>}
         {isToday && now && now.hour >= DAY_START && (
           <div className="pointer-events-none absolute -top-2 -bottom-2 w-0.5 bg-gold" style={{ left: pct(now.hour) }} aria-hidden="true">
             <span className="absolute -top-1 -left-[3px] h-2 w-2 rounded-full bg-gold" />
@@ -128,15 +130,22 @@ export default function FloorNow() {
       </div>
 
       <ul className="mt-5 grid gap-y-1.5 text-sm">
-        {[
-          { key: 'm', kind: 'coed', time: '7 to 11 am', who: 'Faisal' },
-          { key: 'w', kind: 'women', time: '1 to 5 pm', who: 'Women only, Samina' },
-          { key: 'e', kind: 'coed', time: '5 to 10 pm', who: 'Rafi' },
-          { key: 'k', kind: 'coed', time: '7 to 11:30 pm', who: 'Khubaib' },
-          ...(mma ? [{ key: 'x', kind: 'mma', time: '9 to 10:30 pm', who: 'MMA class, Owais' }] : []),
-        ].map((r) => (
+        {(day === 6
+          ? [
+              { key: 's1', kind: 'open', time: '7 to 11 am', who: 'Open floor' },
+              { key: 's2', kind: 'women-open', time: '1 to 5 pm', who: 'Women only, open floor' },
+              { key: 's3', kind: 'open', time: '5 pm to 12 am', who: 'Open floor, Khubaib in for a short session' },
+            ]
+          : [
+              { key: 'm', kind: 'coed', time: '7 to 11 am', who: 'Faisal' },
+              { key: 'w', kind: 'women', time: '1 to 5 pm', who: 'Women only, Samina' },
+              { key: 'e', kind: 'coed', time: '5 to 10 pm', who: 'Rafi' },
+              { key: 'k', kind: 'coed', time: '7 to 11:30 pm', who: 'Khubaib' },
+              { key: 'c', kind: 'room', time: '5 to 6 pm', who: 'Aerobics class, coed, Samina' },
+            ]
+        ).concat(room.some((r) => r.kind === 'mma') ? [{ key: 'x', kind: 'room', time: '9 to 10:30 pm', who: 'MMA class, Owais' }] : []).map((r) => (
           <li key={r.key} className="flex items-center gap-3 text-muted">
-            <span className={`h-3 w-3 shrink-0 rounded-sm ${r.kind === 'women' ? 'bg-gold' : r.kind === 'mma' ? 'border border-gold' : 'bg-cream/85'}`} aria-hidden="true" />
+            <span className={`h-3 w-3 shrink-0 rounded-[2px] ${r.kind === 'women' ? 'bg-gold' : r.kind === 'room' || r.kind === 'women-open' ? 'border border-gold' : r.kind === 'open' ? 'border border-cream/40' : 'bg-cream/85'}`} aria-hidden="true" />
             <span className="w-28 shrink-0 tabular-nums text-cream">{r.time}</span>
             <span>{r.who}</span>
           </li>

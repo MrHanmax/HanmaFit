@@ -34,33 +34,43 @@ export function waLink(message: string, code = 'WEB') {
 }
 
 // Hours in 24h decimal. Monday = 1 ... Saturday = 6. Sunday closed.
+// Coaches work Monday to Friday. Saturday is an open floor with the front desk on site.
 export type Block = {
   id: string;
   label: string;
   start: number;
   end: number;
-  coach: string;
-  kind: 'coed' | 'women' | 'mma';
+  coach: string;       // 'Open floor' means no coach, front desk on site
+  kind: 'coed' | 'women' | 'class' | 'mma';
   days: number[];
+  track: 'floor' | 'room'; // strength floor, or the separate class room
 };
 
-const MON_SAT = [1, 2, 3, 4, 5, 6];
+const MON_FRI = [1, 2, 3, 4, 5];
+const SAT = [6];
 
 export const schedule: Block[] = [
-  { id: 'morning', label: 'Morning coaching', start: 7, end: 11, coach: 'Faisal', kind: 'coed', days: MON_SAT },
-  { id: 'women', label: 'Women only', start: 13, end: 17, coach: 'Samina', kind: 'women', days: MON_SAT },
-  { id: 'early-evening', label: 'Evening coaching', start: 17, end: 19, coach: 'Rafi', kind: 'coed', days: MON_SAT },
-  { id: 'peak', label: 'Evening coaching', start: 19, end: 22, coach: 'Rafi and Khubaib', kind: 'coed', days: MON_SAT },
-  { id: 'late', label: 'Late evening', start: 22, end: 23.5, coach: 'Khubaib', kind: 'coed', days: MON_SAT },
-  { id: 'open-late', label: 'Open floor', start: 23.5, end: 24, coach: 'Front desk', kind: 'coed', days: MON_SAT },
-  { id: 'mma', label: 'MMA class', start: 21, end: 22.5, coach: 'Owais', kind: 'mma', days: [2, 4, 6] },
+  { id: 'morning', label: 'Morning coaching', start: 7, end: 11, coach: 'Faisal', kind: 'coed', days: MON_FRI, track: 'floor' },
+  { id: 'women', label: 'Women only', start: 13, end: 17, coach: 'Samina', kind: 'women', days: MON_FRI, track: 'floor' },
+  { id: 'early-evening', label: 'Evening coaching', start: 17, end: 19, coach: 'Rafi', kind: 'coed', days: MON_FRI, track: 'floor' },
+  { id: 'peak', label: 'Evening coaching', start: 19, end: 22, coach: 'Rafi and Khubaib', kind: 'coed', days: MON_FRI, track: 'floor' },
+  { id: 'late', label: 'Late evening', start: 22, end: 23.5, coach: 'Khubaib', kind: 'coed', days: MON_FRI, track: 'floor' },
+  { id: 'open-late', label: 'Open floor', start: 23.5, end: 24, coach: 'Open floor', kind: 'coed', days: MON_FRI, track: 'floor' },
+  { id: 'samina-class', label: 'Aerobics class, coed', start: 17, end: 18, coach: 'Samina', kind: 'class', days: MON_FRI, track: 'room' },
+  { id: 'mma', label: 'MMA class', start: 21, end: 22.5, coach: 'Owais', kind: 'mma', days: [2, 4, 6], track: 'room' },
+  // Saturday: open floor, front desk on site
+  { id: 'sat-morning', label: 'Open floor', start: 7, end: 11, coach: 'Open floor', kind: 'coed', days: SAT, track: 'floor' },
+  { id: 'sat-women', label: 'Women only, open floor', start: 13, end: 17, coach: 'Open floor', kind: 'women', days: SAT, track: 'floor' },
+  { id: 'sat-evening', label: 'Open floor', start: 17, end: 24, coach: 'Open floor', kind: 'coed', days: SAT, track: 'floor' },
 ];
 
 export const hoursSummary = [
   { label: 'Morning, coed', time: '7 am to 11 am' },
   { label: 'Women only', time: '1 pm to 5 pm' },
   { label: 'Evening, coed', time: '5 pm to 12 am' },
+  { label: 'Aerobics class, coed', time: 'Mon to Fri, 5 pm to 6 pm' },
   { label: 'MMA class', time: 'Tue, Thu, Sat, 9 pm to 10:30 pm' },
+  { label: 'Saturday', time: 'Open floor, front desk on site' },
   { label: 'Sunday', time: 'Closed' },
 ];
 
@@ -72,6 +82,7 @@ export const pricing: { group: string; items: Price[] }[] = [
     items: [
       { name: 'Personal training', monthly: 20000, quarterly: 51000, save: 'Save 15%', note: 'One to one, with your own coach' },
       { name: 'Group training', monthly: 12000, quarterly: 31000, save: 'Save 14%', note: 'Small coached groups on the strength floor' },
+      { name: 'Aerobics and Zumba classes', monthly: 5000, note: 'Women only, 1 to 5 pm, plus a coed class 5 to 6 pm, Monday to Friday' },
     ],
   },
   {
@@ -109,25 +120,26 @@ export const coaches: Coach[] = [
     role: 'Floor manager and coach',
     bio: 'Runs the floor in the evenings and coaches small groups and personal training clients.',
     photo: 'e248315a-02bc-42c2-8b1d-f9e67eda06e0.png',
-    hours: '7 pm to 11:30 pm',
+    hours: 'Mon to Fri, 7 pm to 11:30 pm',
   },
   {
     name: 'Rafi Khan',
     role: 'Strength coach',
     bio: 'Coaches the evening groups, from first time lifters to people chasing a stronger total.',
-    hours: '5 pm to 10 pm',
+    hours: 'Mon to Fri, 5 pm to 10 pm',
   },
   {
     name: 'Muhammad Faisal',
     role: 'Strength and mobility coach',
     bio: 'Owns the mornings. Strength, mobility and personal training before your work day starts.',
     photo: 'bc68b55b-cee8-48d8-b7b6-abe91b36b81d.png',
-    hours: '7 am to 11 am',
+    hours: 'Mon to Fri, 7 am to 11 am',
   },
   {
     name: 'Samina Faisal',
     role: "Women's coach",
-    bio: 'Leads the women only hours: aerobics, Zumba, group training and personal training.',
+    bio: 'Leads the women only afternoons and a coed aerobics class from 5 to 6 pm: aerobics, Zumba, group training and personal training.',
+    hours: 'Mon to Fri, 1 pm to 6 pm',
     hours: '1 pm to 5 pm',
   },
   {
@@ -196,7 +208,7 @@ export const studioPhotos = {
 export const faqs = [
   {
     q: 'Where is Hanma in Gulistan e Johar?',
-    a: 'On Manzoor Street, Gulistan e Johar, Karachi. Open Monday to Saturday from 7 am. Tap Get Directions on this page for the map.',
+    a: 'On Manzoor Street, Gulistan e Johar, Karachi. Coached Monday to Friday, open floor on Saturday, closed Sunday. Tap Get Directions on this page for the map.',
   },
   {
     q: 'Is the first session really free?',
@@ -204,7 +216,7 @@ export const faqs = [
   },
   {
     q: 'Do you have women only hours?',
-    a: 'Yes. Monday to Saturday, 1 pm to 5 pm, the whole studio is women only and coached by Samina.',
+    a: 'Yes. Every afternoon from 1 pm to 5 pm the whole studio is women only. Monday to Friday Samina coaches; Saturday is an open floor.',
   },
   {
     q: 'How much is membership?',
@@ -259,7 +271,7 @@ export const programmes: Programme[] = [
     slug: 'group-classes',
     name: 'Group training',
     short: 'Small coached groups, so you still get corrected.',
-    when: 'Mornings and evenings, Monday to Saturday',
+    when: 'Mornings and evenings, Monday to Friday',
     who: 'For people who want coaching and energy without the PT price',
     from: '12,000 a month',
     tone: 'coed',
@@ -270,14 +282,14 @@ export const programmes: Programme[] = [
       'Groups are kept small, so your coach can still watch your form and push your numbers.',
       'Sessions mix strength work with conditioning. You leave knowing exactly what you lifted and what comes next.',
     ],
-    includes: ['Coached strength and conditioning', 'Morning and evening groups', 'Progress tracked session to session', 'Quarterly plan at 31,000, no admission fee'],
+    includes: ['Coached strength and conditioning', 'Morning and evening groups, Monday to Friday', 'Progress tracked session to session', 'Quarterly plan at 31,000, no admission fee'],
     photo: 'f16e9ac7-6467-41d4-b94a-092b08e764d6.png',
   },
   {
     slug: 'women-only',
     name: 'Women only sessions',
     short: 'The whole studio, women only, every afternoon.',
-    when: 'Monday to Saturday, 1 pm to 5 pm, with Samina',
+    when: 'Every afternoon, 1 pm to 5 pm. Coached by Samina Monday to Friday',
     who: 'Aerobics, Zumba, strength and personal training for women',
     from: '5,000 a month',
     tone: 'women',
@@ -285,10 +297,10 @@ export const programmes: Programme[] = [
     title: 'Ladies Gym in Gulistan e Johar, Women Only Hours | Hanma Fitness Studio',
     description: 'Ladies gym in Gulistan e Johar, Karachi. Women only hours every afternoon, 1 to 5 pm, with a female coach: aerobics, Zumba, strength and personal training.',
     intro: [
-      'From 1 pm to 5 pm the whole studio is women only, with Samina coaching on the floor.',
-      'Join the aerobics and Zumba classes, lift in a coached group, or book personal training with Samina.',
+      'From 1 pm to 5 pm the whole studio is women only. Monday to Friday, Samina coaches on the floor; on Saturday the studio stays women only as an open floor.',
+      'Join the aerobics and Zumba classes, lift in a coached group, or book personal training with Samina. Prefer evenings? Samina also runs a coed aerobics class from 5 to 6 pm.',
     ],
-    includes: ['Female coach on the floor', 'Aerobics and Zumba classes', 'Strength training and personal training', 'Monday to Saturday, 1 to 5 pm'],
+    includes: ['Aerobics and Zumba classes, 5,000 a month', 'Personal training with Samina, priced by plan, ask us', 'Female coach on the floor, Monday to Friday', 'Coed aerobics class, 5 to 6 pm, Monday to Friday'],
   },
   {
     slug: 'mma',
