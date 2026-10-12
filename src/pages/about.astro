@@ -22,7 +22,7 @@ const team = coaches.slice(1);
           <p>Show up, do the work, and we will handle the rest.</p>
         </div>
         <p class="mt-6 font-[family-name:var(--font-hand)] text-[2.1rem] text-[#1a1a1a]">Fawad Haris</p>
-        <p class="text-sm italic text-stone">Founder, Head Coach and Clinical Dietitian</p>
+        <p class="text-sm italic text-stone">Founder and Head Coach · BS Human Nutrition and Dietetics</p>
       </div>
     </div>
   </section>
@@ -35,7 +35,7 @@ const team = coaches.slice(1);
             ? <img src={img(c.photo)} alt={c.name} loading="lazy" class="aspect-[4/5] w-full rounded-[2px] object-cover" />
             : <div class="flex aspect-[4/5] w-full items-end rounded-[2px] border border-line bg-raised p-6"><span class="text-8xl italic text-gold" aria-hidden="true">{c.name.split(' ').map((w) => w[0]).slice(0, 2).join('')}</span></div>}
           <h2 class="mt-5 text-4xl">{c.name}</h2>
-          <p class="mt-1 italic text-muted">{c.role}</p>{c.hours && <p class="mt-2 cond text-[0.85rem] font-semibold uppercase tracking-[0.14em] text-gold">{c.hours}</p>}
+          <p class="mt-1 text-muted">{c.role}</p>{c.cert && <p class="mt-1 text-cream">{c.cert}</p>}{c.hours && <p class="mt-2 cond text-[0.85rem] font-semibold uppercase tracking-[0.14em] text-gold">{c.hours}</p>}
           <p class="mt-2 text-muted">{c.bio}</p>
         </article>
       ))}

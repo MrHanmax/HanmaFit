@@ -2,7 +2,7 @@
 // Edit here, rebuild, and every page updates.
 
 // Photos are stored as optimised WebP in /public/img.
-export const img = (file: string) => `/img/${file.replace(/\.(png|jpe?g)$/i, '.webp')}`;
+export const img = (file: string) => (file.startsWith('/') ? file : `/img/${file.replace(/\.(png|jpe?g)$/i, '.webp')}`);
 
 export const business = {
   name: 'Hanma Fitness Studio',
@@ -106,18 +106,20 @@ export const pricing: { group: string; items: Price[] }[] = [
 
 export const admission = { fee: 5000, note: 'One time, on monthly plans. Waived on every quarterly plan.' };
 
-export type Coach = { name: string; role: string; bio: string; photo?: string; hours?: string };
+export type Coach = { name: string; role: string; bio: string; photo?: string; hours?: string; cert?: string };
 
 export const coaches: Coach[] = [
   {
     name: 'Fawad Haris',
     role: 'Founder and head coach',
-    bio: 'BS in Human Nutrition and Dietetics, with years in strength training and martial arts. Builds the programmes every coach at Hanma runs.',
+    cert: 'BS Human Nutrition and Dietetics',
+    bio: 'A nutrition graduate with years in strength training and martial arts. Builds the programmes every coach at Hanma runs.',
     photo: '4ba7985a-6e75-43b5-9130-a3388a13c377.png',
   },
   {
     name: 'Khubaib',
     role: 'Floor manager and coach',
+    cert: 'Level 2 certified coach',
     bio: 'Runs the floor in the evenings and coaches small groups and personal training clients.',
     photo: 'e248315a-02bc-42c2-8b1d-f9e67eda06e0.png',
     hours: 'Mon to Fri, 7 pm to 11:30 pm',
@@ -125,12 +127,14 @@ export const coaches: Coach[] = [
   {
     name: 'Rafi Khan',
     role: 'Strength coach',
+    cert: 'Level 2 certified coach',
     bio: 'Coaches the evening groups, from first time lifters to people chasing a stronger total.',
     hours: 'Mon to Fri, 5 pm to 10 pm',
   },
   {
     name: 'Muhammad Faisal',
     role: 'Strength and mobility coach',
+    cert: 'Level 2 certified coach',
     bio: 'Owns the mornings. Strength, mobility and personal training before your work day starts.',
     photo: 'bc68b55b-cee8-48d8-b7b6-abe91b36b81d.png',
     hours: 'Mon to Fri, 7 am to 11 am',
@@ -138,6 +142,7 @@ export const coaches: Coach[] = [
   {
     name: 'Samina Faisal',
     role: "Women's coach",
+    cert: 'Level 2 certified coach',
     bio: 'Leads the women only afternoons and a coed aerobics class from 5 to 6 pm: aerobics, Zumba, group training and personal training.',
     hours: 'Mon to Fri, 1 pm to 6 pm',
     hours: '1 pm to 5 pm',
@@ -145,6 +150,7 @@ export const coaches: Coach[] = [
   {
     name: 'Owais',
     role: 'MMA coach',
+    cert: 'Level 2 certified coach',
     bio: 'Striking, grappling and conditioning for beginners and people who want to compete.',
     hours: 'Tue, Thu, Sat, 9 pm',
   },
@@ -265,7 +271,7 @@ export const programmes: Programme[] = [
       'Mornings run quieter, so if you want the floor to yourself, train with Faisal between 7 and 11 am.',
     ],
     includes: ['Assessment in your first session', 'A written programme that changes as you do', 'Nutrition guidance from a team led by a qualified nutritionist', 'Quarterly plan at 51,000, no admission fee'],
-    photo: 'c56beac8-6065-461b-828e-130225df7620.png',
+    photo: '/img/studio-rack.webp',
   },
   {
     slug: 'group-classes',
@@ -300,6 +306,7 @@ export const programmes: Programme[] = [
       'From 1 pm to 5 pm the whole studio is women only. Monday to Friday, Samina coaches on the floor; on Saturday the studio stays women only as an open floor.',
       'Join the aerobics and Zumba classes, lift in a coached group, or book personal training with Samina. Prefer evenings? Samina also runs a coed aerobics class from 5 to 6 pm.',
     ],
+    photo: '/img/studio-class-room.webp',
     includes: ['Aerobics and Zumba classes, 5,000 a month', 'Personal training with Samina, priced by plan, ask us', 'Female coach on the floor, Monday to Friday', 'Coed aerobics class, 5 to 6 pm, Monday to Friday'],
   },
   {
@@ -317,6 +324,7 @@ export const programmes: Programme[] = [
       'Three classes a week in our dedicated class room, separate from the weights floor.',
       'Every class covers technique, drilling and conditioning. Beginners start with the basics and progress at their own pace.',
     ],
+    photo: '/img/studio-class-room.webp',
     includes: ['Tuesday, Thursday and Saturday, 9 pm', 'Striking and grappling fundamentals', 'Conditioning in every class', 'Separate class room'],
   },
   {
@@ -334,6 +342,18 @@ export const programmes: Programme[] = [
       'Dr Ismail assesses injuries and builds your rehab, then hands you over to a coach who trains around it.',
       'Our nutrition team writes diet plans for weight loss, muscle gain and medical conditions, with follow ups to keep you on track.',
     ],
+    photo: '/img/studio-physio-room.webp',
     includes: ['Health programme: assessment, diet plan and 4 follow ups, 15,000', 'Clinical diet plan, 7,500', 'Nutrition consultation, 3,000 a session', 'Physiotherapy by appointment'],
   },
+];
+
+// Real photos of the studio, used in the tour gallery and programme pages
+export const tour = [
+  { src: '/img/studio-rack.webp', alt: 'Squat rack and Olympic plates on the Hanma strength floor', label: 'Strength floor' },
+  { src: '/img/studio-strength-blue.webp', alt: 'Benches and racks on the Hanma strength floor in Gulistan e Johar', label: 'Strength floor' },
+  { src: '/img/studio-machines.webp', alt: 'Cable machines at Hanma Fitness Studio', label: 'Machines' },
+  { src: '/img/studio-class-room.webp', alt: 'The Hanma class room used for MMA and aerobics', label: 'Class room' },
+  { src: '/img/studio-physio-room.webp', alt: 'The physiotherapy room at Hanma Fitness Studio', label: 'Physio room' },
+  { src: '/img/studio-consult-room.webp', alt: 'The nutrition consultation room at Hanma', label: 'Consultation room' },
+  { src: '/img/studio-floor.webp', alt: 'Open training floor at Hanma Fitness Studio', label: 'Training floor' },
 ];

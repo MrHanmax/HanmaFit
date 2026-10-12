@@ -16,6 +16,7 @@ export default function CoachStrip() {
           <div className="min-w-0">
             <p className="text-lg font-semibold leading-tight">{c.name}</p>
             <p className="text-sm leading-tight text-muted">{c.role}</p>
+            {c.cert && <p className="mt-0.5 text-xs leading-tight text-cream/80">{c.cert}</p>}
             {c.hours && <p className="mt-1.5 cond text-[0.85rem] font-semibold uppercase tracking-[0.14em] text-gold">{c.hours}</p>}
           </div>
         </div>
