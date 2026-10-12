@@ -145,7 +145,6 @@ export const coaches: Coach[] = [
     cert: 'Level 2 certified coach',
     bio: 'Leads the women only afternoons and a coed aerobics class from 5 to 6 pm: aerobics, Zumba, group training and personal training.',
     hours: 'Mon to Fri, 1 pm to 6 pm',
-    hours: '1 pm to 5 pm',
   },
   {
     name: 'Owais',

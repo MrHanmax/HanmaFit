@@ -5,7 +5,7 @@ import { getSource } from './source';
 const GOALS = ['Lose fat', 'Get stronger', 'Women only sessions', 'Learn MMA', 'Train around an injury', 'Not sure yet'];
 const TIMES = [
   { id: 'Morning', label: 'Morning', hint: '7 am to 11 am' },
-  { id: 'Afternoon, women only', label: 'Afternoon', hint: 'Women only, 1 to 5 pm' },
+  { id: 'Afternoon, women only', label: 'Afternoon', hint: 'Women only, Mon to Fri, 1 to 5 pm' },
   { id: 'Evening', label: 'Evening', hint: '5 pm to 12 am' },
 ];
 
