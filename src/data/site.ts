@@ -54,8 +54,10 @@ const SAT = [6];
 export const schedule: Block[] = [
   { id: 'morning', label: 'Morning coaching', start: 7, end: 11, coach: 'Faisal', kind: 'coed', days: MON_FRI, track: 'floor' },
   { id: 'women', label: 'Women only', start: 13, end: 17, coach: 'Samina', kind: 'women', days: MON_FRI, track: 'floor' },
-  { id: 'early-evening', label: 'Evening coaching', start: 17, end: 19, coach: 'Rafi', kind: 'coed', days: MON_FRI, track: 'floor' },
-  { id: 'peak', label: 'Evening coaching', start: 19, end: 22, coach: 'Rafi and Khubaib', kind: 'coed', days: MON_FRI, track: 'floor' },
+  { id: 'early-evening', label: 'Evening coaching', start: 17, end: 18, coach: 'Rafi', kind: 'coed', days: MON_FRI, track: 'floor' },
+  { id: 'evening-urooj', label: 'Evening coaching, female coach on the floor', start: 18, end: 19, coach: 'Rafi and Urooj', kind: 'coed', days: MON_FRI, track: 'floor' },
+  { id: 'peak-urooj', label: 'Evening coaching, female coach on the floor', start: 19, end: 20, coach: 'Rafi, Khubaib and Urooj', kind: 'coed', days: MON_FRI, track: 'floor' },
+  { id: 'peak', label: 'Evening coaching', start: 20, end: 22, coach: 'Rafi and Khubaib', kind: 'coed', days: MON_FRI, track: 'floor' },
   { id: 'late', label: 'Late evening', start: 22, end: 23.5, coach: 'Khubaib', kind: 'coed', days: MON_FRI, track: 'floor' },
   { id: 'open-late', label: 'Open floor', start: 23.5, end: 24, coach: 'Open floor', kind: 'coed', days: MON_FRI, track: 'floor' },
   { id: 'samina-class', label: 'Aerobics class, coed', start: 17, end: 18, coach: 'Samina', kind: 'class', days: MON_FRI, track: 'room' },
@@ -150,6 +152,12 @@ export const coaches: Coach[] = [
     hours: 'Mon to Fri, 1 pm to 6 pm',
   },
   {
+    name: 'Urooj Shehyr',
+    role: 'Female coach, evenings',
+    bio: 'Coaches on the floor from 6 to 8 pm, so women who train after work or college can have a female coach in the evening too.',
+    hours: 'Mon to Fri, 6 pm to 8 pm',
+  },
+  {
     name: 'Owais',
     role: 'MMA coach',
     cert: 'Level 2 certified coach',
@@ -225,7 +233,7 @@ export const faqs = [
   },
   {
     q: 'Do you have women only hours?',
-    a: 'Yes. Monday to Friday, 1 pm to 5 pm, the whole studio is women only and coached by Samina.',
+    a: 'Yes. Monday to Friday, 1 pm to 5 pm, the whole studio is women only and coached by Samina. In the evening, Urooj, a female coach, is on the floor from 6 to 8 pm.',
   },
   {
     q: 'How much is membership?',
@@ -308,10 +316,10 @@ export const programmes: Programme[] = [
     description: 'Ladies gym in Gulistan e Johar, Karachi. Women only hours Monday to Friday, 1 to 5 pm, with a female coach: aerobics, Zumba and strength.',
     intro: [
       'Monday to Friday, from 1 pm to 5 pm, the whole studio is women only, with Samina coaching on the floor.',
-      'Join the aerobics and Zumba classes, lift in a coached group, or book personal training with Samina. Prefer evenings? Samina also runs a coed aerobics class from 5 to 6 pm.',
+      'Join the aerobics and Zumba classes, lift in a coached group, or book personal training with Samina. Prefer evenings? Samina also runs a coed aerobics class from 5 to 6 pm, and Urooj, a female coach, is on the main floor from 6 to 8 pm.',
     ],
     photo: '/img/studio-strength-blue.webp',
-    includes: ['Aerobics and Zumba classes, 5,000 a month', 'Personal training with Samina, priced by plan, ask us', 'Female coach on the floor, Monday to Friday', 'Coed aerobics class, 5 to 6 pm, Monday to Friday'],
+    includes: ['Aerobics and Zumba classes, 5,000 a month', 'Personal training with Samina, priced by plan, ask us', 'Female coach on the floor, Monday to Friday', 'Coed aerobics class, 5 to 6 pm, Monday to Friday', 'Evening female coach, Urooj, 6 to 8 pm, Monday to Friday'],
   },
   {
     slug: 'mma',

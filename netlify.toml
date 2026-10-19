@@ -37,3 +37,119 @@
   for = "/video/*"
   [headers.values]
     Cache-Control = "public, max-age=2592000"
+
+# Old Lovable image links (Google Images, old shares) point to the same photos on the new site
+[[redirects]]
+  from = "/lovable-uploads/0b9d827d-58b6-480b-9446-a293c0a0ede8.png"
+  to = "/img/0b9d827d-58b6-480b-9446-a293c0a0ede8.webp"
+  status = 301
+
+[[redirects]]
+  from = "/lovable-uploads/2558d1af-4246-4dcd-93b1-2bce3d9b329e.png"
+  to = "/img/2558d1af-4246-4dcd-93b1-2bce3d9b329e.webp"
+  status = 301
+
+[[redirects]]
+  from = "/lovable-uploads/30195ff3-3802-42b3-9c55-305ac22229c7.png"
+  to = "/img/30195ff3-3802-42b3-9c55-305ac22229c7.webp"
+  status = 301
+
+[[redirects]]
+  from = "/lovable-uploads/34b61ba3-95a4-4afb-98c8-4e894b6eefb8.png"
+  to = "/img/34b61ba3-95a4-4afb-98c8-4e894b6eefb8.webp"
+  status = 301
+
+[[redirects]]
+  from = "/lovable-uploads/3a57c69b-7d60-4538-b733-d9a176c1799a.png"
+  to = "/img/3a57c69b-7d60-4538-b733-d9a176c1799a.webp"
+  status = 301
+
+[[redirects]]
+  from = "/lovable-uploads/4ba7985a-6e75-43b5-9130-a3388a13c377.png"
+  to = "/img/4ba7985a-6e75-43b5-9130-a3388a13c377.webp"
+  status = 301
+
+[[redirects]]
+  from = "/lovable-uploads/5088eec2-c2e9-457f-8642-18e774e2f7fe.png"
+  to = "/img/5088eec2-c2e9-457f-8642-18e774e2f7fe.webp"
+  status = 301
+
+[[redirects]]
+  from = "/lovable-uploads/64c99da4-ad67-4994-a200-7e27a73b561f.png"
+  to = "/img/64c99da4-ad67-4994-a200-7e27a73b561f.webp"
+  status = 301
+
+[[redirects]]
+  from = "/lovable-uploads/7a8bb304-207c-4117-8cde-719b55808c38.png"
+  to = "/img/7a8bb304-207c-4117-8cde-719b55808c38.webp"
+  status = 301
+
+[[redirects]]
+  from = "/lovable-uploads/87eadf23-cf91-47c0-8971-55f53a612c23.png"
+  to = "/img/87eadf23-cf91-47c0-8971-55f53a612c23.webp"
+  status = 301
+
+[[redirects]]
+  from = "/lovable-uploads/8d0f22df-b10f-4479-91d6-28957c2df79a.png"
+  to = "/img/8d0f22df-b10f-4479-91d6-28957c2df79a.webp"
+  status = 301
+
+[[redirects]]
+  from = "/lovable-uploads/8d45d11a-9f49-4a31-ac63-e9ef20bf45b5.png"
+  to = "/img/8d45d11a-9f49-4a31-ac63-e9ef20bf45b5.webp"
+  status = 301
+
+[[redirects]]
+  from = "/lovable-uploads/ad88e6d4-b69d-47c1-bbb6-f1b989138a60.png"
+  to = "/img/ad88e6d4-b69d-47c1-bbb6-f1b989138a60.webp"
+  status = 301
+
+[[redirects]]
+  from = "/lovable-uploads/b2442b84-2fcd-4547-9d6d-16ca54c60769.png"
+  to = "/img/b2442b84-2fcd-4547-9d6d-16ca54c60769.webp"
+  status = 301
+
+[[redirects]]
+  from = "/lovable-uploads/bc68b55b-cee8-48d8-b7b6-abe91b36b81d.png"
+  to = "/img/bc68b55b-cee8-48d8-b7b6-abe91b36b81d.webp"
+  status = 301
+
+[[redirects]]
+  from = "/lovable-uploads/c56beac8-6065-461b-828e-130225df7620.png"
+  to = "/img/c56beac8-6065-461b-828e-130225df7620.webp"
+  status = 301
+
+[[redirects]]
+  from = "/lovable-uploads/c7b05135-abb8-4ee7-ab96-a59d88bb52a8.png"
+  to = "/img/c7b05135-abb8-4ee7-ab96-a59d88bb52a8.webp"
+  status = 301
+
+[[redirects]]
+  from = "/lovable-uploads/e248315a-02bc-42c2-8b1d-f9e67eda06e0.png"
+  to = "/img/e248315a-02bc-42c2-8b1d-f9e67eda06e0.webp"
+  status = 301
+
+[[redirects]]
+  from = "/lovable-uploads/ef29c821-576e-4513-9f64-9be2e8fe7b3b.png"
+  to = "/img/ef29c821-576e-4513-9f64-9be2e8fe7b3b.webp"
+  status = 301
+
+[[redirects]]
+  from = "/lovable-uploads/f16e9ac7-6467-41d4-b94a-092b08e764d6.png"
+  to = "/img/f16e9ac7-6467-41d4-b94a-092b08e764d6.webp"
+  status = 301
+
+[[redirects]]
+  from = "/lovable-uploads/f4f9190c-fea4-4cd9-b698-415c289217aa.png"
+  to = "/img/f4f9190c-fea4-4cd9-b698-415c289217aa.webp"
+  status = 301
+
+[[redirects]]
+  from = "/lovable-uploads/fce7f228-5957-4f0e-b8ea-546941f34341.png"
+  to = "/img/fce7f228-5957-4f0e-b8ea-546941f34341.webp"
+  status = 301
+
+[[headers]]
+  for = "/.well-known/traffic-advice"
+  [headers.values]
+    Content-Type = "application/trafficadvice+json"

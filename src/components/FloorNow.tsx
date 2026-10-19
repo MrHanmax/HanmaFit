@@ -40,12 +40,21 @@ function statusFor(day: number, hour: number): Status {
   if (now) {
     const coached = now.coach !== 'Open floor';
     const what = now.kind === 'women' ? 'Women only' : coached ? 'Coaches on the floor' : 'Open floor';
-    const who = coached ? now.coach : 'Front desk on site';
+    // Name each coach on the floor with the time they finish, e.g. "Rafi until 10 pm, Urooj until 8 pm."
+    const names = coached ? now.coach.split(/, | and /) : [];
+    const until = (n: string) => {
+      let end = now.end;
+      for (const b of floor.filter((x) => x.start >= now.end).sort((a, c) => a.start - c.start)) {
+        if (b.start === end && b.coach.split(/, | and /).includes(n)) end = b.end; else if (b.start >= end) break;
+      }
+      return end;
+    };
+    const who = coached ? names.map((n) => `${n} until ${fmt(until(n))}`).join(', ') : 'Front desk on site';
     return {
       open: true,
       women: now.kind === 'women',
       headline: `Open now. ${what}.`,
-      detail: `${who} until ${fmt(now.end)}.${cls ? ` ${cls.label} with ${cls.coach} in the class room.` : ''}`,
+      detail: `${coached ? who : `${who} until ${fmt(now.end)}`}.${cls ? ` ${cls.label} with ${cls.coach} in the class room.` : ''}`,
     };
   }
   const next = floor.find((b) => b.start > hour);
@@ -140,6 +149,7 @@ export default function FloorNow() {
               { key: 'm', kind: 'coed', time: '7 to 11 am', who: 'Faisal' },
               { key: 'w', kind: 'women', time: '1 to 5 pm', who: 'Women only, Samina' },
               { key: 'e', kind: 'coed', time: '5 to 10 pm', who: 'Rafi' },
+              { key: 'u', kind: 'coed', time: '6 to 8 pm', who: 'Urooj, female coach' },
               { key: 'k', kind: 'coed', time: '7 to 11:30 pm', who: 'Khubaib' },
               { key: 'c', kind: 'room', time: '5 to 6 pm', who: 'Aerobics class, coed, Samina' },
             ]
