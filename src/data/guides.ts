@@ -81,7 +81,7 @@ export const guides: Guide[] = [
         h: 'A female coach on the floor',
         p: [
           'A coach who corrects your form and builds your plan makes a bigger difference than any machine. Ask who coaches during women only hours and whether she is there every day.',
-          'Samina coaches the women only afternoons at Hanma and also runs a coed aerobics class from 5 to 6 pm. If you can only train after work or college, Urooj is on the floor as a female coach from 6 to 8 pm, Monday to Friday.',
+          'Samina coaches the women only afternoons at Hanma and also runs a women only aerobics class from 5 to 6 pm in the separate class room. If you can only train after work or college, Urooj is on the floor as a female coach from 6 to 8 pm, Monday to Friday.',
         ],
       },
       {
@@ -94,7 +94,7 @@ export const guides: Guide[] = [
         h: 'Training around health conditions',
         p: [
           'Thyroid issues, PCOS, back pain and post pregnancy recovery are common reasons women start training. Tell the gym upfront and ask how they adapt your plan.',
-          'Hanma has an in house physiotherapist, Dr Ismail (DPT), and nutrition guidance from a team led by a nutrition graduate, so your coach is not guessing.',
+          'Hanma has an in house physiotherapist, Dr Ismail (DPT), and a consultant dietitian, Arooba Nawaz, for diet plans, so your coach is not guessing.',
         ],
       },
       {
@@ -104,7 +104,7 @@ export const guides: Guide[] = [
         ],
       },
     ],
-    related: [{ href: '/services/women-only', label: 'Women only sessions at Hanma' }, { href: '/about', label: 'Meet the coaches' }],
+    related: [{ href: '/services/women-only', label: 'Women only sessions, and Urooj on why women should lift' }, { href: '/about', label: 'Meet the coaches' }],
   },
   {
     slug: 'personal-trainer-karachi-first-month',
@@ -147,7 +147,7 @@ export const guides: Guide[] = [
       {
         h: 'Personal training at Hanma',
         p: [
-          'Personal training at Hanma in Gulistan e Johar is 20,000 a month, or 51,000 a quarter with no admission fee. Mornings are with Faisal, evenings with Khubaib or Rafi, and programmes are written under founder Fawad Haris, a nutrition graduate.',
+          'Personal training at Hanma in Gulistan e Johar is 20,000 a month, or 51,000 a quarter with no admission fee. Mornings are with Faisal, evenings with Khubaib or Rafi, or with founder Fawad Haris by appointment. Diet plans are available with our consultant dietitian, Arooba Nawaz.',
           'Your first session is free, so you can judge the coaching before you pay.',
         ],
       },

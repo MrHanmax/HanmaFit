@@ -60,7 +60,7 @@ export const schedule: Block[] = [
   { id: 'peak', label: 'Evening coaching', start: 20, end: 22, coach: 'Rafi and Khubaib', kind: 'coed', days: MON_FRI, track: 'floor' },
   { id: 'late', label: 'Late evening', start: 22, end: 23.5, coach: 'Khubaib', kind: 'coed', days: MON_FRI, track: 'floor' },
   { id: 'open-late', label: 'Open floor', start: 23.5, end: 24, coach: 'Open floor', kind: 'coed', days: MON_FRI, track: 'floor' },
-  { id: 'samina-class', label: 'Aerobics class, coed', start: 17, end: 18, coach: 'Samina', kind: 'class', days: MON_FRI, track: 'room' },
+  { id: 'samina-class', label: 'Aerobics class, women only', start: 17, end: 18, coach: 'Samina', kind: 'class', days: MON_FRI, track: 'room' },
   { id: 'mma', label: 'MMA class', start: 21, end: 22.5, coach: 'Owais', kind: 'mma', days: [2, 4, 6], track: 'room' },
   // Saturday: open floor, front desk on site
   { id: 'sat-morning', label: 'Open floor', start: 7, end: 11, coach: 'Open floor', kind: 'coed', days: SAT, track: 'floor' },
@@ -72,7 +72,7 @@ export const hoursSummary = [
   { label: 'Morning, coed', time: '7 am to 11 am' },
   { label: 'Women only', time: 'Mon to Fri, 1 pm to 5 pm' },
   { label: 'Evening, coed', time: '5 pm to 12 am' },
-  { label: 'Aerobics class, coed', time: 'Mon to Fri, 5 pm to 6 pm' },
+  { label: 'Aerobics class, women only', time: 'Mon to Fri, 5 pm to 6 pm' },
   { label: 'MMA class', time: 'Tue, Thu, Sat, 9 pm to 10:30 pm' },
   { label: 'Front desk', time: 'Until 10:30 pm' },
   { label: 'Saturday', time: 'Open floor, front desk on site' },
@@ -87,7 +87,7 @@ export const pricing: { group: string; items: Price[] }[] = [
     items: [
       { name: 'Personal training', monthly: 20000, quarterly: 51000, save: 'Save 15%', note: 'One to one, with your own coach' },
       { name: 'Group training', monthly: 12000, quarterly: 31000, save: 'Save 14%', note: 'Small coached groups on the strength floor' },
-      { name: 'Aerobics and Zumba classes', monthly: 5000, note: 'Women only, 1 to 5 pm, plus a coed class 5 to 6 pm, Monday to Friday' },
+      { name: 'Aerobics and Zumba classes', monthly: 5000, note: 'Women only, 1 to 5 pm, plus a women only class 5 to 6 pm in the separate class room, Monday to Friday' },
     ],
   },
   {
@@ -118,8 +118,9 @@ export const coaches: Coach[] = [
     name: 'Fawad Haris',
     role: 'Founder and head coach',
     cert: 'BS Human Nutrition and Dietetics',
-    bio: 'A nutrition graduate with years in strength training and martial arts. Builds the programmes every coach at Hanma runs.',
+    bio: 'A nutrition graduate with years in strength training and martial arts. Coaches by appointment and leads the coaching team.',
     photo: '4ba7985a-6e75-43b5-9130-a3388a13c377.png',
+    hours: 'Coaching by appointment',
   },
   {
     name: 'Khubaib',
@@ -148,19 +149,20 @@ export const coaches: Coach[] = [
     name: 'Samina Faisal',
     role: "Women's coach",
     cert: 'Level 2 certified coach',
-    bio: 'Leads the women only afternoons and a coed aerobics class from 5 to 6 pm: aerobics, Zumba, group training and personal training.',
+    bio: 'Leads the women only afternoons and a women only aerobics class from 5 to 6 pm in the separate class room: aerobics, Zumba, group training and personal training.',
     hours: 'Mon to Fri, 1 pm to 6 pm',
   },
   {
     name: 'Urooj Shehyr',
     role: 'Female coach, evenings',
+    cert: 'Level 2 certified coach',
+    photo: '/img/urooj-shehyr.webp',
     bio: 'Coaches on the floor from 6 to 8 pm, so women who train after work or college can have a female coach in the evening too.',
     hours: 'Mon to Fri, 6 pm to 8 pm',
   },
   {
     name: 'Owais',
     role: 'MMA coach',
-    cert: 'Level 2 certified coach',
     bio: 'Striking, grappling and conditioning for beginners and people who want to compete.',
     hours: 'Tue, Thu, Sat, 9 pm',
   },
@@ -170,6 +172,12 @@ export const coaches: Coach[] = [
     cert: 'DPT, Doctor of Physical Therapy',
     bio: 'Assessments, injury rehab and return to training, so you can keep coming in while you recover.',
     photo: 'ad88e6d4-b69d-47c1-bbb6-f1b989138a60.png',
+    hours: 'By appointment',
+  },
+  {
+    name: 'Arooba Nawaz',
+    role: 'Consultant dietitian',
+    bio: 'Writes Hanma Health diet plans and runs nutrition consultations, from weight loss to plans for medical conditions.',
     hours: 'By appointment',
   },
 ];
@@ -233,7 +241,7 @@ export const faqs = [
   },
   {
     q: 'Do you have women only hours?',
-    a: 'Yes. Monday to Friday, 1 pm to 5 pm, the whole studio is women only and coached by Samina. In the evening, Urooj, a female coach, is on the floor from 6 to 8 pm.',
+    a: 'Yes. Monday to Friday, 1 pm to 5 pm, the whole studio is women only and coached by Samina. From 5 to 6 pm, Samina runs a women only class in the separate class room, and from 6 to 8 pm Urooj, a female coach, is on the main floor.',
   },
   {
     q: 'How much is membership?',
@@ -271,7 +279,7 @@ export const programmes: Programme[] = [
     slug: 'personal-training',
     name: 'Personal training',
     short: 'One coach, one plan, built around you.',
-    when: 'Mornings with Faisal, evenings with Khubaib or Rafi',
+    when: 'Mornings with Faisal, evenings with Khubaib or Rafi, or with founder Fawad by appointment',
     who: 'For fat loss, strength, sport or a body that has been ignored for a while',
     from: '20,000 a month',
     tone: 'coed',
@@ -282,7 +290,7 @@ export const programmes: Programme[] = [
       'You train with the same coach every session. They write your programme, correct your form rep by rep, and adjust the plan as you progress.',
       'Mornings run quieter, so if you want the floor to yourself, train with Faisal between 7 and 11 am.',
     ],
-    includes: ['Assessment in your first session', 'A written programme that changes as you do', 'Nutrition guidance from a team led by a qualified nutritionist', 'Quarterly plan at 51,000, no admission fee'],
+    includes: ['Assessment in your first session', 'A written programme that changes as you do', 'Diet plans available with our consultant dietitian, Arooba Nawaz', 'Quarterly plan at 51,000, no admission fee'],
     photo: '/img/studio-rack.webp',
   },
   {
@@ -316,10 +324,11 @@ export const programmes: Programme[] = [
     description: 'Ladies gym in Gulistan e Johar, Karachi. Women only hours Monday to Friday, 1 to 5 pm, with a female coach: aerobics, Zumba and strength.',
     intro: [
       'Monday to Friday, from 1 pm to 5 pm, the whole studio is women only, with Samina coaching on the floor.',
-      'Join the aerobics and Zumba classes, lift in a coached group, or book personal training with Samina. Prefer evenings? Samina also runs a coed aerobics class from 5 to 6 pm, and Urooj, a female coach, is on the main floor from 6 to 8 pm.',
+      'Join the aerobics and Zumba classes, lift in a coached group, or book personal training with Samina. Prefer evenings? Samina runs a women only aerobics class from 5 to 6 pm in the separate class room, and Urooj, a female coach, is on the main floor from 6 to 8 pm.',
     ],
+    video: { src: '/video/women-class.mp4', poster: '/img/women-class.webp', label: 'Women only class with Samina, 5 to 6 pm, in the separate class room' },
     photo: '/img/studio-strength-blue.webp',
-    includes: ['Aerobics and Zumba classes, 5,000 a month', 'Personal training with Samina, priced by plan, ask us', 'Female coach on the floor, Monday to Friday', 'Coed aerobics class, 5 to 6 pm, Monday to Friday', 'Evening female coach, Urooj, 6 to 8 pm, Monday to Friday'],
+    includes: ['Aerobics and Zumba classes, 5,000 a month', 'Personal training with Samina, priced by plan, ask us', 'Female coach on the floor, Monday to Friday', 'Women only aerobics class, 5 to 6 pm, in a separate class room', 'Evening female coach, Urooj, 6 to 8 pm, Monday to Friday'],
   },
   {
     slug: 'mma',
@@ -352,7 +361,7 @@ export const programmes: Programme[] = [
     description: 'Physiotherapy, clinical diet plans and nutrition consultations at Hanma Fitness Studio, Gulistan e Johar. Train safely around injuries and conditions.',
     intro: [
       'Dr Ismail, DPT, assesses injuries and builds your rehab, then hands you over to a coach who trains around it.',
-      'Our nutrition team writes diet plans for weight loss, muscle gain and medical conditions, with follow ups to keep you on track.',
+      'Arooba Nawaz, our consultant dietitian, writes diet plans for weight loss, muscle gain and medical conditions, with follow ups to keep you on track.',
     ],
     photo: '/img/studio-physio-room.webp',
     includes: ['Health programme: assessment, diet plan and 4 follow ups, 15,000', 'Clinical diet plan, 7,500', 'Nutrition consultation, 3,000 a session', 'Physiotherapy by appointment'],

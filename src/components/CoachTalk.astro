@@ -1,0 +1,42 @@
+---
+// A coach speaking to camera, with sound. Tap to play; loads nothing until tapped.
+import SectionHead from './SectionHead.astro';
+interface Props { src: string; poster: string; title: string; eyebrow: string; dek: string; name: string; points: string[]; seoName: string; seoDescription: string; duration: string; id: string }
+const p = Astro.props;
+const schema = {
+  '@context': 'https://schema.org', '@type': 'VideoObject',
+  name: p.seoName, description: p.seoDescription,
+  thumbnailUrl: `https://hanmafit.com${p.poster}`, contentUrl: `https://hanmafit.com${p.src}`,
+  uploadDate: '2026-10-20', duration: p.duration,
+};
+---
+<div class="grid items-center gap-10 lg:grid-cols-[minmax(0,22rem)_1fr] lg:gap-16">
+  <div class="relative mx-auto w-full max-w-[22rem] overflow-hidden rounded-[2px] border border-line bg-ink" data-talk={p.id}>
+    <video class="aspect-[9/16] w-full object-cover" src={p.src} poster={p.poster} preload="none" playsinline width="720" height="1280" aria-label={p.seoName}></video>
+    <button type="button" class="absolute inset-0 flex items-center justify-center bg-ink/25 transition-colors hover:bg-ink/10" aria-label={`Play: ${p.title}, with sound`} data-talk-play>
+      <span class="flex h-20 w-20 items-center justify-center rounded-full bg-gold text-ink">
+        <svg viewBox="0 0 24 24" class="ml-1 h-8 w-8 fill-current" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+      </span>
+    </button>
+  </div>
+  <div>
+    <SectionHead eyebrow={p.eyebrow} title={p.title} dek={p.dek} />
+    <ul class="mt-8 grid gap-3 text-muted">
+      {p.points.map((t) => <li class="flex gap-3"><span class="mt-2.5 h-2 w-2 shrink-0 bg-gold" aria-hidden="true"></span>{t}</li>)}
+    </ul>
+  </div>
+</div>
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />
+<script>
+  document.querySelectorAll<HTMLElement>('[data-talk]').forEach((box) => {
+    const video = box.querySelector('video')!;
+    const btn = box.querySelector<HTMLButtonElement>('[data-talk-play]')!;
+    btn.addEventListener('click', () => {
+      video.controls = true;
+      video.play().catch(() => {});
+      btn.hidden = true;
+      (window as unknown as { gtag?: (...a: unknown[]) => void }).gtag?.('event', 'video_start', { video_title: box.dataset.talk });
+    });
+    video.addEventListener('ended', () => { video.controls = false; btn.hidden = false; });
+  });
+</script>

@@ -151,7 +151,7 @@ export default function FloorNow() {
               { key: 'e', kind: 'coed', time: '5 to 10 pm', who: 'Rafi' },
               { key: 'u', kind: 'coed', time: '6 to 8 pm', who: 'Urooj, female coach' },
               { key: 'k', kind: 'coed', time: '7 to 11:30 pm', who: 'Khubaib' },
-              { key: 'c', kind: 'room', time: '5 to 6 pm', who: 'Aerobics class, coed, Samina' },
+              { key: 'c', kind: 'room', time: '5 to 6 pm', who: 'Aerobics class, women only, Samina' },
             ]
         ).concat(room.some((r) => r.kind === 'mma') ? [{ key: 'x', kind: 'room', time: '9 to 10:30 pm', who: 'MMA class, Owais' }] : []).map((r) => (
           <li key={r.key} className="flex items-center gap-3 text-muted">
