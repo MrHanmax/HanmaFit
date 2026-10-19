@@ -9,6 +9,11 @@ export function getStaticPaths() {
 }
 const { p } = Astro.props as { p: Programme };
 const others = programmes.filter((o) => o.slug !== p.slug);
+const guideFor: Record<string, { href: string; label: string }> = {
+  'women-only': { href: '/guides/ladies-gym-gulistan-e-johar', label: 'Guide: how to choose a ladies gym in Gulistan e Johar' },
+  'personal-training': { href: '/guides/personal-trainer-karachi-first-month', label: 'Guide: what your first month with a personal trainer should look like' },
+};
+const guide = guideFor[p.slug] ?? { href: '/guides/gym-fees-gulistan-e-johar', label: 'Guide: gym fees in Gulistan e Johar, explained' };
 ---
 <Base title={p.title} description={p.description}>
   <PageHero crumbs={[{ name: 'Programmes', href: '/services' }, { name: p.name, href: `/services/${p.slug}` }]} eyebrow={p.tone === 'women' ? 'Women only · Programme' : 'Programme'} title={p.name} lede={p.short}>
@@ -35,6 +40,7 @@ const others = programmes.filter((o) => o.slug !== p.slug);
             <li class="flex gap-3"><span class="mt-2.5 h-2 w-2 shrink-0 rounded-full bg-gold" aria-hidden="true"></span><span>{i}</span></li>
           ))}
         </ul>
+        <p class="mt-8"><a href={guide.href} class="font-semibold underline decoration-gold decoration-2 underline-offset-[6px]">{guide.label}</a></p>
       </div>
       {p.video && (
         <video src={p.video.src} poster={p.video.poster} autoplay muted loop playsinline preload="metadata" aria-label={p.video.label} width="540" height="960" class="mx-auto w-full max-w-sm rounded-[2px] border border-line object-cover lg:aspect-[9/16]"></video>

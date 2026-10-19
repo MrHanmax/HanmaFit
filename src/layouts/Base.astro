@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import { business, img, studioPhotos, waLink, hoursSummary, schedule } from '../data/site';
+import { business, img, studioPhotos, waLink, hoursSummary, schedule, pricing, coaches, programmes } from '../data/site';
 import LeadPrompts from '../components/LeadPrompts';
 import TickerBand from '../components/TickerBand.astro';
 
@@ -25,11 +25,21 @@ const nav = [
   { href: '/contact', label: 'Visit' },
 ];
 
+const offers = pricing.flatMap((g) => g.items.filter((i) => i.monthly || i.once).map((i) => ({
+  '@type': 'Offer',
+  name: i.name,
+  price: i.monthly ?? i.once,
+  priceCurrency: 'PKR',
+  ...(i.monthly ? { priceSpecification: { '@type': 'UnitPriceSpecification', price: i.monthly, priceCurrency: 'PKR', unitText: 'MONTH' } } : {}),
+})));
 const localBusiness = {
   '@context': 'https://schema.org',
   '@type': 'ExerciseGym',
+  '@id': 'https://hanmafit.com/#gym',
   name: business.name,
-  image: 'https://hanmafit.com/brand/og.jpg',
+  alternateName: ['Hanma', 'Hanma Gym', 'Hanma Fitness', 'Hanma Fitness Studio Gulistan e Johar'],
+  description: 'Coaching first gym in Gulistan e Johar, Karachi: personal training, group training, women only hours, MMA, physiotherapy and nutrition.',
+  image: ['https://hanmafit.com/brand/og.jpg', `https://hanmafit.com${img(studioPhotos.hero)}`],
   logo: 'https://hanmafit.com/brand/logo.png',
   url: 'https://hanmafit.com',
   telephone: business.phoneTel,
@@ -48,10 +58,25 @@ const localBusiness = {
     { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'], opens: '13:00', closes: '23:59' },
   ],
   priceRange: 'PKR 1,000 to PKR 20,000',
+  currenciesAccepted: 'PKR',
   foundingDate: '2023',
-  founder: { '@type': 'Person', name: 'Fawad Haris' },
-  areaServed: ['Gulistan e Johar', 'Gulistan-e-Johar', 'Karachi'],
-  sameAs: [business.instagram],
+  founder: { '@type': 'Person', name: 'Fawad Haris', jobTitle: 'Founder and head coach', hasCredential: 'BS Human Nutrition and Dietetics' },
+  employee: coaches.map((c) => ({ '@type': 'Person', name: c.name, jobTitle: c.role })),
+  areaServed: [
+    { '@type': 'Place', name: 'Gulistan e Johar, Karachi' },
+    { '@type': 'Place', name: 'Gulistan e Jauhar, Karachi' },
+    { '@type': 'Place', name: 'Gulshan e Iqbal, Karachi' },
+    { '@type': 'City', name: 'Karachi' },
+  ],
+  amenityFeature: [
+    { '@type': 'LocationFeatureSpecification', name: 'Women only hours, 1 pm to 5 pm, Monday to Friday', value: true },
+    { '@type': 'LocationFeatureSpecification', name: 'Female coaches', value: true },
+    { '@type': 'LocationFeatureSpecification', name: 'Separate class room for MMA and aerobics', value: true },
+    { '@type': 'LocationFeatureSpecification', name: 'In house physiotherapy room', value: true },
+  ],
+  knowsAbout: ['Personal training', 'Strength training', 'Fat loss', 'Women only training', 'Aerobics', 'Zumba', 'MMA', 'Physiotherapy', 'Nutrition'],
+  makesOffer: offers,
+  sameAs: [business.instagram, business.mapsUrl],
 };
 const faqSchema = faq?.length
   ? {
@@ -142,10 +167,10 @@ const faqSchema = faq?.length
     </main>
 
     <footer class="paper border-t border-rule bg-paper text-ink-soft pb-28 lg:pb-10">
-      <div class="wrap grid gap-10 py-14 md:grid-cols-[1.3fr_1fr_1fr]">
+      <div class="wrap grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1fr]">
         <div>
           <img src="/brand/logo.png" alt="Hanma Fitness Studio" width="200" height="120" class="h-auto w-[200px]" loading="lazy" />
-          <p class="mt-4 max-w-sm">The best gym in Gulistan e Johar for coached training. A coaching first studio, with coaches on the floor morning, afternoon and evening, Monday to Friday.</p>
+          <p class="mt-4 max-w-sm">The best gym in Gulistan e Johar (Gulistan e Jauhar) for coached training. A coaching first studio, with coaches on the floor morning, afternoon and evening, Monday to Friday.</p>
           <div class="mt-5 flex flex-wrap gap-3">
             <a class="btn btn-gold !min-h-11" href={waLink('Hi Hanma, I would like to book a free session')} data-wa>WhatsApp Us</a>
             <a class="btn btn-line !min-h-11" href={`tel:${business.phoneTel}`}>Call {business.phoneDisplay}</a>
@@ -158,6 +183,14 @@ const faqSchema = faq?.length
               <div class="flex justify-between gap-4 border-b border-rule py-1.5"><dt>{h.label}</dt><dd class="text-ink text-right">{h.time}</dd></div>
             ))}
           </dl>
+        </div>
+        <div>
+          <p class="eyebrow">Explore</p>
+          <ul class="mt-4 grid gap-1.5">
+            {programmes.map((p) => <li><a class="underline-offset-4 hover:text-ink hover:underline" href={`/services/${p.slug}`}>{p.name}</a></li>)}
+            <li><a class="underline-offset-4 hover:text-ink hover:underline" href="/pricing">Gym fees</a></li>
+            <li><a class="underline-offset-4 hover:text-ink hover:underline" href="/guides">Guides</a></li>
+          </ul>
         </div>
         <div>
           <p class="eyebrow">Find Us</p>
