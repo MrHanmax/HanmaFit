@@ -154,4 +154,56 @@ export const guides: Guide[] = [
     ],
     related: [{ href: '/services/personal-training', label: 'Personal training at Hanma' }, { href: '/pricing', label: 'See prices' }],
   },
+  {
+    slug: 'female-gym-evening-gulistan-e-johar',
+    title: 'Female Gym in Gulistan e Johar After Work: Evening Options',
+    seoTitle: 'Female Gym in Gulistan e Johar in the Evening (2026)',
+    description: 'Can women train in Gulistan e Johar after work? Evening options at Hanma: a women only class 5 to 6 pm and a female coach on the floor 6 to 8 pm.',
+    lede: 'Most ladies timings in Johar end in the afternoon, which does not help if you work or study until 5. Here is what to look for in an evening gym, and how women train at Hanma after work.',
+    published: '2026-11-02',
+    sections: [
+      {
+        h: 'Why evening timings matter',
+        p: [
+          'Many ladies gyms in Gulistan e Johar (also spelled Gulistan e Jauhar) run women only hours in the morning or early afternoon. If you work, study or look after children until the evening, those hours are hard to keep.',
+          'The usual choice after 5 pm is a coed floor with no female staff. Before joining any gym for the evening, ask who coaches at your time and whether a woman is on the floor.',
+        ],
+      },
+      {
+        h: 'Women only class, 5 to 6 pm',
+        p: [
+          'At Hanma, Samina runs a women only aerobics class from 5 to 6 pm, Monday to Friday, in a separate class room. The main floor stays coed, but the class room is women only for that hour.',
+        ],
+      },
+      {
+        h: 'A female coach on the floor, 6 to 8 pm',
+        p: [
+          'From 6 to 8 pm, Monday to Friday, Urooj Shehyr, a Level 2 certified coach, is on the main floor. She coaches women on strength training, form and their own plan, so you are not left to figure out the machines alone.',
+        ],
+        list: [
+          '5 to 6 pm: women only aerobics class with Samina, separate class room',
+          '6 to 8 pm: Urooj, female coach, on the main floor',
+          '1 to 5 pm: the whole studio is women only, for days you can come earlier',
+        ],
+      },
+      {
+        h: 'Questions to ask any gym about evening training',
+        p: ['Whichever gym you choose, these questions tell you quickly whether the evening will work for you.'],
+        list: [
+          'Is a female coach or staff member present at my time?',
+          'Is there a separate room or class for women in the evening?',
+          'How busy is the floor at 7 pm? Visit at that hour before paying.',
+          'Can I switch to women only hours on days I finish early?',
+          'Is there an admission fee, and does a quarterly plan waive it?',
+        ],
+      },
+      {
+        h: 'Try an evening session free',
+        p: [
+          'Your first session at Hanma is free. Come at the time you would actually train, meet Urooj or Samina, and decide after. Hanma is on Manzoor Street, Gulistan e Johar.',
+        ],
+      },
+    ],
+    related: [{ href: '/services/women-only', label: 'Women only sessions, and Urooj on why women should lift' }, { href: '/pricing', label: 'See prices' }],
+  },
 ];

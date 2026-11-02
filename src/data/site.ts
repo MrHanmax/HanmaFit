@@ -12,6 +12,7 @@ export const business = {
   whatsapp: '923167911505',
   email: 'hanma.pk@gmail.com',
   instagram: 'https://www.instagram.com/hanma.pk/',
+  facebook: 'https://www.facebook.com/p/Hanma-Fitness-Studio-100091820232064/',
   instagramHandle: '@hanma.pk',
   area: 'Gulistan e Johar, Karachi',
   addressLine: 'Manzoor Street, Gulistan e Johar, Karachi',
@@ -357,8 +358,8 @@ export const programmes: Programme[] = [
     from: '3,000 a session',
     tone: 'health',
     goal: 'Train around an injury',
-    title: 'Physio and Diet Plans in Gulistan e Johar | Hanma Health',
-    description: 'Physiotherapy, clinical diet plans and nutrition consultations at Hanma Fitness Studio, Gulistan e Johar. Train safely around injuries and conditions.',
+    title: 'Physiotherapist and Dietitian in Gulistan e Johar | Hanma',
+    description: 'Physiotherapist Dr Ismail (DPT) and consultant dietitian Arooba Nawaz in Gulistan e Johar, Karachi. Rehab, diet plans and training around injuries.',
     intro: [
       'Dr Ismail, DPT, assesses injuries and builds your rehab, then hands you over to a coach who trains around it.',
       'Arooba Nawaz, our consultant dietitian, writes diet plans for weight loss, muscle gain and medical conditions, with follow ups to keep you on track.',
