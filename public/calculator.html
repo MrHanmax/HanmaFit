@@ -491,8 +491,8 @@
         <button type="button" class="themebtn" id="themeBtn" aria-pressed="false" aria-label="Dark mode">
           <svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><path d="M13.5 9.6A6 6 0 0 1 6.4 2.5a6 6 0 1 0 7.1 7.1z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
           <span id="themeLab">Dark</span></button>
-        <span style="display:flex; align-items:center; gap:10px">
-        <span class="lab">Preview</span>
+        <span style="display:flex; align-items:center; gap:10px" id="coachView" hidden>
+        <span class="lab">Coach view</span>
         <div class="toggle" role="group" aria-label="Preview the free or the unlocked report">
           <button type="button" id="viewFree" aria-pressed="true">Free</button>
           <button type="button" id="viewPaid" aria-pressed="false">Unlocked</button>
@@ -813,8 +813,8 @@
           </p>
           <ul class="offer" id="offer"></ul>
           <div class="buyrow">
-            <button class="buy" id="buyBtn" type="button">Unlock for $2<span class="arr" aria-hidden="true">→</span></button>
-            <p class="small muted">One payment, not a subscription. Paid through Stripe; no card details reach this site.</p>
+            <button class="buy" id="buyBtn" type="button">Get the full plan<span class="arr" aria-hidden="true">→</span></button>
+            <p class="small muted">Opens WhatsApp with your figures attached, so Fawad can send you the full programme.</p>
           </div>
           <p class="small">Would rather be coached than calculated? <a class="wa" href="#" target="_blank" rel="noopener">Message Fawad on WhatsApp</a>.</p>
         </div>
@@ -1087,7 +1087,7 @@ var HanmaBloods=(()=>{var T=Object.defineProperty;var K=Object.getOwnPropertyDes
 
   function lockline(teaser) {
     return "<div class='lockline'><p class='small muted'>" + teaser + "</p>" +
-      "<button type='button' class='linkbtn' data-unlock>Unlock for $2</button></div>";
+      "<button type='button' class='linkbtn' data-unlock>Get the full plan on WhatsApp</button></div>";
   }
 
   /* A hatched outline of a table: real column names, real row labels where
@@ -2928,13 +2928,24 @@ var HanmaBloods=(()=>{var T=Object.defineProperty;var K=Object.getOwnPropertyDes
   $("viewFree").addEventListener("click", function () { setPaid(false); });
   $("viewPaid").addEventListener("click", function () { setPaid(true, $("viewPaid")); });
 
-  // In the application this opens Stripe Checkout. Here it shows what paying unlocks.
+  // Until payment is connected, the full programme is requested on WhatsApp.
+  // The message carries a link to the visitor's figures, which the coach opens
+  // in coach view (hanmafit.com/calculator?coach, remembered on that device).
+  try { if (/[?&]coach\b/.test(location.search)) localStorage.setItem("hanma.coach", "1"); } catch (e) {}
+  var coach = false;
+  try { coach = localStorage.getItem("hanma.coach") === "1"; } catch (e) {}
+  $("coachView").hidden = !coach;
   document.addEventListener("click", function (e) {
     var el = e.target.closest ? e.target.closest("[data-unlock], #buyBtn") : null;
     if (!el) return;
-    setPaid(true, el);
-    var target = $("sec-weeks");
-    if (target && target.scrollIntoView) target.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (coach) {
+      setPaid(true, el);
+      var target = $("sec-weeks");
+      if (target && target.scrollIntoView) target.scrollIntoView({ behavior: "smooth", block: "start" });
+      return;
+    }
+    window.open("https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(
+      "Hi Fawad, I would like the full plan from the Hanma calculator. My figures: " + shareLink()), "_blank", "noopener");
   });
 
 
