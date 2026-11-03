@@ -1556,7 +1556,8 @@ var HanmaBloods=(()=>{var T=Object.defineProperty;var K=Object.getOwnPropertyDes
         if (st === "declined") return;
         note.textContent = "Your plan is saved as a PDF."; note.hidden = false;
       })
-      .catch(function () {
+      .catch(function (e) {
+        if (window.console) console.error("PDF:", e);
         note.textContent = "The PDF could not be made here. Check the connection and try again."; note.hidden = false;
       })
       .then(function () { var b = $("pdfBtn"); if (b) { b.disabled = false; b.textContent = label; } });
@@ -1605,7 +1606,7 @@ var HanmaBloods=(()=>{var T=Object.defineProperty;var K=Object.getOwnPropertyDes
       ref = "That is your " + (r.calibrated ? "measured" : "estimated") + " maintenance of " + n0(M) + ", rounded to the nearest 50." + discLine;
       then = "If the seven day average drifts more than " + (u === "lb" ? "2 lb" : "1 kg") + " in four weeks, move intake 100 to 150 kcal against it.";
     }
-    $("answer").innerHTML = "<p class='eyebrow'>Your plan</p><p class='say'>" + say + "</p><p class='then'>" + ref + "</p><p class='then'>" + then + "</p>" +
+    var html = "<p class='eyebrow'>Your plan</p><p class='say'>" + say + "</p><p class='then'>" + ref + "</p><p class='then'>" + then + "</p>" +
       "<div class='acts'>" +
       (state.paid ? "<label class='pdfname'><span class='lab'>Name on the plan</span><input id='pdfName' autocomplete='off' placeholder='optional' value='" +
           (state.pdfName || "").replace(/[&'<>"]/g, "") + "'></label><button type='button' class='btn-ink' id='pdfBtn'>Download plan as PDF</button>"
@@ -1615,6 +1616,10 @@ var HanmaBloods=(()=>{var T=Object.defineProperty;var K=Object.getOwnPropertyDes
       (state.unlock === "mismatch" ? "<p class='small'>Your full plan is unlocked for the figures it was made for. These are too far from them, so this is the free view. Change them back, or message Fawad for a new plan.</p>" : "") +
       (state.paid && state.clientName && !state.coach ? "<p class='small muted'>Full plan unlocked for " + state.clientName.replace(/[&<>"']/g, "") + ".</p>" : "") +
       "<p class='small muted' id='shareNote' hidden></p>";
+    // Redrawn only when something in it changed, so a tap on one of its
+    // buttons is never lost to a redraw that changes nothing.
+    var box = $("answer");
+    if (box.__html !== html) { box.innerHTML = html; box.__html = html; }
   }
 
   /* ── composition ──────────────────────────────────────────────── */
@@ -2774,6 +2779,12 @@ var HanmaBloods=(()=>{var T=Object.defineProperty;var K=Object.getOwnPropertyDes
     unlockedBy = null;
     state.paid = !!res.paid; state.coach = !!res.coach; state.unlock = res.unlock; state.clientName = res.name || "";
     if (res.unlock === "invalid") store(UNLOCK_KEY, "");
+    // A coach token that has expired or no longer checks out is dropped, and
+    // on /calculator?coach the password is asked for again.
+    if (stored(COACH_KEY) && !res.coach) {
+      store(COACH_KEY, ""); answers = {};
+      if (/[?&]coach\b/.test(location.search)) setTimeout(coachLogin, 300);
+    }
     if (!state.pdfName && state.clientName && !state.coach) state.pdfName = state.clientName;
     showCoach();
     renderCalibrate(i, r, c);
@@ -2833,6 +2844,10 @@ var HanmaBloods=(()=>{var T=Object.defineProperty;var K=Object.getOwnPropertyDes
     // someone else's link does not borrow this device's answers either.
     if (!m && local) applyHealth(local.health);
     if (o && applySnapshot(o)) restored = true;
+    // The figures and any unlock are read and kept; the address bar goes back
+    // to plain /calculator, so a link copied from it is never the long one and
+    // never carries a plan token.
+    if (m || u) try { history.replaceState(null, "", location.pathname + location.search); } catch (e) {}
   })();
   drawSessions();
   showUnits();
@@ -2945,18 +2960,24 @@ var HanmaBloods=(()=>{var T=Object.defineProperty;var K=Object.getOwnPropertyDes
       return "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(
         "Hi Fawad, I would like the full plan from the Hanma calculator (" + price() + "). My figures: " + url + " Ref " + ref);
     };
+    // Phones open WhatsApp in the same tab, as every WhatsApp button on the
+    // site does; in-app browsers (Instagram, Facebook) block new windows.
+    // Desktops open it beside the calculator.
+    var phone = !(window.matchMedia && matchMedia("(pointer: fine)").matches);
     // The short link is usually made already, while they read their results.
     var ready = readyShort();
-    if (ready) { window.open(wa(ready), "_blank", "noopener"); return; }
-    // If not, open the window now, while the tap still counts, and send it on
-    // once the link is made; after two seconds the full link goes instead.
-    var w = window.open("", "_blank");
-    var sent = false, send = function (url) {
+    if (ready) { if (phone) location.href = wa(ready); else window.open(wa(ready), "_blank", "noopener"); return; }
+    // If not: wait for it, up to three seconds, then the full link goes instead.
+    var w = phone ? null : window.open("", "_blank");
+    var label = el.innerHTML, sent = false;
+    el.disabled = true; el.textContent = "Opening WhatsApp…";
+    var send = function (url) {
       if (sent) return; sent = true;
       if (w && !w.closed) w.location.href = wa(url); else location.href = wa(url);
+      setTimeout(function () { el.disabled = false; el.innerHTML = label; }, 1500);
     };
     shortLink().then(send);
-    setTimeout(function () { send(shareLink()); }, 2000);
+    setTimeout(function () { send(shareLink()); }, 3000);
   });
 
   /* A short link for the visitor's figures, made a moment after they settle,
