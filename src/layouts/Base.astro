@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import { business, img, studioPhotos, waLink, hoursSummary, schedule, pricing, coaches, programmes } from '../data/site';
 import LeadPrompts from '../components/LeadPrompts';
+import CalcPrompt from '../components/CalcPrompt';
 import TickerBand from '../components/TickerBand.astro';
 
 interface Props {
@@ -221,6 +222,7 @@ const faqSchema = faq?.length
     </div>
 
     <LeadPrompts client:idle />
+    <CalcPrompt client:idle />
 
     <!-- Subtle 3D tilt on cards for mouse users; off for touch and reduced motion -->
     <script is:inline>
@@ -303,6 +305,7 @@ const faqSchema = faq?.length
         }
         document.addEventListener('click', function (e) {
           var a = e.target.closest && e.target.closest('a');
+          if (a && a.hasAttribute('data-wa')) { try { sessionStorage.setItem('hanma_lead', '1'); } catch (e2) {} }
           if (!a || typeof gtag !== 'function') return;
           if (a.hasAttribute('data-wa')) gtag('event', 'whatsapp_click', { link_id: a.getAttribute('data-track') || 'whatsapp', source_code: c });
           else if (a.href && a.href.indexOf('tel:') === 0) gtag('event', 'phone_click', { link_id: a.getAttribute('data-track') || 'phone' });

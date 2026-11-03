@@ -74,6 +74,7 @@ export default function TrialForm({ defaultGoal }: { defaultGoal?: string }) {
     } catch { /* the WhatsApp step still gets the lead through */ }
     window.gtag?.('event', 'generate_lead', { form_name: 'trial', goal, time, source_code: code, transport_type: 'beacon' });
     window.gtag?.('event', 'whatsapp_click', { link_id: 'form_submit', source_code: code, transport_type: 'beacon' });
+    try { sessionStorage.setItem('hanma_lead', '1'); } catch { /* storage blocked */ }
     setState('done');
     // Straight into WhatsApp with the details typed out, so Humaira can reply at once.
     const href = waLink(message(), code);
@@ -96,6 +97,9 @@ export default function TrialForm({ defaultGoal }: { defaultGoal?: string }) {
         <a className="btn btn-gold mt-6 w-full" href={waLink(message(), src.code || 'WEB')} data-wa data-track="form_success_whatsapp">
           WhatsApp did not open? Tap here
         </a>
+        <p className="mt-5 text-ink-soft">
+          While you wait, <a className="font-semibold underline decoration-gold decoration-2 underline-offset-4" href="/calculator" data-track="form_success_calculator">work out your calories with our free calculator</a>. Bring the numbers to your session.
+        </p>
       </div>
     );
   }
