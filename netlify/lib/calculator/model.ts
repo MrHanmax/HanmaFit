@@ -6,6 +6,7 @@
    that, the endpoint and the calibration stay here. */
 
 import HE from "./engine.mjs";
+import type { Assessment, Estimate, Flag, Phase as EnginePhase } from "./engine.mjs";
 
 export const FREE_WEEKS = 4;
 const LB = 2.2046226;
@@ -19,47 +20,89 @@ const ENUMS = {
   bfMethod: ["dxa", "bia_multifrequency", "bia_consumer", "skinfold_jp7", "none"],
   diabetes: ["none", "family_history", "prediabetes", "type_2", "type_1", "unspecified"],
   thyroid: ["none", "hypothyroid_treated", "hypothyroid_untreated", "hyperthyroid"],
+} as const;
+
+type Raw = Record<string, unknown>;
+const obj = (v: unknown): Raw => (v && typeof v === "object" ? (v as Raw) : {});
+const pick = <T extends string>(v: unknown, list: readonly T[], d: T): T => (list.includes(v as T) ? (v as T) : d);
+const num = (v: unknown, lo: number, hi: number, d: number): number => {
+  const x = Number(v);
+  return v !== null && v !== "" && Number.isFinite(x) ? Math.min(hi, Math.max(lo, x)) : d;
 };
-const pick = (v, list, d) => (list.includes(v) ? v : d);
-const num = (v, lo, hi, d) => { const x = Number(v); return Number.isFinite(x) ? Math.min(hi, Math.max(lo, x)) : d; };
+
+export interface SessionInput { label: string; met: number; resist: boolean; n: number; mins: number }
+
+/** The form, checked and clamped. */
+export interface Inputs {
+  sex: "female" | "male";
+  age: number;
+  height: number;
+  weight: number;
+  ancestry: string;
+  goal: string;
+  steps: number;
+  job: string;
+  sleep: number;
+  sessions: SessionInput[];
+  neck: number;
+  waist: number;
+  hip: number;
+  tage: string;
+  weeks: number;
+  bf: number;
+  bfGiven: boolean;
+  bfMethod: string;
+  clinical: {
+    diabetes: string; thyroid: string; pcos: boolean; pregnantOrPostpartum: boolean;
+    disorderedEatingHistory: boolean; creatineSupplement: boolean;
+  };
+  rate: number | null;
+  sess: number;
+  sessAll: number;
+  calMaint?: number;
+  calSe?: number;
+}
 
 /* The form as the page read it, checked and clamped, so nothing a browser
    sends can push the engine outside the ranges the form itself allows. */
-export function normalise(raw) {
-  const r = raw && typeof raw === "object" ? raw : {};
-  const sessions = (Array.isArray(r.sessions) ? r.sessions : []).slice(0, 6).map((x) => ({
-    label: String(x && x.label || "Session").slice(0, 60),
-    met: num(x && x.met, 1, 15, 5),
-    resist: !!(x && x.resist),
-    n: Math.round(num(x && x.n, 0, 14, 0)),
-    mins: Math.round(num(x && x.mins, 0, 300, 0)),
-  })).filter((x) => x.n > 0 && x.mins > 0);
-  const c = r.clinical || {};
+export function normalise(raw: unknown): Inputs {
+  const r = obj(raw);
+  const sessions = (Array.isArray(r.sessions) ? r.sessions : []).slice(0, 6).map((s: unknown) => {
+    const x = obj(s);
+    return {
+      label: String(x.label || "Session").slice(0, 60),
+      met: num(x.met, 1, 15, 5),
+      resist: !!x.resist,
+      n: Math.round(num(x.n, 0, 14, 0)),
+      mins: Math.round(num(x.mins, 0, 300, 0)),
+    };
+  }).filter((x) => x.n > 0 && x.mins > 0);
+  const c = obj(r.clinical);
   const sex = pick(r.sex, ENUMS.sex, "female");
-  const bf = Number(r.bf);
-  const i = {
+  const bfRaw = Number(r.bf), bfGiven = r.bf !== null && Number.isFinite(bfRaw) && bfRaw > 0;
+  return {
     sex, age: num(r.age, 16, 90, 30), height: num(r.height, 120, 230, 165), weight: num(r.weight, 30, 260, 70),
     ancestry: pick(r.ancestry, ENUMS.ancestry, "unspecified"), goal: pick(r.goal, ENUMS.goal, "fat_loss"),
     steps: Math.round(num(r.steps, 0, 40000, 7000)), job: pick(r.job, ENUMS.job, "seated"), sleep: num(r.sleep, 3, 12, 7),
     sessions,
     neck: num(r.neck, 0, 80, 0), waist: num(r.waist, 0, 220, 0), hip: num(r.hip, 0, 220, 0),
     tage: pick(r.tage, ENUMS.tage, "novice"), weeks: Math.round(num(r.weeks, 8, 52, 24)),
-    bf: Number.isFinite(bf) ? num(bf, 3, 65, 25) : NaN, bfGiven: Number.isFinite(bf) && bf > 0,
+    bf: bfGiven ? num(bfRaw, 3, 65, 25) : NaN, bfGiven,
     bfMethod: pick(r.bfMethod, ENUMS.bfMethod, "bia_multifrequency"),
     clinical: {
       diabetes: pick(c.diabetes, ENUMS.diabetes, "none"), thyroid: pick(c.thyroid, ENUMS.thyroid, "none"),
       pcos: sex === "female" && !!c.pcos, pregnantOrPostpartum: sex === "female" && !!c.pregnantOrPostpartum,
       disorderedEatingHistory: !!c.disorderedEatingHistory, creatineSupplement: !!c.creatineSupplement,
     },
-    rate: r.rate === null || r.rate === undefined ? null : num(r.rate, 0.05, 1.5, null),
+    // No rate, or not a number: the engine uses the rate it recommends.
+    rate: r.rate === null || r.rate === undefined || !Number.isFinite(Number(r.rate)) ? null : num(r.rate, 0.05, 1.5, 0.5),
+    sess: sessions.filter((x) => x.resist).reduce((a, x) => a + x.n, 0),
+    sessAll: sessions.reduce((a, x) => a + x.n, 0),
   };
-  i.sess = i.sessions.filter((x) => x.resist).reduce((a, x) => a + x.n, 0);
-  i.sessAll = i.sessions.reduce((a, x) => a + x.n, 0);
-  return i;
 }
 
-function toAssessment(i) {
-  const a = {
+function toAssessment(i: Inputs): Assessment {
+  const a: Assessment = {
     sex: i.sex, ageYears: i.age, heightCm: i.height, weightKg: i.weight, ancestry: i.ancestry,
     goal: i.goal, trainingAge: i.tage, dailySteps: i.steps, occupation: i.job,
     sessions: i.sessions.map((x) => ({ label: x.label, met: x.met, minutes: x.mins, perWeek: x.n, epocEligible: x.met >= 5 })),
@@ -68,26 +111,69 @@ function toAssessment(i) {
     clinical: i.clinical,
   };
   if (i.bfGiven) a.measured = { bodyFatPercent: i.bf, method: i.bfMethod || "bia_multifrequency" };
-  if (i.rate !== null && i.rate !== undefined) a.ratePercentPerWeek = i.rate;
+  if (i.rate !== null) a.ratePercentPerWeek = i.rate;
   if (i.calMaint) { a.calibratedMaintenanceKcal = i.calMaint; a.calibratedMaintenanceSeKcal = i.calSe; }
   return a;
 }
 
-function run(i) {
+/** One week as the page draws it. Weeks past the free ones carry only w and f. */
+export interface Week {
+  w: number;
+  phase?: string;
+  intake?: number;
+  tissue?: number;
+  scale?: number;
+  spend?: number;
+  fat?: number;
+  lean?: number;
+  bal?: number;
+  dF?: number;
+  dL?: number;
+  /** Height on the blurred line of the free chart, 0 to 1. */
+  f?: number;
+}
+
+/** [name, start, end, intake, macros, intent, the engine's phase, average weekly change]. */
+export type PhaseRow = [string, number, number, number, { p: number; c: number; f: number }, string, EnginePhase | { locked: true }, number];
+
+export interface Result {
+  bmi: number; bf: number; bfSe: number; fm: number; ffm: number; ffmi: number;
+  comp: [string, number, string][];
+  rmr: number; rmrSe: number;
+  eqs: [string, number, number, string][];
+  waking: number; stepKcal: number; occ: number; neat: number; eat: number;
+  tRate: number; maint: number; maintSe: number; predMaint: number; predSe: number;
+  cal: number | undefined; calibrated: boolean;
+  factor: number; factorVal: number; sessKcal: number;
+  ancNote: string; clinical: Flag[];
+  traj: {
+    phases: PhaseRow[];
+    weeks: Week[];
+    fm: number | null; ffm: number | null; end: number | null; dFat: number | null; dLean: number | null;
+    naive: number | null; at: number | null; drift: number | null;
+    floorHit: [string, number, number] | null;
+    rate: number; kind: string; capped: boolean; recommended: number; chosen: boolean; overCap: boolean; start: number;
+  };
+}
+
+const half = (x: { low: number; high: number }) => (x.high - x.low) / 2;
+const estimates = (e: Estimate[]) => e.map((x) => [x.method, x.value, x.note] as [string, number, string]);
+
+function run(i: Inputs): Result {
   const a = toAssessment(i), res = HE.runEngine(a);
   const c = res.composition, en = res.energy, t = res.trajectory;
-  const half = (x) => (x.high - x.low) / 2;
   const weekly = en.eat.perSession.reduce((s, x) => s + x.weeklyKcal, 0);
   const last = t.weeks[t.weeks.length - 1];
-  const weeks = t.weeks.map((w) => ({
+  const weeks: Week[] = t.weeks.map((w) => ({
     w: w.week, phase: w.phase, intake: w.intakeKcal, tissue: w.tissueKg, scale: w.scaleKg, spend: w.expenditureKcal,
     fat: w.fatMassKg, lean: w.fatFreeMassKg, bal: w.balanceKcal, dF: w.deltaFatKg, dL: w.deltaLeanKg,
   }));
+  const tissue = (k: number) => weeks[k].tissue as number;
   return {
     bmi: c.bmi, bf: c.bodyFatPercent.value, bfSe: half(c.bodyFatPercent), fm: c.fatMassKg, ffm: c.fatFreeMassKg, ffmi: c.ffmi,
-    comp: c.bodyFatPercent.estimates.map((e) => [e.method, e.value, e.note]),
+    comp: estimates(c.bodyFatPercent.estimates),
     rmr: en.rmr.value, rmrSe: half(en.rmr),
-    eqs: en.rmr.estimates.map((e) => [e.method, e.value, 0, e.note]),
+    eqs: en.rmr.estimates.map((e) => [e.method, e.value, 0, e.note] as [string, number, number, string]),
     waking: en.neat.fromWaking, stepKcal: en.neat.fromSteps, occ: en.neat.fromOccupation, neat: en.neat.total, eat: en.eat.total,
     tRate: en.tefRate, maint: en.maintenance.value, maintSe: half(en.maintenance),
     predMaint: en.predictedMaintenance.value, predSe: half(en.predictedMaintenance),
@@ -99,9 +185,9 @@ function run(i) {
     traj: {
       // The eighth entry is the phase's average weekly change in tissue, so the
       // page can quote it without holding the weeks it comes from.
-      phases: t.phases.map((p) => {
-        const start = p.startWeek < 2 ? i.weight : weeks[p.startWeek - 2].tissue;
-        const chg = (weeks[p.endWeek - 1].tissue - start) / (p.endWeek - p.startWeek + 1);
+      phases: t.phases.map((p): PhaseRow => {
+        const start = p.startWeek < 2 ? i.weight : tissue(p.startWeek - 2);
+        const chg = (tissue(p.endWeek - 1) - start) / (p.endWeek - p.startWeek + 1);
         return [p.name, p.startWeek, p.endWeek, p.intakeKcal, { p: p.macros.proteinG, c: p.macros.carbG, f: p.macros.fatG }, p.intent, p, chg];
       }),
       weeks,
@@ -116,23 +202,37 @@ function run(i) {
 
 /* ── calibration ─────────────────────────────────────────────────── */
 
+/** The calibration form as the page keeps it. */
+export interface CalState { mode?: string; log?: string; wash?: boolean; intake?: unknown; weeks?: unknown; from?: unknown; to?: unknown; use?: boolean }
+
+export interface Calibration {
+  ok: boolean;
+  reason?: string;
+  warn: string[];
+  maint?: number; se?: number; trend?: number; meanK?: number; bal?: number; days?: number;
+}
+
+interface LogRow { day: number; w: number | null; k: number | null; cd: number | null }
+
 /* Daily log lines: an optional date, then weight, then intake. A dash marks a
    missing reading. Dates, where given, set the day count; otherwise lines are
    consecutive days. */
-function parseLog(text, toKg) {
-  const rows = []; let day = 0, firstDate = null;
+function parseLog(text: unknown, toKg: (v: number) => number): LogRow[] {
+  const rows: LogRow[] = [];
+  let day = 0, firstDate: number | null = null;
   String(text || "").slice(0, 20000).split(/\n/).slice(0, 400).forEach((raw) => {
     let line = raw.trim(); if (!line) return;
-    let date = null, m;
+    let date: number | null = null;
+    let m: RegExpExecArray | null;
     if ((m = /^(\d{4})-(\d{1,2})-(\d{1,2})\b/.exec(line))) date = Date.UTC(+m[1], +m[2] - 1, +m[3]);
     else if ((m = /^(\d{1,2})\/(\d{1,2})(?:\/(\d{2,4}))?(?=[\s,;]|$)/.exec(line)) || (m = /^(\d{1,2})\.(\d{1,2})\.(\d{2,4})(?=[\s,;]|$)/.exec(line))) {
       const y = m[3] ? (+m[3] < 100 ? 2000 + +m[3] : +m[3]) : 2026;
       date = Date.UTC(y, +m[2] - 1, +m[1]);
     }
     if (m && date !== null) line = line.slice(m[0].length);
-    const tok = line.split(/[\s,;\t]+/).filter(Boolean).slice(0, 3);
-    const nums = tok.map((x) => { const v = parseFloat(x.replace(/[^0-9.]/g, "")); return x.trim() === "-" || !isFinite(v) ? null : v; });
-    let w = nums[0], k = nums.length > 1 ? nums[1] : null, cd = nums.length > 2 ? nums[2] : null;
+    const nums = line.split(/[\s,;\t]+/).filter(Boolean).slice(0, 3)
+      .map((x) => { const v = parseFloat(x.replace(/[^0-9.]/g, "")); return x.trim() === "-" || !isFinite(v) ? null : v; });
+    let w = nums[0] ?? null, k = nums.length > 1 ? nums[1] : null, cd = nums.length > 2 ? nums[2] : null;
     if (cd !== null && (cd < 1 || cd > 45)) cd = null;
     if (w !== null && k !== null && w > 600 && k < 600) { const sw = w; w = k; k = sw; }
     if (w !== null) w = toKg(w);
@@ -148,7 +248,7 @@ function parseLog(text, toKg) {
 /* The daily balance behind a weekly trend, from the body model rather than a
    flat 7,700 kcal a kilo: part of a trained person's slow gain is lean tissue
    at 1,800 a kilo, and a steady weight under training is a small deficit. */
-function balanceFor(kgWeek, i, r, intake) {
+function balanceFor(kgWeek: number, i: Inputs, r: Result, intake: number): number {
   return HE.impliedDailyBalance({
     trendKgPerWeek: kgWeek, maintenanceKcal: r.predMaint, fatMassKg: r.fm, ffmKg: r.ffm, weightKg: i.weight,
     proteinG: HE.buildMacros(intake, i.weight, r.ffm, r.bf, i.goal, i.sex, i.tage).proteinG,
@@ -156,12 +256,13 @@ function balanceFor(kgWeek, i, r, intake) {
   });
 }
 
-function calibrate(i, r, cs, unitW) {
-  const toKg = (v) => (unitW === "lb" ? v / LB : v);
-  const out = { ok: false, warn: [] };
-  let slope, slopeSe, meanK, kSe, days, engine = null;
+function calibrate(i: Inputs, r: Result, cs: CalState, unitW: "kg" | "lb"): Calibration {
+  const toKg = (v: number) => (unitW === "lb" ? v / LB : v);
+  const out: Calibration = { ok: false, warn: [] };
+  let slope: number, meanK: number, days: number;
+  let slopeSe = 0, kSe = 0, engine: { measuredMaintenance: number; se: number } | null = null;
   if (cs.mode === "weekly") {
-    const K = +cs.intake, Wk = +cs.weeks, A = toKg(+cs.from), Z = toKg(+cs.to);
+    const K = Number(cs.intake), Wk = Number(cs.weeks), A = toKg(Number(cs.from)), Z = toKg(Number(cs.to));
     if (!(K > 0 && Wk > 0 && A > 0 && Z > 0)) { out.reason = "Fill in all four figures."; return out; }
     if (Wk < 2) { out.reason = "At least two weeks between the averages are needed for a trend to show through the noise."; return out; }
     slope = (Z - A) / (Wk * 7); slopeSe = Math.SQRT2 * 0.3 / (Wk * 7);
@@ -180,11 +281,11 @@ function calibrate(i, r, cs, unitW) {
       return out;
     }
     if (ks.length < 7) { out.reason = "Only " + ks.length + " days carry an intake figure. Weight alone cannot separate a change in requirement from a change in what was eaten."; return out; }
-    const meanKGuess = ks.reduce((a, x) => a + x.k, 0) / ks.length;
+    const meanKGuess = ks.reduce((a, x) => a + (x.k as number), 0) / ks.length;
     // Regression on every reading, luteal fluid modelled out where cycle days
     // are given, the trend priced by the body model.
     const res = HE.calibrate(rows.filter((x) => x.w !== null).map((x) => ({
-      day: x.day, weightKg: x.w, intakeKcal: x.k === null ? undefined : x.k, cycleDay: x.cd === null ? undefined : x.cd,
+      day: x.day, weightKg: x.w as number, intakeKcal: x.k ?? undefined, cycleDay: x.cd ?? undefined,
     })), r.predMaint, {
       menstruating: i.sex === "female" && i.age < 55, noWashout: !cs.wash,
       balanceFromTrend: (kgw) => balanceFor(kgw, i, r, meanKGuess),
@@ -197,7 +298,7 @@ function calibrate(i, r, cs, unitW) {
     slope = res.trendKgPerWeek / 7; meanK = res.meanIntakeKcal; days = span; engine = res;
   }
   const bal = balanceFor(slope * 7, i, r, meanK);
-  let measured, se;
+  let measured: number, se: number;
   if (engine) { measured = engine.measuredMaintenance; se = engine.se; }
   else {
     const dB = (balanceFor((slope + 0.002) * 7, i, r, meanK) - balanceFor((slope - 0.002) * 7, i, r, meanK)) / 0.004;
@@ -214,30 +315,33 @@ function calibrate(i, r, cs, unitW) {
    and weeks, so the page can show what is coming, and nothing else. Later
    weeks keep only their number and a coarse shape for the blurred line on the
    chart: a fraction of its own height, never a weight. */
-function freeView(r) {
-  const t = r.traj, open = (p) => p[1] <= FREE_WEEKS;
-  const tail = t.weeks.slice(FREE_WEEKS - 1).map((w) => w.tissue);
+function freeView(r: Result): Result {
+  const t = r.traj, open = (p: PhaseRow) => p[1] <= FREE_WEEKS;
+  const tail = t.weeks.slice(FREE_WEEKS - 1).map((w) => w.tissue as number);
   const lo = Math.min(...tail), range = Math.max(0.5, Math.max(...tail) - lo);
-  const shape = (v) => Math.round((v - lo) / range * 50) / 50;
+  const shape = (v: number) => Math.round((v - lo) / range * 50) / 50;
   return {
     ...r,
     traj: {
       ...t,
-      phases: t.phases.map((p) => (open(p) ? p : [p[0], p[1], p[2], 0, { p: 0, c: 0, f: 0 }, "", { locked: true }, 0])),
-      weeks: t.weeks.map((w, k) => (k < FREE_WEEKS ? (k === FREE_WEEKS - 1 ? { ...w, f: shape(w.tissue) } : w) : { w: w.w, f: shape(w.tissue) })),
+      phases: t.phases.map((p): PhaseRow => (open(p) ? p : [p[0], p[1], p[2], 0, { p: 0, c: 0, f: 0 }, "", { locked: true }, 0])),
+      weeks: t.weeks.map((w, k) => (k < FREE_WEEKS
+        ? (k === FREE_WEEKS - 1 ? { ...w, f: shape(w.tissue as number) } : w)
+        : { w: w.w, f: shape(w.tissue as number) })),
       fm: null, ffm: null, end: null, dFat: null, dLean: null, naive: null, at: null, drift: null,
     },
   };
 }
 
-/* The whole calculation for one request. paid decides what leaves. */
-export function plan(rawInputs, { paid, cal, unitW }) {
+/** The whole calculation for one request. paid decides what leaves. */
+export function plan(rawInputs: unknown, { paid, cal, unitW }: { paid: boolean; cal?: unknown; unitW?: unknown }): { r: Result; c: Calibration } {
   const i = normalise(rawInputs);
   let r = run(i);
-  let c = { ok: false, reason: "" };
+  let c: Calibration = { ok: false, reason: "", warn: [] };
   if (paid && cal && typeof cal === "object") {
-    c = calibrate(i, r, cal, unitW === "lb" ? "lb" : "kg");
-    if (c.ok && cal.use) { i.calMaint = c.maint; i.calSe = c.se; r = run(i); }
+    const cs = cal as CalState;
+    c = calibrate(i, r, cs, unitW === "lb" ? "lb" : "kg");
+    if (c.ok && cs.use) { i.calMaint = c.maint; i.calSe = c.se; r = run(i); }
   }
-  return paid ? { r, c } : { r: freeView(r), c: { ok: false, reason: "" } };
+  return paid ? { r, c } : { r: freeView(r), c: { ok: false, reason: "", warn: [] } };
 }

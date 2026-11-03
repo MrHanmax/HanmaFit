@@ -4,13 +4,14 @@
 // Needs COACH_PASSWORD and UNLOCK_SECRET in Netlify: Site configuration →
 // Environment variables. Without them coach access is simply off.
 
-import { normalise } from "../lib/calculator/model.mjs";
-import { configured, verify, passwordMatches, coachToken, planToken } from "../lib/calculator/tokens.mjs";
-import { json, readBody } from "../lib/calculator/http.mjs";
+import type { Config } from "@netlify/functions";
+import { normalise } from "../lib/calculator/model";
+import { configured, verify, passwordMatches, coachToken, planToken } from "../lib/calculator/tokens";
+import { json, readBody } from "../lib/calculator/http";
 
-const pause = (ms) => new Promise((ok) => setTimeout(ok, ms));
+const pause = (ms: number) => new Promise((ok) => setTimeout(ok, ms));
 
-export default async (req) => {
+export default async (req: Request): Promise<Response> => {
   const body = await readBody(req);
   if (!body) return json({ error: "Bad request" }, 400);
   if (!configured() || (process.env.COACH_PASSWORD || "").length < 8)
@@ -26,4 +27,4 @@ export default async (req) => {
   return json({ error: "Unknown action" }, 400);
 };
 
-export const config = { path: "/api/calculator/coach" };
+export const config: Config = { path: "/api/calculator/coach" };

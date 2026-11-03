@@ -9,21 +9,30 @@
    A token is base64url(JSON) "." base64url(HMAC). Nothing is stored. */
 
 import { createHmac, createHash, timingSafeEqual } from "node:crypto";
+import type { Inputs } from "./model";
 
-const b64 = (buf) => Buffer.from(buf).toString("base64url");
+type Kind = "coach" | "plan";
+export interface CoachClaims { role: "coach"; exp: number }
+export interface PlanClaims { s: string; a: number; h: number; w: number; n: string; iat: number; exp: number }
+
+const b64 = (buf: Buffer | string) => Buffer.from(buf).toString("base64url");
 const secret = () => process.env.UNLOCK_SECRET || "";
 export const configured = () => secret().length >= 24;
 
-function mac(kind, body) {
+function mac(kind: Kind, body: string): string {
   return b64(createHmac("sha256", secret()).update(kind + ":" + body).digest()).slice(0, 32);
 }
 
-export function sign(kind, payload) {
+export function sign(kind: "coach", payload: CoachClaims): string;
+export function sign(kind: "plan", payload: PlanClaims): string;
+export function sign(kind: Kind, payload: CoachClaims | PlanClaims): string {
   const body = b64(JSON.stringify(payload));
   return body + "." + mac(kind, body);
 }
 
-export function verify(kind, token) {
+export function verify(kind: "coach", token: unknown): CoachClaims | null;
+export function verify(kind: "plan", token: unknown): PlanClaims | null;
+export function verify(kind: Kind, token: unknown): CoachClaims | PlanClaims | null {
   if (!configured() || typeof token !== "string" || token.length > 600) return null;
   const [body, sig] = token.split(".");
   if (!body || !sig) return null;
@@ -36,17 +45,17 @@ export function verify(kind, token) {
   } catch { return null; }
 }
 
-export function passwordMatches(given) {
+export function passwordMatches(given: unknown): boolean {
   const real = process.env.COACH_PASSWORD || "";
   if (real.length < 8 || typeof given !== "string") return false;
-  const h = (s) => createHash("sha256").update(s).digest();
+  const h = (s: string) => createHash("sha256").update(s).digest();
   return timingSafeEqual(h(given), h(real));
 }
 
 const DAY = 864e5;
 export const coachToken = () => sign("coach", { role: "coach", exp: Date.now() + 30 * DAY });
 
-export function planToken(i, name) {
+export function planToken(i: Inputs, name: unknown): string {
   return sign("plan", {
     s: i.sex, a: Math.round(i.age), h: Math.round(i.height), w: Math.round(i.weight * 10) / 10,
     n: String(name || "").slice(0, 60), iat: Date.now(), exp: Date.now() + 365 * DAY,
@@ -56,7 +65,7 @@ export function planToken(i, name) {
 /* A plan token fits figures that are the same person: same sex, a birthday
    either way, a few centimetres of tape error, and weight within 15 percent,
    so the plan stays open as they lose or gain. */
-export function planFits(p, i) {
+export function planFits(p: PlanClaims | null, i: Inputs): boolean {
   return !!p && p.s === i.sex && Math.abs(p.a - i.age) <= 1 && Math.abs(p.h - i.height) <= 3 &&
     i.weight >= p.w * 0.85 && i.weight <= p.w * 1.15;
 }
