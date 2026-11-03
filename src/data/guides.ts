@@ -14,6 +14,73 @@ export type Guide = {
 
 export const guides: Guide[] = [
   {
+    slug: 'best-gym-in-karachi',
+    title: 'Best Gym in Karachi: How to Choose One That Actually Works',
+    seoTitle: 'Best Gym in Karachi (2026): How to Choose the Right One',
+    description: 'Looking for the best gym in Karachi? What actually matters: coaching, timings, women only hours, physio, honest prices and real reviews. Plus how Hanma compares.',
+    lede: 'Karachi has hundreds of gyms, from big chains in DHA and Clifton to studios in Gulshan, Johar and North Nazimabad. The best gym is not the one with the most machines. It is the one where you keep showing up and keep improving. Here is how to judge any gym in Karachi before you pay.',
+    published: '2026-11-03',
+    sections: [
+      {
+        h: '1. A coach on the floor, not just a membership card',
+        p: [
+          'Most people quit a gym in the first three months, usually because nobody tells them what to do. The best gyms in Karachi have a coach on the floor during your hours who corrects your form and tracks your progress.',
+          'Ask: who coaches at my time, and will they know my name and my plan after a month?',
+        ],
+      },
+      {
+        h: '2. Distance and timings that fit your day',
+        p: [
+          'Traffic decides more gym memberships in Karachi than equipment does. A great gym 40 minutes away loses to a good gym 10 minutes away. Pick one close to home or work, and check that its coached hours match when you can actually train.',
+        ],
+      },
+      {
+        h: '3. Proper women only hours',
+        p: [
+          'For many women in Karachi, comfort matters more than anything else. Look for real women only hours with a female coach, not a corner of the main floor. Ask whether evenings are covered too, since many ladies timings end by 5 pm.',
+        ],
+      },
+      {
+        h: '4. Support beyond the workout',
+        p: [
+          'Back pain, knee pain, PCOS, thyroid and post pregnancy recovery are common reasons people start training. A gym with a physiotherapist and nutrition support can train you around them safely instead of guessing.',
+        ],
+      },
+      {
+        h: '5. Honest, upfront prices',
+        p: [
+          'The best gyms publish their prices. Check the admission fee, whether a quarterly plan waives it, and whether personal training is clearly priced. If a gym will not tell you the price until you visit, ask why.',
+        ],
+      },
+      {
+        h: '6. Reviews from real members',
+        p: [
+          'Read the latest Google reviews, not just the rating. Look for comments about coaches by name, cleanliness and how staff treat beginners. A 4.5 with recent detailed reviews says more than a 5.0 with a handful.',
+        ],
+      },
+      {
+        h: 'Try before you commit',
+        p: [
+          'Any gym worth joining will let you train one session first. Go at the time you would actually train, meet the coach and see how busy it is.',
+        ],
+      },
+      {
+        h: 'Where Hanma fits',
+        p: [
+          'Hanma Fitness Studio is a coached gym in Gulistan e Johar, serving Johar, Gulshan e Iqbal and nearby areas of Karachi. It is rated 4.7 on Google by more than 120 members.',
+        ],
+        list: [
+          'Coaches on the floor every weekday session, morning, afternoon and evening',
+          'Women only hours Monday to Friday, 1 to 5 pm, plus a female coach from 6 to 8 pm',
+          'In house physiotherapist and diet plans',
+          'Personal training, group training, aerobics and Zumba, and MMA under one roof',
+          'All prices published online, and your first session is free',
+        ],
+      },
+    ],
+    related: [{ href: '/pricing', label: 'See every Hanma price' }, { href: '/about', label: 'Meet the coaches' }],
+  },
+  {
     slug: 'gym-fees-gulistan-e-johar',
     title: 'Gym Fees in Gulistan e Johar: What You Actually Pay',
     seoTitle: 'Gym Fees in Gulistan e Johar, Karachi (2026 Guide)',
