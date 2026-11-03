@@ -42,6 +42,9 @@
      Gold is the bar that opens a section and the fill of the one button.
      Label text uses a darker gold than the system's gold-deep, which its own
      notes flag at 2.3:1 on paper; this one reads 5.4:1. */
+  /* EB Garamond sets small beside the site's sans serif, so the whole page is
+     scaled up a step: every rem below is 18px rather than 16px. */
+  html { font-size: 18px; }
   :root {
     --paper: #f4f0e4;
     --raised: #fbf9f3;
@@ -83,7 +86,7 @@
   * { box-sizing: border-box; }
   body {
     margin: 0; background: var(--paper); color: var(--ink-soft);
-    font-family: var(--serif); font-size: 17px; line-height: 1.55;
+    font-family: var(--serif); font-size: 19px; line-height: 1.55;
     -webkit-font-smoothing: antialiased;
   }
   .wrap { max-width: 74rem; margin: 0 auto; padding-inline: 20px; padding-block: 36px 88px; }
@@ -197,6 +200,12 @@
   .rate .hint.warn { color: var(--ink); }
   .hint { font-size: .78rem; color: var(--stone); line-height: 1.4; }
   .hint.warn { color: var(--ink); }
+  .offerbox { margin-top: 26px; background: var(--raised); border: 1px solid var(--rule); border-left: 3px solid var(--gold); padding: 22px 20px; display: grid; gap: 12px; }
+  .offerbox .price { margin: 0; font-size: 2.1rem; font-weight: 600; line-height: 1; color: var(--ink); }
+  .offerbox .price span { display: block; margin-top: 8px; font-size: .8rem; font-weight: 400; line-height: 1.4; color: var(--stone); }
+  .offerbox p { margin: 0; }
+  .offerbox ol { margin: 0; padding-left: 1.3em; display: grid; gap: 6px; }
+  .offerbox .buy { justify-self: start; }
   .stepsplit { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .phasewhy { display: grid; gap: 18px; margin-top: 22px; }
   .phasewhy .pw { display: grid; gap: 5px; padding-left: 14px; border-left: 2px solid var(--rule-strong); }
@@ -516,7 +525,7 @@
       </div>
     </div>
     <div class="bar" style="margin-top:22px"></div>
-    <p class="eyebrow">Hanma · Free calorie and macro calculator</p>
+    <p class="eyebrow">Free · Calories and macros</p>
     <h1>Calorie Calculator</h1>
     <p class="lede">A programme for <span class="rot" id="rotWord">losing fat</span>.</p>
     <p class="dek">
@@ -700,6 +709,7 @@
         <p class="small" id="netNote" role="status" hidden></p>
         <div class="answer" id="answer" aria-live="polite"><p class="eyebrow">Your plan</p><p class="small muted">Working out your plan…</p></div>
         <div class="summary" id="summary"></div>
+        <div class="offerbox" id="offerTop" hidden></div>
       </section>
 
       <section>
@@ -830,7 +840,7 @@
           <ul class="offer" id="offer"></ul>
           <div class="buyrow">
             <button class="buy" id="buyBtn" type="button">Get the full plan<span class="arr" aria-hidden="true">→</span></button>
-            <p class="small muted">Opens WhatsApp with your figures attached, so Fawad can send you the full programme.</p>
+            <p class="small muted">One time payment, no subscription. WhatsApp opens with your figures attached; pay by NayaPay or bank transfer there, and your plan unlocks on your phone within 12 hours.</p>
           </div>
           <p class="small">Would rather be coached than calculated? <a class="wa" href="#" target="_blank" rel="noopener">Message Fawad on WhatsApp</a>.</p>
         </div>
@@ -1063,7 +1073,7 @@ var HanmaBloods=(()=>{var T=Object.defineProperty;var K=Object.getOwnPropertyDes
 
   function lockline(teaser) {
     return "<div class='lockline'><p class='small muted'>" + teaser + "</p>" +
-      "<button type='button' class='linkbtn' data-unlock>Get the full plan on WhatsApp</button></div>";
+      "<button type='button' class='linkbtn' data-unlock>Unlock for " + price() + "</button></div>";
   }
 
   /* A hatched outline of a table: real column names, real row labels where
@@ -1599,7 +1609,7 @@ var HanmaBloods=(()=>{var T=Object.defineProperty;var K=Object.getOwnPropertyDes
       "<div class='acts'>" +
       (state.paid ? "<label class='pdfname'><span class='lab'>Name on the plan</span><input id='pdfName' autocomplete='off' placeholder='optional' value='" +
           (state.pdfName || "").replace(/[&'<>"]/g, "") + "'></label><button type='button' class='btn-ink' id='pdfBtn'>Download plan as PDF</button>"
-                  : "<button type='button' class='btn-line' data-unlock>Download plan as PDF</button><span class='small muted'>With the full programme</span>") +
+                  : "<button type='button' class='btn-line' data-unlock>Download plan as PDF</button><span class='small muted'>With the full plan, " + price() + "</span>") +
       "<button type='button' class='linkbtn' id='shareBtn'>Copy a link to these figures</button>" +
       (state.coach ? "<button type='button' class='btn-ink' id='paidLinkBtn'>Create paid link</button>" : "") + "</div>" +
       (state.unlock === "mismatch" ? "<p class='small'>Your full plan is unlocked for the figures it was made for. These are too far from them, so this is the free view. Change them back, or message Fawad for a new plan.</p>" : "") +
@@ -2365,6 +2375,7 @@ var HanmaBloods=(()=>{var T=Object.defineProperty;var K=Object.getOwnPropertyDes
     if (state.paid) return;
     var L = Math.max(0, i.weeks - FREE_WEEKS);
     $("unlockEyebrow").textContent = "Weeks " + (FREE_WEEKS + 1) + " to " + i.weeks;
+    $("buyBtn").innerHTML = "Get the full plan for " + price() + "<span class='arr' aria-hidden='true'>→</span>";
     var items = [
       [wordNum(L) + " further weeks", "Each with its intake, the weight it should land at, and the range the scale is likely to show."],
       ["The endpoint, split", "Where you finish, as fat and lean separately, beside the straight line figure."],
@@ -2381,6 +2392,28 @@ var HanmaBloods=(()=>{var T=Object.defineProperty;var K=Object.getOwnPropertyDes
     $("offer").innerHTML = items.map(function (x) {
       return "<li><span><span class='ink' style='font-weight:600'>" + x[0] + ".</span> " + x[1] + "</span></li>";
     }).join("");
+  }
+
+  /* ── the price ────────────────────────────────────────────────────
+     Shown before anyone reaches WhatsApp, in rupees in Pakistan and in
+     dollars elsewhere, so the chat is only where they pay. */
+  var PRICE = { pk: "Rs 600", intl: "$2" };
+  var LOCAL = (function () { try { return Intl.DateTimeFormat().resolvedOptions().timeZone === "Asia/Karachi"; } catch (e) { return true; } })();
+  function price() { return LOCAL ? PRICE.pk : PRICE.intl; }
+
+  function renderOfferTop(i) {
+    var box = $("offerTop");
+    box.hidden = state.paid;
+    if (state.paid) return;
+    box.innerHTML =
+      "<p class='eyebrow'>The full plan</p>" +
+      "<p class='price'>" + price() + "<span>one time, no subscription" + (LOCAL ? ", or " + PRICE.intl + " from abroad" : ", or " + PRICE.pk + " in Pakistan") + "</span></p>" +
+      "<p class='small'>All " + i.weeks + " weeks with your calories and macros, where you finish as fat and muscle, training and rest day targets, " +
+      "protein by meal, when to adjust, and a PDF to keep. Made for your figures by Fawad Haris, clinical dietitian.</p>" +
+      "<ol class='small'><li>Tap the button. WhatsApp opens with your figures already attached.</li>" +
+      "<li>Pay " + price() + (LOCAL ? " by NayaPay or bank transfer" : " by Wise or bank transfer") + ". The details come in the chat.</li>" +
+      "<li>Fawad checks your figures, and your full plan unlocks on your phone within 12 hours.</li></ol>" +
+      "<button class='buy' type='button' data-unlock>Get the full plan for " + price() + "<span class='arr' aria-hidden='true'>→</span></button>";
   }
 
   /* ── contact ──────────────────────────────────────────────────── */
@@ -2763,6 +2796,7 @@ var HanmaBloods=(()=>{var T=Object.defineProperty;var K=Object.getOwnPropertyDes
     renderBloods(i);
     renderReview(i, r);
     renderOffer(i, r, held);
+    renderOfferTop(i);
     var hint = { fat_loss: "Lose fat while keeping the muscle you have.", recomposition: "Lose fat and build muscle at the same time, at a steady weight.",
       muscle_gain: "Build muscle with as little fat as possible.", weight_gain: "Put on weight, muscle first, with a bigger surplus.",
       maintenance: "Hold your weight while training improves composition." }[i.goal];
@@ -2907,7 +2941,7 @@ var HanmaBloods=(()=>{var T=Object.defineProperty;var K=Object.getOwnPropertyDes
     try { sessionStorage.setItem("hanma_lead", "1"); } catch (e3) {}
     if (typeof gtag === "function") gtag("event", "whatsapp_click", { link_id: "calculator_full_plan", source_code: ref });
     window.open("https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(
-      "Hi Fawad, I would like the full plan from the Hanma calculator. My figures: " + shareLink() + " Ref " + ref), "_blank", "noopener");
+      "Hi Fawad, I would like the full plan from the Hanma calculator (" + price() + "). My figures: " + shareLink() + " Ref " + ref), "_blank", "noopener");
   });
 
 
