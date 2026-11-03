@@ -80,9 +80,7 @@
   .eyebrow::before { content: ""; width: 8px; height: 8px; background: var(--color-gold); flex: none; }
   .paper .eyebrow { color: var(--color-ink); }
 
-  /* Gold rule under every section title */
-  .rule-under::after { content: ""; display: block; width: 64px; height: 4px; margin-top: 1.1rem; background: var(--color-gold); }
-
+    
   .dek { color: var(--color-muted); font-size: 1.15rem; line-height: 1.5; }
   .paper .dek { color: var(--color-ink-soft); }
 

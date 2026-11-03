@@ -43,7 +43,7 @@ export default function LeadPrompts() {
       <div className="relative max-h-[92dvh] overflow-y-auto">
         <div className="border border-line bg-raised p-6 text-cream">
           <p className="eyebrow">First session free</p>
-          <p className="rule-under mt-3 font-[family-name:var(--font-serif)] text-4xl leading-none">Train With a Coach This Week</p>
+          <p className="mt-3 font-[family-name:var(--font-serif)] text-4xl leading-none">Train With a Coach This Week</p>
           <p className="mt-4 text-muted">Three taps and we confirm a time on WhatsApp. No payment, no pressure.</p>
         </div>
         <TrialForm />

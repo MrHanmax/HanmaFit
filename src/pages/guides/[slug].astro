@@ -32,7 +32,7 @@ const date = new Date(g.published).toLocaleDateString('en-GB', { day: 'numeric',
     <div class="wrap max-w-3xl">
       {g.sections.map((s) => (
         <section class="mt-10 first:mt-0">
-          <h2 class="rule-under text-[2rem] md:text-4xl">{s.h}</h2>
+          <h2 class="text-[2rem] md:text-4xl">{s.h}</h2>
           <div class="prose-hanma mt-5 text-lg text-cream/90">{s.p.map((t) => <p>{t}</p>)}</div>
           {s.list && (
             <ul class="mt-4 grid gap-2.5 text-lg">
