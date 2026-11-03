@@ -39,3 +39,4 @@
 - [Guides](https://hanmafit.com/guides)
 - [How to choose the best gym in Karachi](https://hanmafit.com/guides/best-gym-in-karachi)
 - [Contact and directions](https://hanmafit.com/contact)
+- [Calorie and macro calculator](https://hanmafit.com/calculator): maintenance calories, a phase by phase plan and macros, by Fawad Haris
