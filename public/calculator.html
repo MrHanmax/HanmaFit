@@ -2797,6 +2797,7 @@ var HanmaBloods=(()=>{var T=Object.defineProperty;var K=Object.getOwnPropertyDes
     renderReview(i, r);
     renderOffer(i, r, held);
     renderOfferTop(i);
+    prepareShort();
     var hint = { fat_loss: "Lose fat while keeping the muscle you have.", recomposition: "Lose fat and build muscle at the same time, at a steady weight.",
       muscle_gain: "Build muscle with as little fat as possible.", weight_gain: "Put on weight, muscle first, with a bigger surplus.",
       maintenance: "Hold your weight while training improves composition." }[i.goal];
@@ -2940,9 +2941,39 @@ var HanmaBloods=(()=>{var T=Object.defineProperty;var K=Object.getOwnPropertyDes
     try { var src = JSON.parse(sessionStorage.getItem("hanma_src") || "null"); if (src && src.code && src.code !== "WEB") ref = "CALC " + src.code; } catch (e2) {}
     try { sessionStorage.setItem("hanma_lead", "1"); } catch (e3) {}
     if (typeof gtag === "function") gtag("event", "whatsapp_click", { link_id: "calculator_full_plan", source_code: ref });
-    window.open("https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(
-      "Hi Fawad, I would like the full plan from the Hanma calculator (" + price() + "). My figures: " + shareLink() + " Ref " + ref), "_blank", "noopener");
+    var wa = function (url) {
+      return "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(
+        "Hi Fawad, I would like the full plan from the Hanma calculator (" + price() + "). My figures: " + url + " Ref " + ref);
+    };
+    // The short link is usually made already, while they read their results.
+    var ready = readyShort();
+    if (ready) { window.open(wa(ready), "_blank", "noopener"); return; }
+    // If not, open the window now, while the tap still counts, and send it on
+    // once the link is made; after two seconds the full link goes instead.
+    var w = window.open("", "_blank");
+    var sent = false, send = function (url) {
+      if (sent) return; sent = true;
+      if (w && !w.closed) w.location.href = wa(url); else location.href = wa(url);
+    };
+    shortLink().then(send);
+    setTimeout(function () { send(shareLink()); }, 2000);
   });
+
+  /* A short link for the visitor's figures, made a moment after they settle,
+     so the WhatsApp request can carry hanmafit.com/c/… instead of the figures. */
+  var prepared = { key: null, url: null }, prepTimer = null, prepCount = 0;
+  function figuresKey() { return b64url(JSON.stringify(snapshot())); }
+  function prepareShort() {
+    if (state.paid || state.coach) return;
+    clearTimeout(prepTimer);
+    prepTimer = setTimeout(function () {
+      var key = figuresKey();
+      if (prepared.key === key || prepCount >= 20) return;
+      prepCount++;
+      post("link", { p: key }).then(function (res) { if (res.url) prepared = { key: key, url: res.url }; }, function () {});
+    }, 1500);
+  }
+  function readyShort() { return prepared.key === figuresKey() ? prepared.url : null; }
 
 
   /* ── motion ───────────────────────────────────────────────────── */
