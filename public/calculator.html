@@ -1220,8 +1220,18 @@ var HanmaBloods=(()=>{var T=Object.defineProperty;var K=Object.getOwnPropertyDes
     return (here ? location.origin + location.pathname : SHARE_BASE) + "#p=" + b64url(JSON.stringify(snapshot()));
   }
 
+  /* A short hanmafit.com/c/ link for these figures, and for a paid plan when a
+     token is given. If the server cannot make one, the full link still works. */
+  function shortLink(token) {
+    var long = shareLink() + (token ? "&u=" + token : "");
+    return post("link", token ? { p: b64url(JSON.stringify(snapshot())), u: token } : { p: b64url(JSON.stringify(snapshot())) })
+      .then(function (res) { return res.url || long; }, function () { return long; });
+  }
+
   function share() {
-    shareUrl(shareLink(), "Link copied. It opens this page with these figures in it, so anyone you send it to will see them.");
+    shortLink().then(function (url) {
+      shareUrl(url, "Link copied. It opens this page with these figures in it, so anyone you send it to will see them.");
+    });
   }
   function shareUrl(url, copied, waText) {
     var note = $("shareNote");
@@ -2874,9 +2884,10 @@ var HanmaBloods=(()=>{var T=Object.defineProperty;var K=Object.getOwnPropertyDes
     post("coach", { action: "issue", coach: stored(COACH_KEY), i: i, name: name }).then(function (res) {
       btn.disabled = false;
       if (!res.token) { if (res.status === 401) { store(COACH_KEY, ""); render(); } window.alert(res.error || "No link was made."); return; }
-      var url = shareLink() + "&u=" + res.token;
-      shareUrl(url, "Paid link copied. It opens the full plan on " + (name ? name + "'s" : "the client's") +
-        " phone, and only for their own figures. Send it to them on WhatsApp.", "Here is your full Hanma plan" + (name ? ", " + name : "") + ": " + url);
+      shortLink(res.token).then(function (url) {
+        shareUrl(url, "Paid link copied. It opens the full plan on " + (name ? name + "'s" : "the client's") +
+          " phone, and only for their own figures. Send it to them on WhatsApp.", "Here is your full Hanma plan" + (name ? ", " + name : "") + ": " + url);
+      });
     }, function () { btn.disabled = false; window.alert("The calculator could not be reached."); });
   }
 
