@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 
-// "Before you go" offer of the free calorie calculator, once per visit.
+// Offer of the free calorie calculator, once per visit.
 // Desktop: when the pointer leaves through the top of the window (heading for
 // the tabs or the back button). Phones have no such signal, so a small card
-// slides up when the visitor scrolls back up quickly after reading half the
-// page; it never covers the page, so it stays within Google's rules for
-// mobile pop ups.
+// slides up after 25 seconds on the page, once the visitor has read most of
+// it, or when they scroll back up quickly; it never covers the page, so it
+// stays within Google's rules for mobile pop ups.
 // Skipped on the calculator and contact pages, after the visitor has messaged
 // or booked, and while the free session pop up is open.
 const KEY = 'hanma_calc_prompt';
@@ -42,11 +42,15 @@ export default function CalcPrompt() {
       recent = recent.filter(([at]) => t - at < 700); recent.push([t, y]);
       const top = Math.max(...recent.map(([, ry]) => ry));
       if (deepest > 0.5 && top - y > 500) show('card', 'scroll_up');
+      else if (deepest > 0.7) show('card', 'read_most');
     };
+    // Waits while the free session pop up is open, then offers once it is closed.
+    const timer = window.setInterval(() => { if (Date.now() - start > 25000) show('card', 'time'); }, 2000);
     const fine = window.matchMedia?.('(pointer: fine)').matches;
     if (fine) document.addEventListener('mouseout', onLeave);
     else window.addEventListener('scroll', onScroll, { passive: true });
-    function cleanup() { document.removeEventListener('mouseout', onLeave); window.removeEventListener('scroll', onScroll); }
+    if (fine) window.clearInterval(timer);
+    function cleanup() { document.removeEventListener('mouseout', onLeave); window.removeEventListener('scroll', onScroll); window.clearInterval(timer); }
     return cleanup;
   }, []);
 
@@ -59,10 +63,10 @@ export default function CalcPrompt() {
 
   const body = (compact: boolean) => (
     <>
-      <p className="eyebrow">Before you go</p>
+      <p className="eyebrow">{trigger.current === 'exit' || trigger.current === 'scroll_up' ? 'Before you go' : 'Free tool'}</p>
       <p className={`font-[family-name:var(--font-serif)] leading-none ${compact ? 'mt-2 text-3xl' : 'mt-3 text-4xl'}`}>Free Calorie Calculator</p>
       <p className={compact ? 'mt-2 text-sm text-muted' : 'mt-4 text-muted'}>
-        {compact ? 'Your calories and protein, from your own steps and training. Two minutes.'
+        {compact ? 'Your calories and protein, from your own steps and training. Two minutes, free.'
           : 'Your maintenance calories, protein and a week by week plan, worked out from your own steps and training. Two minutes, no sign up.'}
       </p>
       <a className={`btn btn-gold w-full ${compact ? 'mt-4' : 'mt-6'}`} href="/calculator" onClick={go} data-track="calc_prompt">Work Out My Calories</a>
